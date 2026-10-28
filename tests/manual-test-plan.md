@@ -3,7 +3,7 @@
 ## Automated checks already performed
 - JavaScript syntax parsing and startup in a mocked browser environment.
 - All referenced HTML element IDs exist.
-- Twenty circuit definitions and twelve car profiles are present.
+- All 75 built-in circuit definitions and twelve car profiles are present; runtime smoke tests sample geometry, arc length, corner demand and surface grip at 64 points on every circuit.
 - Simulated Grand Prix completed 3 laps, awarded credits and advanced the round.
 - Simulated wet Time Attack completed and saved a local ghost recording.
 - Simulated Elimination removed rivals during a race and completed.
@@ -36,7 +36,7 @@
 - Enable GitHub Pages from main and /(root); verify the live page loads and inspect console/network requests.
 
 ## New phase 1-4 regression coverage
-- [ ] Run the GitHub Actions "Static regression checks" workflow and confirm it passes.
+- [ ] Run the GitHub Actions "Static regression checks" workflow and confirm it passes, including 64-point geometry/grip checks on all 75 circuits.
 - [ ] Complete a full Grand Prix at Easy, Normal, Hard and Expert; verify checkpoints advance in order and one finish/reward occurs per race.
 - [ ] Repeatedly contact rivals at high speed; steering remains responsive and damage/speed react.
 - [ ] Test passing rivals on inside/outside lines and confirm no rival can permanently block the player.
