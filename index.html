@@ -13,12 +13,12 @@
 <div id="overlay" class="overlay"><h2 id="overlayTitle">READY, RACER?</h2><p id="overlayText">Choose your setup and race three laps.</p><button id="startBtn">▶ START RACE</button></div></div>
 <div class="race-strip"><span id="status" role="status" aria-live="polite">GRID READY</span><span id="speed">SPEED 000</span><span id="lap">LAP 0 / 3</span><span id="position">POS — / 4</span></div>
 <div class="touch-controls" aria-label="Touch driving controls"><button data-control="left" aria-label="Steer left">◀ LEFT</button><button data-control="brake">▼ BRAKE</button><button data-control="right" aria-label="Steer right">RIGHT ▶</button><button data-control="nitro">⚡ NITRO</button><button id="mobileStart">▶ START</button><button data-control="gas">▲ GAS</button></div>
-<p class="hint">KEYS: <kbd>←</kbd><kbd>→</kbd> steer · <kbd>↑</kbd> accelerate · <kbd>↓</kbd> brake · <kbd>SPACE</kbd> nitro · <kbd>P</kbd> pause · <kbd>ENTER</kbd> start</p>
+<p class="hint">KEYS: <kbd>←</kbd><kbd>→</kbd> steer · <kbd>↑</kbd> accelerate · <kbd>↓</kbd> brake · <kbd>SPACE</kbd> nitro · <kbd>P</kbd> pause · <kbd>ENTER</kbd> start · P2: <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> drive, <kbd>SHIFT</kbd> nitro</p>
 </section>
 <aside class="sidebar">
 <section class="panel"><h2>RACE SETUP</h2>
 <label for="difficulty">Difficulty</label><select id="difficulty"><option value="easy">Easy</option><option value="normal" selected>Normal</option><option value="hard">Hard</option><option value="expert">Expert</option></select>
-<label for="mode">Race mode</label><select id="mode"><option value="grandprix">Grand Prix</option><option value="timeattack">Time Attack</option><option value="elimination">Elimination</option><option value="endurance">Endurance</option></select>
+<label for="mode">Race mode</label><select id="mode"><option value="grandprix">Grand Prix</option><option value="timeattack">Time Attack</option><option value="elimination">Elimination</option><option value="endurance">Endurance</option><option value="duel">LOCAL 2-PLAYER DUEL</option></select>
 <label for="track">Circuit</label><select id="track"><option value="neon">Neon City</option><option value="desert">Pixel Desert</option><option value="forest">Forest Sprint</option><option value="coast">Coastal Run</option><option value="night">Midnight Run</option><option value="canyon">Canyon Loop</option><option value="snow">Snow Circuit</option><option value="harbor">Pixel Harbor</option><option value="mountain">Mountain Pass</option><option value="stadium">Turbo Stadium</option></select>
 <label for="weather">Conditions</label><select id="weather"><option value="dry">Dry</option><option value="wet">Wet</option></select>
 <label for="car">Car</label><select id="car"></select>
@@ -28,7 +28,7 @@
 <div><small>Championship</small><strong id="raceNo">1 / 5</strong></div><div><small>Lap</small><strong id="lapStat">0 / 3</strong></div>
 <div><small>Credits</small><strong id="credits">0</strong></div><div><small>Best lap</small><strong id="best">—</strong></div>
 <div><small>Position</small><strong id="positionStat">—</strong></div><div><small>Nitro</small><strong id="nitroStat">100%</strong></div></div>
-<p class="muted" id="championship">Championship points: 0</p><p class="muted" id="record">Races: 0 · Wins: 0</p></section>
+<p class="muted" id="championship">Championship points: 0</p><p class="muted" id="record">Races: 0 · Wins: 0</p><h3>RACE ENGINEER</h3><p id="engineerAdvice" class="muted" role="status" aria-live="polite">Engineer online · Choose a race setup.</p></section>
 <section class="panel"><h2>GARAGE</h2><p class="car-name" id="carName">01 — PIXEL GT</p><p class="muted" id="carInfo">Balanced starter car.</p>
 <button id="upgradeEngine" class="wide">ENGINE +1 · 100 CR</button><button id="upgradeHandling" class="wide secondary">HANDLING +1 · 100 CR</button><p class="muted" id="upgradeStats">Engine 0/5 · Handling 0/5</p><label for="paint">Cosmetic paint</label><select id="paint"></select><button id="buyPaint" class="wide secondary">UNLOCK PAINT · 150 CR</button><p class="muted">Paint changes are visual only.</p></section>
 <section class="panel"><h2>CAREER & RECORDS</h2><p class="muted" id="achievements">Achievements: 0 / 8</p><ul id="achievementList" class="achievement-list"></ul><div class="button-pair"><button id="exportSave">EXPORT SAVE</button><button id="importSave">IMPORT SAVE</button></div><input id="saveFile" type="file" accept="application/json,.json" hidden><button id="resetSave" class="wide danger">RESET LOCAL SAVE</button><p class="muted">Your save stays in this browser. Export a backup to move it to another device.</p></section>
