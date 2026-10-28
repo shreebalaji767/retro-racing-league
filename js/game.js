@@ -13,15 +13,15 @@ const tracks={
  harbor:{name:'Pixel Harbor',rx:226,ry:164,wx:.08,wy:.025,wx2:.015,wy2:.012,grass:'#28616c',road:'#3d3b4b',edge:'#ffe66d',grip:0.99,surface:'HARBOR TARMAC'},
  mountain:{name:'Mountain Pass',rx:256,ry:137,wx:.045,wy:.095,wx2:.02,wy2:.015,grass:'#355b3d',road:'#49424b',edge:'#ff4f9a',grip:0.95,surface:'MOUNTAIN ASPHALT'},
  stadium:{name:'Turbo Stadium',rx:240,ry:156,wx:.012,wy:.012,wx2:.004,wy2:.004,grass:'#386747',road:'#333342',edge:'#4ce6dc',grip:1.04,surface:'RACE ASPHALT'},
- skyline:{name:'Skyline Express',rx:258,ry:132,wx:.085,wy:.018,wx2:.012,wy2:.018,grass:'#233d57',road:'#3b3c4e',edge:'#7df9ff',grip:1.02,surface:'CITY ASPHALT'},
- volcano:{name:'Volcano Run',rx:224,ry:160,wx:.095,wy:.075,wx2:.022,wy2:.012,grass:'#63352f',road:'#39343b',edge:'#ff6847',grip:.96,surface:'VOLCANIC GRIT'},
- wetlands:{name:'Marshland GP',rx:246,ry:148,wx:.025,wy:.105,wx2:.018,wy2:.02,grass:'#405d43',road:'#343c3b',edge:'#d5f26b',grip:.94,surface:'DAMP TARMAC'},
- tokyo:{name:'Pixel Tokyo',rx:232,ry:170,wx:.055,wy:.045,wx2:.024,wy2:.008,grass:'#42305b',road:'#333144',edge:'#ff6bd6',grip:1.02,surface:'CITY ASPHALT'},
- ruins:{name:'Temple Ruins',rx:260,ry:128,wx:.105,wy:.03,wx2:.018,wy2:.022,grass:'#6b7550',road:'#4b4940',edge:'#e7c878',grip:.98,surface:'OLD STONE'},
- dunes:{name:'Dune Serpent',rx:218,ry:166,wx:.12,wy:.018,wx2:.025,wy2:.008,grass:'#c49a58',road:'#685a50',edge:'#fff0a3',grip:.92,surface:'LOOSE SAND'},
- glacier:{name:'Glacier Ring',rx:252,ry:140,wx:.018,wy:.11,wx2:.01,wy2:.024,grass:'#a9d4dc',road:'#485666',edge:'#f1ffff',grip:.86,surface:'PACKED ICE'},
- farmland:{name:'Harvest Raceway',rx:238,ry:158,wx:.07,wy:.065,wx2:.015,wy2:.012,grass:'#668447',road:'#48433b',edge:'#ffcf5c',grip:.98,surface:'RURAL TARMAC'},
- industrial:{name:'Industrial Zone',rx:226,ry:162,wx:.105,wy:.045,wx2:.025,wy2:.016,grass:'#4a5055',road:'#30343c',edge:'#ffad42',grip:1.01,surface:'GRIP ASPHALT'},
+
+
+
+
+
+
+
+
+,
  lunar:{name:'Lunar Circuit',rx:256,ry:136,wx:.035,wy:.085,wx2:.022,wy2:.02,grass:'#343444',road:'#555461',edge:'#b7a5ff',grip:.98,surface:'MOON DUST'},
  skyline:{name:'Skyline Express',rx:258,ry:132,wx:.085,wy:.018,wx2:.012,wy2:.018,grass:'#233d57',road:'#3b3c4e',edge:'#7df9ff',grip:1.02,surface:'CITY ASPHALT'},
  volcano:{name:'Volcano Run',rx:224,ry:160,wx:.095,wy:.075,wx2:.022,wy2:.012,grass:'#63352f',road:'#39343b',edge:'#ff6847',grip:.96,surface:'VOLCANIC GRIT'},
@@ -69,6 +69,7 @@ function trackPoint(a,offset=0){
  // Deliberately different circuit silhouettes: not twenty recolours of one oval.
  if(id==='stadium'){x=Math.sign(c)*Math.pow(Math.abs(c),.72);y=Math.sign(s)*Math.pow(Math.abs(s),.72)}
  else if(id==='industrial'){x=Math.sign(c)*Math.pow(Math.abs(c),.48);y=Math.sign(s)*Math.pow(Math.abs(s),.48);radial+=.035*Math.cos(8*a)}
+ else if(id==='night'){radial+=.065*Math.cos(8*a);x+=.035*Math.sin(2*a);y+=.025*Math.cos(3*a)}
  else if(id==='tokyo'){radial+=.105*Math.cos(4*a)+.025*Math.cos(8*a)}
  else if(id==='dunes'){x+=.16*Math.sin(2*a);y+=.105*Math.sin(3*a)}
  else if(id==='volcano'){radial+=.075*Math.sin(7*a)+.035*Math.sin(11*a)}
@@ -83,7 +84,7 @@ function trackPoint(a,offset=0){
  else if(id==='skyline'){radial+=.035*Math.cos(6*a)+.025*Math.sin(10*a)}
  else if(id==='canyon'){radial+=.08*Math.sin(3*a)+.04*Math.cos(7*a)}
  else if(id==='forest'){radial+=.035*Math.sin(6*a)+.025*Math.cos(9*a)}
- else if(id==='desert'||id==='dunes'){radial+=.04*Math.sin(5*a)}
+ else if(id==='desert'){x+=.075*Math.sin(2*a);y+=.04*Math.sin(5*a);radial+=.035*Math.cos(7*a)}
  else if(id==='neon'){radial+=.035*Math.cos(6*a)}
  return {x:W/2+rx*x*radial,y:H/2+ry*y*radial};
 }
