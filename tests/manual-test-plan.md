@@ -47,3 +47,12 @@
 - [ ] Use touch controls on a narrow phone viewport, including pointer cancellation and loss of focus.
 - [ ] Test keyboard-only navigation, visible focus indicators and screen-reader labels/status messages.
 - [ ] Confirm no external network requests are required and the page still runs as static files.
+
+
+## Replay and championship season checks
+- [ ] Finish a race on each difficulty and verify a replay appears in the replay selector.
+- [ ] Play a saved replay, let it finish, stop it early, and start a new race afterward.
+- [ ] Finish five Grand Prix rounds and verify season standings archive and reset for the next season.
+- [ ] Finish Time Attack, Elimination and Endurance; verify they do not add Grand Prix championship points.
+- [ ] Verify the race ranking does not penalize the player merely for cars eliminated earlier.
+- [ ] Confirm the automated runtime smoke test completes three laps on Easy, Normal, Hard and Expert.
