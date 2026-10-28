@@ -63,7 +63,34 @@ window.__RRL_REGISTER_CUSTOM_TRACK=t=>{if(!t||typeof t.id!=='string'||!/^custom-
 function currentCar(){return cars.find(c=>c.id===saveData.selectedCar&&saveData.unlockedCars.includes(c.id))||cars[0]}
 function currentPaint(){return paints.find(p=>p.id===saveData.selectedPaint&&(saveData.unlockedPaints||['cyan']).includes(p.id))||paints[0]}
 function lapsTarget(){return mode==='endurance'?8:3}
-function geometry(phase,offset=0){const t=currentTrack(),a=START_ANGLE+phase*2*Math.PI,rx=t.rx+offset,ry=t.ry+offset,c=Math.cos(a),s=Math.sin(a),wx=t.wx||0,wy=t.wy||0,wx2=t.wx2||0,wy2=t.wy2||0;return{x:W/2+rx*(c+wx*Math.sin(3*a)+wx2*Math.sin(5*a)),y:H/2+ry*(s+wy*Math.sin(2*a)+wy2*Math.sin(4*a)),angle:a,tx:rx*(-s+3*wx*Math.cos(3*a)+5*wx2*Math.cos(5*a)),ty:ry*(c+2*wy*Math.cos(2*a)+4*wy2*Math.cos(4*a))}}
+function trackPoint(a,offset=0){
+ const t=currentTrack(),id=track,c=Math.cos(a),s=Math.sin(a),rx=t.rx+offset,ry=t.ry+offset,wx=t.wx||0,wy=t.wy||0,wx2=t.wx2||0,wy2=t.wy2||0;
+ let x=c+wx*Math.sin(3*a)+wx2*Math.sin(5*a),y=s+wy*Math.sin(2*a)+wy2*Math.sin(4*a),radial=1;
+ // Deliberately different circuit silhouettes: not twenty recolours of one oval.
+ if(id==='stadium'){x=Math.sign(c)*Math.pow(Math.abs(c),.72);y=Math.sign(s)*Math.pow(Math.abs(s),.72)}
+ else if(id==='industrial'){x=Math.sign(c)*Math.pow(Math.abs(c),.48);y=Math.sign(s)*Math.pow(Math.abs(s),.48);radial+=.035*Math.cos(8*a)}
+ else if(id==='tokyo'){radial+=.105*Math.cos(4*a)+.025*Math.cos(8*a)}
+ else if(id==='dunes'){x+=.16*Math.sin(2*a);y+=.105*Math.sin(3*a)}
+ else if(id==='volcano'){radial+=.075*Math.sin(7*a)+.035*Math.sin(11*a)}
+ else if(id==='mountain'){radial+=.07*Math.sin(5*a)+.035*Math.sin(9*a)}
+ else if(id==='wetlands'){x+=.11*Math.sin(3*a+.6);y+=.045*Math.sin(5*a)}
+ else if(id==='ruins'){radial+=.09*Math.cos(4*a)+.025*Math.sin(8*a)}
+ else if(id==='glacier'||id==='snow'){radial+=.045*Math.cos(6*a)+.018*Math.sin(10*a)}
+ else if(id==='lunar'){radial+=.045*Math.sin(9*a)+.025*Math.cos(13*a)}
+ else if(id==='coast'){x+=.085*Math.sin(a);y+=.045*Math.sin(2*a+.8)}
+ else if(id==='harbor'){radial+=.045*Math.cos(6*a);x+=.045*Math.sin(2*a)}
+ else if(id==='farmland'){x=Math.sign(c)*Math.pow(Math.abs(c),.84);y=Math.sign(s)*Math.pow(Math.abs(s),.84);radial+=.025*Math.sin(8*a)}
+ else if(id==='skyline'){radial+=.035*Math.cos(6*a)+.025*Math.sin(10*a)}
+ else if(id==='canyon'){radial+=.08*Math.sin(3*a)+.04*Math.cos(7*a)}
+ else if(id==='forest'){radial+=.035*Math.sin(6*a)+.025*Math.cos(9*a)}
+ else if(id==='desert'||id==='dunes'){radial+=.04*Math.sin(5*a)}
+ else if(id==='neon'){radial+=.035*Math.cos(6*a)}
+ return {x:W/2+rx*x*radial,y:H/2+ry*y*radial};
+}
+function geometry(phase,offset=0){
+ const a=START_ANGLE+phase*2*Math.PI,p=trackPoint(a,offset),before=trackPoint(a-.001,offset),after=trackPoint(a+.001,offset);
+ return{x:p.x,y:p.y,angle:a,tx:(after.x-before.x)/.002,ty:(after.y-before.y)/.002}
+}
 function arcRate(phase){const p=geometry(phase),t=currentTrack();return Math.hypot(p.tx,p.ty)*2*Math.PI}
 function playerProgress(){return progress}
 function initRivals(){const cfg=levels[difficulty];rivals=mode==='timeattack'||mode==='duel'?[]:[
