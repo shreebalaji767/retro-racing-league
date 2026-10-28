@@ -68,7 +68,7 @@ if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostn
     });
    });
    navigator.serviceWorker.addEventListener('controllerchange',()=>{
-    if(!isStandalone())setStatus('Game updated · latest files are now active');
+    if(!isStandalone())setStatus('App shell updated · refresh to load the latest game');
    });
   }catch{
    setStatus('Offline support could not start. Check the connection and reload this HTTPS page.');
