@@ -20,6 +20,10 @@ assert.match(game,/drawDuelScene/,'Split-screen view should render both drivers'
 assert.match(game,/loadReplays/,'Local race replay history should be supported');
 assert.match(game,/race engineer|engineerAdvice/i,'Rule-based race engineer UI should exist');
 assert.match(game,/rrl-custom-tracks/,'Saved custom circuits must load in the game');
+assert.match(game,/function drawTrackScenery\(t\)/,'Circuits should have themed trackside scenery');
+assert.match(game,/trackGrip=currentTrack\(\)\.grip/,'Circuit surface grip should affect vehicle handling');
+for(const id of ['skyline','volcano','wetlands','tokyo','ruins','dunes','glacier','farmland','industrial','lunar']){assert.match(game,new RegExp(id+":\\{name:"),`Track definition missing: ${id}`);assert.match(html,new RegExp('<option value="'+id+'">'),`Track selector missing: ${id}`);}
+
 assert.match(expansion,/rrl-challenge-records/);assert.match(expansion,/rrl-accessibility/);
 assert.match(expansion,/saveCustomTrack/);assert.match(expansion,/renderStandings/);assert.match(game,/unlockedPaints/);assert.match(game,/currentPaint\(\)\.color/);
 assert.match(css,/prefers-reduced-motion/);assert.match(css,/@media\(max-width:760px\)/);
