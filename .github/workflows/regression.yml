@@ -20,5 +20,8 @@ jobs:
           node --check js/game.js
           node --check js/expansion.js
           node --check tests/regression-check.mjs
+          node --check tests/runtime-smoke.mjs
       - name: Run static regression checks
         run: node tests/regression-check.mjs
+      - name: Simulate full races on every difficulty
+        run: node tests/runtime-smoke.mjs
