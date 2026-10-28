@@ -8,10 +8,13 @@ let now=0,nextRaf=1;
 const rafQueue=new Map(),storage=new Map(),listeners={};
 const ctx=new Proxy({}, {get:(target,key)=>key in target?target[key]:(()=>{}),set:(target,key,value)=>(target[key]=value,true)});
 class FakeElement {
- constructor(id=''){this.id=id;this.value='';this.textContent='';this.dataset={};this.style={};this.disabled=false;this.files=[];this._html='';this.options=[];this.handlers={};this.classList={set:new Set(),toggle:(name,force)=>{const on=force===undefined?!this.classList.set.has(name):!!force;if(on)this.classList.set.add(name);else this.classList.set.delete(name);return on},contains:name=>this.classList.set.has(name)}}
+ constructor(id=''){this.id=id;this.value='';this.textContent='';this.dataset={};this.style={setProperty:(name,value)=>{this.style[name]=value}};this.disabled=false;this.files=[];this._html='';this.options=[];this.handlers={};this.classList={set:new Set(),toggle:(name,force)=>{const on=force===undefined?!this.classList.set.has(name):!!force;if(on)this.classList.set.add(name);else this.classList.set.delete(name);return on},contains:name=>this.classList.set.has(name)}}
  set innerHTML(v){this._html=String(v);if(this.tagName==='SELECT')this.options=[]}
  get innerHTML(){return this._html}
  addEventListener(type,fn){(this.handlers[type]??=[]).push(fn)}
+ setAttribute(name,value){this.attributes??={};this.attributes[name]=String(value)}
+ querySelectorAll(selector){return selector==='[data-track-pick]'?(this.children||[]):[]}
+ dispatchEvent(event){this.dispatch(event.type,event);return true}
  dispatch(type,event={}){for(const fn of this.handlers[type]||[])fn({preventDefault(){},target:this,...event})}
  click(){this.dispatch('click')}
  appendChild(el){this.options.push(el);if(!this.value)this.value=el.value;return el}
@@ -36,7 +39,7 @@ const document={
 };
 const window={addEventListener:(type,fn)=>(listeners['window:'+type]??=[]).push(fn),__RRL_TEST__:null};
 const localStorage={getItem:k=>storage.has(k)?storage.get(k):null,setItem:(k,v)=>storage.set(k,String(v)),removeItem:k=>storage.delete(k)};
-const sandbox={document,window,localStorage,console,performance:{now:()=>now},requestAnimationFrame:fn=>{const id=nextRaf++;rafQueue.set(id,fn);return id},cancelAnimationFrame:id=>rafQueue.delete(id),setTimeout,clearTimeout,Date,Math,JSON,Blob:class{},URL:{createObjectURL:()=>'',revokeObjectURL:()=>{}},FileReader:class{},confirm:()=>true};
+const sandbox={document,window,localStorage,console,Event,performance:{now:()=>now},requestAnimationFrame:fn=>{const id=nextRaf++;rafQueue.set(id,fn);return id},cancelAnimationFrame:id=>rafQueue.delete(id),setTimeout,clearTimeout,Date,Math,JSON,Blob:class{},URL:{createObjectURL:()=>'',revokeObjectURL:()=>{}},FileReader:class{},confirm:()=>true};
 vm.runInNewContext(source,sandbox,{filename:'js/game.js'});
 function dispatchDocument(type,event){for(const fn of listeners[type]||[])fn({preventDefault(){},...event})}
 function raceAtDifficulty(level){
