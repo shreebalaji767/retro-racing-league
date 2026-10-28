@@ -72,7 +72,12 @@ const tracks={
  'hyperloop-test-ring':{name:'Hyperloop Test Ring',rx:226,ry:154,wx:0.098,wy:0.051,wx2:0.004,wy2:0.009,grass:'#233d57',road:'#383846',edge:'#7df9ff',grip:1.06,surface:'POLISHED ASPHALT',shapeIndex:46},
  'rusted-foundry-run':{name:'Rusted Foundry Run',rx:243,ry:134,wx:0.058,wy:0.086,wx2:0.016,wy2:0.006,grass:'#4a5055',road:'#383846',edge:'#ffad42',grip:0.96,surface:'INDUSTRIAL GRIT',shapeIndex:47},
  'emerald-gorge':{name:'Emerald Gorge',rx:260,ry:157,wx:0.018,wy:0.037,wx2:0.004,wy2:0.003,grass:'#1c5039',road:'#383846',edge:'#9dff87',grip:0.94,surface:'GORGE ASPHALT',shapeIndex:48},
- 'final-boss-megacircuit':{name:'Final Boss Megacircuit',rx:234,ry:137,wx:0.074,wy:0.072,wx2:0.016,wy2:0.018,grass:'#386747',road:'#383846',edge:'#ff4f9a',grip:1.02,surface:'CHAMPIONSHIP ASPHALT',shapeIndex:49}
+ 'final-boss-megacircuit':{name:'Final Boss Megacircuit',rx:234,ry:137,wx:0.074,wy:0.072,wx2:0.016,wy2:0.018,grass:'#386747',road:'#383846',edge:'#ff4f9a',grip:1.02,surface:'CHAMPIONSHIP ASPHALT',shapeIndex:49},
+ 'aurora-archipelago':{name:'Aurora Archipelago',rx:246,ry:145,wx:0.062,wy:0.031,wx2:0.012,wy2:0.021,grass:'#245e68',road:'#343d4b',edge:'#8af7ff',grip:0.98,surface:'ISLAND TARMAC',shapeIndex:50},
+ 'skyfall-viaduct':{name:'Skyfall Viaduct',rx:229,ry:159,wx:0.108,wy:0.052,wx2:0.022,wy2:0.009,grass:'#263f57',road:'#343946',edge:'#75e6ff',grip:1.02,surface:'ELEVATED ASPHALT',shapeIndex:51},
+ 'obsidian-hairpin':{name:'Obsidian Hairpin',rx:221,ry:143,wx:0.114,wy:0.081,wx2:0.021,wy2:0.018,grass:'#493638',road:'#302e37',edge:'#ff795e',grip:0.9,surface:'VOLCANIC ROCK',shapeIndex:52},
+ 'mangrove-delta':{name:'Mangrove Delta',rx:254,ry:153,wx:0.034,wy:0.101,wx2:0.018,wy2:0.016,grass:'#315d4d',road:'#343d3a',edge:'#b6ef8a',grip:0.9,surface:'WATERLOGGED TARMAC',shapeIndex:53},
+ 'solar-flare-speedway':{name:'Solar Flare Speedway',rx:258,ry:139,wx:0.043,wy:0.022,wx2:0.008,wy2:0.019,grass:'#a77b43',road:'#494047',edge:'#ffe57a',grip:1.04,surface:'HARDPACK ASPHALT',shapeIndex:54}
 };
 try{const custom=JSON.parse(localStorage.getItem('rrl-custom-tracks')||'[]');custom.filter(t=>t&&typeof t.id==='string'&&/^custom-[a-z0-9-]+$/.test(t.id)).slice(0,8).forEach(t=>{tracks[t.id]={name:String(t.name||'Custom Circuit').slice(0,22),rx:clamp(Number(t.rx)||240,205,270),ry:clamp((Number(t.rx)||240)*.62,125,175),wx:clamp(Number(t.wx)||0,0,.12),wy:clamp(Number(t.wy)||0,0,.12),wx2:clamp(Number(t.wx2)||0,0,.025),wy2:clamp(Number(t.wy2)||0,0,.025),grass:'#28533d',road:'#383846',edge:'#baff00'};const sel=document.getElementById('track');if(sel&&!Array.from(sel.options).some(o=>o.value===t.id)){const option=document.createElement('option');option.value=t.id;option.textContent=tracks[t.id].name;sel.appendChild(option)}})}catch{}
 const cars=[
