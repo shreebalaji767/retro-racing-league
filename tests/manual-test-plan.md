@@ -3,7 +3,7 @@
 ## Automated checks already performed
 - JavaScript syntax parsing and startup in a mocked browser environment.
 - All referenced HTML element IDs exist.
-- Ten circuit definitions and twelve car profiles are present.
+- Twenty circuit definitions and twelve car profiles are present.
 - Simulated Grand Prix completed 3 laps, awarded credits and advanced the round.
 - Simulated wet Time Attack completed and saved a local ghost recording.
 - Simulated Elimination removed rivals during a race and completed.
@@ -64,3 +64,20 @@
 - [ ] Confirm the duel ends when either player completes three laps and reports the winner.
 - [ ] Play a saved duel replay and confirm both cars are visible.
 - [ ] Confirm engineer guidance changes for wet conditions, off-road driving, damage, low nitro and endurance pit windows.
+
+
+## PWA installation, update and offline recovery
+- [ ] Serve the site over HTTPS (or localhost); confirm the service worker reaches the ready state without console errors.
+- [ ] Install on a Chromium desktop/Android browser when the install prompt is available; confirm the button reports accepted/dismissed states accurately.
+- [ ] On iPhone/iPad, open in Safari and use Share → Add to Home Screen; confirm the SVG icon is acceptable on the home screen.
+- [ ] Load the game once online, then switch offline and reload; confirm the app shell and local game assets load from cache.
+- [ ] Publish a new app-shell version, revisit while online, and verify updated scripts/styles are fetched rather than held indefinitely by a cache-first strategy.
+- [ ] Confirm external-origin requests are not intercepted by the service worker and no remote API is required.
+- [ ] Check manifest/installability in browser developer tools; verify icon rendering and standalone launch behavior on each target browser.
+
+## Responsive and accessibility audit
+- [ ] Check 320px, 375px, 390px, 768px, 1024px and wide desktop viewports; no horizontal page overflow should hide controls.
+- [ ] Test portrait and short landscape layouts, including the masthead install controls and all touch buttons.
+- [ ] Use keyboard-only navigation to reach every control; focus indicators must remain visible.
+- [ ] Confirm status messages are announced, selects have labels, and the game canvas has an accessible description.
+- [ ] Toggle high contrast, large text and reduced motion, then reload to confirm expected persistence.
