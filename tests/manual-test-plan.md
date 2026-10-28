@@ -1,25 +1,29 @@
 # Manual test plan
 
-## Smoke tests
-1. Load `index.html`; verify canvas, controls, selectors, telemetry and garage render.
-2. Start a race. Verify the overlay hides and speed/lap/position update.
-3. Pause with P and the pause button; resume; start a new race.
-4. Change difficulty and circuit then start another race.
+## Static/syntax checks
+- Run `node --check js/game.js`.
+- Verify `index.html` loads `css/style.css` and `js/game.js` with relative paths.
+- Verify no external scripts, fonts, images, API endpoints, or build dependencies are present.
 
-## Controls
-- Hold each arrow key and verify steering, throttle and braking.
-- Hold Space for nitro; release and verify recharge.
-- Touch each on-screen control; verify pointer release/cancel stops the input.
-- Resize to a narrow viewport and verify controls remain visible and tappable.
+## Physics and laps
+- Start each difficulty and verify acceleration, braking, steering and nitro.
+- Steer beyond both track edges; speed should drop and damage should increase.
+- Wet mode should reduce grip and speed.
+- Verify the first lap is only counted after a full circuit, and the finish triggers once after 3 laps (or 8 for Endurance).
+- Hit rivals from close range; speed/damage should react without locking controls.
+- Pause and resume repeatedly; time should not jump while paused.
 
-## Progression
-- Finish a race and verify credits and championship points are awarded.
-- Buy upgrades when balance is sufficient; verify credits decrease by 100.
-- Verify upgrade buttons disable at zero credits and level 5.
-- Reload and verify credits, upgrades and best lap persist.
+## Modes and progression
+- Grand Prix: finish five rounds; verify points, round number, wins and podiums.
+- Time Attack: verify solo race, best time per track and time-based reward.
+- Elimination: verify rivals are removed at intervals and remaining field/position updates.
+- Endurance: verify the target is eight laps.
+- Earn credits, unlock cars, buy engine/handling upgrades and verify insufficient credits/max levels.
+- Unlock achievements and verify they persist after reload.
+- Export save, reset, import save; verify progression restores.
+- Reload and verify local progress persists.
 
-## Static hosting
-- Confirm all paths are relative and no build command is required.
-- Open DevTools Network: gameplay should not require third-party requests.
-- Enable GitHub Pages from `main` and `/(root)`; verify the published site loads.
-- Check the browser console for errors during the complete race flow.
+## Responsive/static hosting
+- Test narrow mobile width and tap/hold/release each touch control.
+- Check keyboard input, pause, tab focus and save import/export.
+- Enable GitHub Pages from `main` and `/(root)`; verify the live page loads and inspect console/network requests.

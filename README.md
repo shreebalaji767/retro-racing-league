@@ -1,43 +1,30 @@
 # Retro Racing League
 
-A free top-down 16-bit-style racing game for GitHub Pages. Built with HTML, CSS, Canvas and vanilla JavaScript. No framework, build process, backend, external API, paid assets, ads, or AI services.
+A free top-down 16-bit-style arcade racing game built with HTML, CSS, Canvas and vanilla JavaScript. It is designed for static GitHub Pages hosting: no framework, build step, backend, third-party API, AI service, paid asset, advertisement, account, or subscription.
 
 ## Features
-- Keyboard and visible mobile touch controls
-- Four difficulty settings and three selectable circuit palettes
-- Local scripted rival drivers (ordinary JavaScript; no AI service)
-- Three-lap races, race rewards, championship points and garage upgrades
-- Engine and handling upgrades purchased only with earned in-game credits
-- Browser-local save data through `localStorage`
+- Track-boundary physics with off-road slowdown, wet-weather grip, steering, damage, and rival collision response
+- Five circuit layouts with different proportions and palettes
+- Four selectable difficulty levels and four modes: Grand Prix, Time Attack, Elimination, and Endurance
+- Scripted local rivals; no AI service or network calls
+- Five-round Grand Prix career, points, wins, podiums, credits, achievements and personal bests
+- Eight original car profiles; unlock cars and upgrade engine/handling using earned in-game credits
+- Nitro, wet conditions, race telemetry, touch controls, keyboard controls and pause/resume
+- Local save, JSON export/import and reset
+- Responsive UI and original Canvas pixel-art cars/track, no external assets
 
-## Run locally
-Open `index.html` in a modern browser, or serve the folder with any local static file server.
-
-## Deploy to GitHub Pages
-1. Open repository **Settings → Pages**.
-2. Under **Build and deployment**, select **Deploy from a branch**.
-3. Select `main` and folder `/(root)`, then save.
-4. Wait for the Pages workflow to finish and open the URL GitHub provides.
-
-No build step is needed. Keep asset paths relative so the site works under a repository subpath.
+## Run and publish
+Open `index.html` in a modern browser, or serve the directory using any local static file server. For GitHub Pages, open **Settings → Pages**, choose **Deploy from a branch**, then select `main` and `/(root)`. GitHub documents this branch-based setup in its [Pages publishing guide](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
 ## Controls
-- Arrow keys: steer / accelerate / brake
+- Arrow keys: steer, accelerate, brake
 - Space: nitro
-- P: pause
-- Touch buttons: mobile controls
+- P: pause/resume
+- Enter: start/restart when not racing
+- Touch buttons: on-screen controls on phones/tablets
 
 ## Save data
-Progress is local to the browser/device and can be erased by clearing site data. There is no global online leaderboard or cross-device synchronization.
+Career data stays in the browser's local storage. Export a JSON backup to move progress to another device. There is no global leaderboard or online synchronization.
 
-## Testing checklist
-- [ ] Open the site from the repository root and from its GitHub Pages URL.
-- [ ] Start, pause, resume and restart a race.
-- [ ] Check all four difficulty levels and all three track palettes.
-- [ ] Finish three laps; verify credits, points and best-lap data update.
-- [ ] Buy engine and handling upgrades; verify insufficient credits and max level are handled.
-- [ ] Test keyboard controls and touch controls on a phone-sized viewport.
-- [ ] Reload and confirm saved credits/upgrades/best lap persist.
-- [ ] Inspect browser console for errors and verify no external network requests are required.
-
-The game is a compact first full-game foundation, not a professional racing simulator. Rival logic and championship progression are deliberately local and deterministic enough to run entirely on static hosting.
+## Validation
+See `tests/manual-test-plan.md`. JavaScript syntax validation is run before commits; browser gameplay and the live GitHub Pages deployment must still be checked in a real browser after publishing.

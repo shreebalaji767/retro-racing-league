@@ -1,15 +1,37 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101018"><meta name="description" content="Free pixel-art arcade racing, rival championships and garage upgrades. No paid services or AI APIs."><title>Retro Racing League</title><link rel="stylesheet" href="css/style.css"></head>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101018"><meta name="description" content="A free 16-bit arcade racing career. Original Canvas graphics, local JavaScript rivals, no ads, no accounts, no paid services.">
+<title>Retro Racing League</title><link rel="stylesheet" href="css/style.css">
+</head>
 <body><div class="shell">
 <header class="mast"><div><p class="eyebrow">INSERT COIN? NO. JUST PLAY.</p><h1>RETRO <span>RACING</span> LEAGUE</h1></div><p class="free-tag">100% FREE · NO AI SERVICES · NO ADS</p></header>
 <main>
-<section class="game-panel"><div class="canvas-frame"><canvas id="game" width="800" height="500" aria-label="Top-down racing game. Use arrow keys or touch controls."></canvas><div id="overlay" class="overlay"><h2 id="overlayTitle">READY, RACER?</h2><p id="overlayText">Race three laps. Beat the rivals. Win credits.</p><button id="startBtn">▶ START RACE</button></div></div>
+<section class="game-panel">
+<div class="canvas-frame"><canvas id="game" width="800" height="500" aria-label="Top-down racing game. Use arrow keys or touch controls."></canvas>
+<div id="overlay" class="overlay"><h2 id="overlayTitle">READY, RACER?</h2><p id="overlayText">Choose your setup and race three laps.</p><button id="startBtn">▶ START RACE</button></div></div>
 <div class="race-strip"><span id="status" role="status" aria-live="polite">GRID READY</span><span id="speed">SPEED 000</span><span id="lap">LAP 0 / 3</span><span id="position">POS — / 4</span></div>
-<div class="touch-controls" aria-label="Touch driving controls"><button data-control="left">◀ LEFT</button><button data-control="brake">▼ BRAKE</button><button data-control="right">RIGHT ▶</button><button data-control="nitro">⚡ NITRO</button><button id="mobileStart">▶ START</button><button data-control="gas">▲ GAS</button></div>
-<p class="hint">KEYS: <kbd>←</kbd><kbd>→</kbd> steer · <kbd>↑</kbd> accelerate · <kbd>↓</kbd> brake · <kbd>SPACE</kbd> nitro · <kbd>P</kbd> pause</p></section>
+<div class="touch-controls" aria-label="Touch driving controls"><button data-control="left" aria-label="Steer left">◀ LEFT</button><button data-control="brake">▼ BRAKE</button><button data-control="right" aria-label="Steer right">RIGHT ▶</button><button data-control="nitro">⚡ NITRO</button><button id="mobileStart">▶ START</button><button data-control="gas">▲ GAS</button></div>
+<p class="hint">KEYS: <kbd>←</kbd><kbd>→</kbd> steer · <kbd>↑</kbd> accelerate · <kbd>↓</kbd> brake · <kbd>SPACE</kbd> nitro · <kbd>P</kbd> pause · <kbd>ENTER</kbd> start</p>
+</section>
 <aside class="sidebar">
-<section class="panel"><h2>RACE SETUP</h2><label for="difficulty">Difficulty</label><select id="difficulty"><option value="easy">Easy</option><option value="normal" selected>Normal</option><option value="hard">Hard</option><option value="expert">Expert</option></select><label for="track">Circuit</label><select id="track"><option value="neon">Neon City</option><option value="desert">Pixel Desert</option><option value="night">Midnight Run</option></select><button id="newRace" class="wide">↻ NEW RACE</button><button id="pauseBtn" class="wide secondary">Ⅱ PAUSE</button></section>
-<section class="panel"><h2>TELEMETRY</h2><div class="stats"><div><small>Race</small><strong id="raceNo">1 / 3</strong></div><div><small>Lap</small><strong id="lapStat">0 / 3</strong></div><div><small>Credits</small><strong id="credits">0</strong></div><div><small>Best lap</small><strong id="best">—</strong></div></div><p class="muted" id="championship">Championship points: 0</p></section>
-<section class="panel"><h2>GARAGE</h2><p class="car-name">01 — PIXEL GT</p><p class="muted">Spend earned credits on permanent upgrades. No purchases or premium currency.</p><button id="upgradeEngine" class="wide">ENGINE +1 · 100 CR</button><button id="upgradeHandling" class="wide secondary">HANDLING +1 · 100 CR</button><p class="muted" id="upgradeStats">Engine 0/5 · Handling 0/5</p></section>
-<section class="panel"><h2>FREE BY DESIGN</h2><ul><li>Local JavaScript rival logic</li><li>Browser-only saves</li><li>No accounts, APIs or ads</li><li>Keyboard and touch controls</li></ul></section>
-</aside></main><footer>RETRO RACING LEAGUE · VANILLA JAVASCRIPT + CANVAS · NO PAID DEPENDENCIES</footer></div><script src="js/game.js" defer></script></body></html>
+<section class="panel"><h2>RACE SETUP</h2>
+<label for="difficulty">Difficulty</label><select id="difficulty"><option value="easy">Easy</option><option value="normal" selected>Normal</option><option value="hard">Hard</option><option value="expert">Expert</option></select>
+<label for="mode">Race mode</label><select id="mode"><option value="grandprix">Grand Prix</option><option value="timeattack">Time Attack</option><option value="elimination">Elimination</option><option value="endurance">Endurance</option></select>
+<label for="track">Circuit</label><select id="track"><option value="neon">Neon City</option><option value="desert">Pixel Desert</option><option value="forest">Forest Sprint</option><option value="coast">Coastal Run</option><option value="night">Midnight Run</option></select>
+<label for="weather">Conditions</label><select id="weather"><option value="dry">Dry</option><option value="wet">Wet</option></select>
+<label for="car">Car</label><select id="car"></select>
+<button id="newRace" class="wide">↻ NEW RACE</button><button id="pauseBtn" class="wide secondary">Ⅱ PAUSE / RESUME</button>
+</section>
+<section class="panel"><h2>TELEMETRY</h2><div class="stats">
+<div><small>Championship</small><strong id="raceNo">1 / 5</strong></div><div><small>Lap</small><strong id="lapStat">0 / 3</strong></div>
+<div><small>Credits</small><strong id="credits">0</strong></div><div><small>Best lap</small><strong id="best">—</strong></div>
+<div><small>Position</small><strong id="positionStat">—</strong></div><div><small>Nitro</small><strong id="nitroStat">100%</strong></div></div>
+<p class="muted" id="championship">Championship points: 0</p><p class="muted" id="record">Races: 0 · Wins: 0</p></section>
+<section class="panel"><h2>GARAGE</h2><p class="car-name" id="carName">01 — PIXEL GT</p><p class="muted" id="carInfo">Balanced starter car.</p>
+<button id="upgradeEngine" class="wide">ENGINE +1 · 100 CR</button><button id="upgradeHandling" class="wide secondary">HANDLING +1 · 100 CR</button><p class="muted" id="upgradeStats">Engine 0/5 · Handling 0/5</p></section>
+<section class="panel"><h2>CAREER & RECORDS</h2><p class="muted" id="achievements">Achievements: 0 / 8</p><ul id="achievementList" class="achievement-list"></ul><div class="button-pair"><button id="exportSave">EXPORT SAVE</button><button id="importSave">IMPORT SAVE</button></div><input id="saveFile" type="file" accept="application/json,.json" hidden><button id="resetSave" class="wide danger">RESET LOCAL SAVE</button><p class="muted">Your save stays in this browser. Export a backup to move it to another device.</p></section>
+<section class="panel"><h2>FREE BY DESIGN</h2><ul><li>Local scripted JavaScript rivals</li><li>Original Canvas pixel art</li><li>No accounts, APIs or ads</li><li>Keyboard and touch controls</li><li>No paid assets or dependencies</li></ul></section>
+</aside></main><footer>RETRO RACING LEAGUE · VANILLA JAVASCRIPT + CANVAS · NO PAID DEPENDENCIES</footer></div>
+<script src="js/game.js" defer></script></body></html>
