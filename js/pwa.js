@@ -28,11 +28,17 @@ window.addEventListener('appinstalled',()=>{
 });
 if(installButton)installButton.addEventListener('click',async()=>{
  if(installPrompt){
-  installPrompt.prompt();
-  const choice=await installPrompt.userChoice;
+  const promptEvent=installPrompt;
   installPrompt=null;
-  updateInstallUi();
-  setStatus(choice&&choice.outcome==='accepted'?'Install accepted':'Install dismissed · you can install later from your browser menu');
+  try{
+   await promptEvent.prompt();
+   const choice=await promptEvent.userChoice;
+   updateInstallUi();
+   setStatus(choice&&choice.outcome==='accepted'?'Install accepted':'Install dismissed · you can install later from your browser menu');
+  }catch{
+   updateInstallUi();
+   setStatus('The browser could not open installation. Try the browser menu instead.');
+  }
   return;
  }
  if(isStandalone()){
@@ -41,7 +47,7 @@ if(installButton)installButton.addEventListener('click',async()=>{
  }
  const ua=navigator.userAgent||'';
  if(/iphone|ipad|ipod/i.test(ua)){
-  setStatus('On iPhone/iPad: tap Share in Safari, then “Add to Home Screen”.');
+  setStatus('On iPhone/iPad: open this page in Safari, tap Share, then “Add to Home Screen”.');
  }else if(/android/i.test(ua)){
   setStatus('If installation is available, open your browser menu and choose “Install app” or “Add to Home screen”.');
  }else{
@@ -50,9 +56,23 @@ if(installButton)installButton.addEventListener('click',async()=>{
 });
 updateInstallUi();
 if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost')){
- window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').then(reg=>{
-  setStatus(isStandalone()?'App is installed · offline support enabled':'Install when ready · offline support enabled');
-  reg.addEventListener('updatefound',()=>{const worker=reg.installing;if(worker)worker.addEventListener('statechange',()=>{if(worker.state==='installed'&&navigator.serviceWorker.controller)setStatus('Update ready · refresh to use the latest version')})});
- }).catch(()=>setStatus('Install requires HTTPS; offline caching could not start on this visit.')));
+ window.addEventListener('load',async()=>{
+  try{
+   const registration=await navigator.serviceWorker.register('./service-worker.js');
+   await navigator.serviceWorker.ready;
+   if(!isStandalone())setStatus('Offline support ready · install from this browser when available');
+   registration.addEventListener('updatefound',()=>{
+    const worker=registration.installing;
+    if(worker)worker.addEventListener('statechange',()=>{
+     if(worker.state==='installed'&&navigator.serviceWorker.controller)setStatus('Update ready · refresh to load the latest game');
+    });
+   });
+   navigator.serviceWorker.addEventListener('controllerchange',()=>{
+    if(!isStandalone())setStatus('Game updated · latest files are now active');
+   });
+  }catch{
+   setStatus('Offline support could not start. Check the connection and reload this HTTPS page.');
+  }
+ });
 }
 })();
