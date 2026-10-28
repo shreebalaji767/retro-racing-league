@@ -22,7 +22,7 @@ assert.match(game,/race engineer|engineerAdvice/i,'Rule-based race engineer UI s
 assert.match(game,/rrl-custom-tracks/,'Saved custom circuits must load in the game');
 assert.match(game,/function drawTrackScenery\(t\)/,'Circuits should have themed trackside scenery');
 assert.match(game,/trackGrip=currentTrack\(\)\.grip/,'Circuit surface grip should affect vehicle handling');
-for(const id of ['skyline','volcano','wetlands','tokyo','ruins','dunes','glacier','farmland','industrial','lunar']){assert.match(game,new RegExp(id+":\\{name:"),`Track definition missing: ${id}`);assert.match(html,new RegExp('<option value="'+id+'">'),`Track selector missing: ${id}`);}
+for(const id of ['skyline','volcano','wetlands','tokyo','ruins','dunes','glacier','farmland','industrial','lunar']){assert(game.includes(id+":{name:"),`Track definition missing: ${id}`);assert(html.includes('<option value="'+id+'">'),`Track selector missing: ${id}`);}
 
 assert.match(expansion,/rrl-challenge-records/);assert.match(expansion,/rrl-accessibility/);
 assert.match(expansion,/saveCustomTrack/);assert.match(expansion,/renderStandings/);assert.match(game,/unlockedPaints/);assert.match(game,/currentPaint\(\)\.color/);
