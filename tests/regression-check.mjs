@@ -26,6 +26,12 @@ assert.match(game,/loadReplays/,'Local race replay history should be supported')
 assert.match(game,/race engineer|engineerAdvice/i,'Rule-based race engineer UI should exist');
 assert.match(game,/rrl-custom-tracks/,'Saved custom circuits must load in the game');
 assert.match(game,/function drawTrackScenery\(t\)/,'Circuits should have themed trackside scenery');
+assert.match(html,/id="trackSearch"/,'Circuit browser should include a search field');
+assert.match(html,/id="trackFavoritesOnly"/,'Circuit browser should include a favorites filter');
+assert.match(html,/id="randomTrack"/,'Circuit browser should include a random-track action');
+assert.match(game,/rrl-favorite-tracks/,'Circuit favorites should persist locally');
+assert.match(game,/data-track-favorite/,'Every circuit should have an accessible favorite control');
+assert.match(game,/function filterTracks\(\)/,'Circuit search and favorites should filter the track grid');
 assert.match(game,/function trackPoint\(a,offset=0\)/,'Track paths should use per-circuit geometry');
 const generatedTrackIds=[...game.matchAll(/'([a-z0-9-]+)':\{name:'[^']+',rx:\d+,ry:\d+,[^}]*shapeIndex:(\d+)\}/g)];
 const builtInTrackRegistry=game.slice(game.indexOf('const tracks={'),game.indexOf('\n};',game.indexOf('const tracks={')));
