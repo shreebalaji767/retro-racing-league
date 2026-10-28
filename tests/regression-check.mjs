@@ -48,7 +48,7 @@ assert.ok(manifest.icons.some(icon=>icon.src==='assets/rrl-logo.svg'&&icon.sizes
 assert.match(worker,/rrl-shell-v2/,'App shell cache must be versioned when cache behavior changes');
 assert.match(worker,/event\.waitUntil\(caches\.open\(CACHE_NAME\)\.then\(cache=>cache\.put\(request,copy\)\)\)/,'Fresh network responses should be retained for offline use');
 assert.match(worker,/fetch\(request\)\.then\(response\s*=>/,'App shell should refresh from the network when online');
-assert.match(worker,/catch\(\s*\)\s*=>\s*caches\.match\(request\)/,'Cached assets should remain available offline');
+assert.match(worker,/catch\(\(\s*\)\s*=>\s*caches\.match\(request\)/,'Cached assets should remain available offline');
 assert.match(pwa,/await navigator\.serviceWorker\.ready/,'PWA status should wait until the worker is ready');
 assert.match(pwa,/On iPhone\/iPad: open this page in Safari/,'iOS installation guidance should direct users to Safari');
 assert.match(logo,/<svg/,'Logo must be a local SVG asset');assert.match(html,/aria-label="Touch driving controls"/);assert.match(html,/value="duel"/);assert.match(html,/id="playReplay"/);assert.match(html,/id="engineerAdvice"/);
