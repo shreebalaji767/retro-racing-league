@@ -104,9 +104,27 @@ function drawTrackScenery(t){
  const count=quality==='low'?22:54;
  for(let i=0;i<count;i++){
   const phase=(i/count+((i%3)*.013))%1,side=i%2?1:-1,offset=side*(ROAD/2+24+(i*17)%34),p=geometry(phase,offset);
-  const x=Math.round(p.x),y=Math.round(p.y),kind=track==='skyline'||track==='tokyo'||track==='industrial'?'city':track==='volcano'||track==='ruins'||track==='dunes'||track==='canyon'?'rock':track==='glacier'||track==='snow'?'ice':track==='lunar'?'moon':track==='forest'||track==='wetlands'||track==='farmland'||track==='mountain'?'tree':track==='coast'||track==='harbor'?'coast':'light';
+  const x=Math.round(p.x),y=Math.round(p.y),kind=['stadium','tokyo','volcano','wetlands','farmland','harbor','ruins','dunes','glacier'].includes(track)?track:track==='skyline'||track==='industrial'?'city':track==='canyon'?'rock':track==='snow'?'ice':track==='lunar'?'moon':track==='forest'||track==='mountain'?'tree':track==='coast'?'coast':'light';
   ctx.save();ctx.translate(x,y);
-  if(kind==='city'){const h=13+(i*7)%25,w=7+(i*3)%9;ctx.fillStyle=track==='industrial'?'#242b34':track==='tokyo'?'#322541':'#1b3045';ctx.fillRect(-w/2,-h,w,h);ctx.fillStyle=t.edge;for(let yy=-h+4;yy<-2;yy+=6)for(let xx=-w/2+2;xx<w/2;xx+=4)ctx.fillRect(xx,yy,2,2);if(track==='industrial'){ctx.fillStyle='#777982';ctx.fillRect(-2,-h-8,4,8)}
+  if(kind==='stadium'){
+   ctx.fillStyle='#1b3a31';ctx.fillRect(-12,-11,24,12);ctx.fillStyle='#e3e0d5';ctx.fillRect(-12,-11,24,3);for(let k=0;k<5;k++){ctx.fillStyle=k%2?'#ff4f9a':'#4ce6dc';ctx.fillRect(-10+k*5,-7,3,3)}ctx.fillStyle='#ffe66d';ctx.fillRect(-3,-17,6,4);
+  }else if(kind==='tokyo'){
+   ctx.fillStyle='#332544';ctx.fillRect(-7,-8,14,10);ctx.fillStyle='#ff6bd6';ctx.fillRect(-10,-10,20,3);ctx.fillRect(-6,-14,12,3);ctx.fillRect(-2,-18,4,4);ctx.fillStyle='#ffe66d';ctx.fillRect(-1,-7,2,7);
+  }else if(kind==='volcano'){
+   ctx.fillStyle='#29242b';ctx.beginPath();ctx.moveTo(-12,2);ctx.lineTo(-4,-13);ctx.lineTo(1,-8);ctx.lineTo(7,-17);ctx.lineTo(13,2);ctx.closePath();ctx.fill();ctx.fillStyle='#ff6847';ctx.fillRect(-5,-7,3,7);ctx.fillRect(5,-9,3,8);ctx.fillStyle='#ffb13b';ctx.fillRect(-2,-12,5,3);
+  }else if(kind==='wetlands'){
+   ctx.fillStyle='#244c4b';ctx.fillRect(-11,-4,22,8);ctx.fillStyle='#8bb6a0';ctx.fillRect(-8,-2,16,3);ctx.strokeStyle='#d5f26b';ctx.lineWidth=2;for(let k=-8;k<=8;k+=5){ctx.beginPath();ctx.moveTo(k,3);ctx.lineTo(k-2,-9-(i%3)*2);ctx.stroke()}
+  }else if(kind==='farmland'){
+   ctx.fillStyle='#59482f';for(let k=-10;k<=10;k+=5)ctx.fillRect(k,-10,2,18);ctx.fillStyle='#a5c65b';for(let k=-9;k<=9;k+=5){ctx.fillRect(k,-7,3,3);ctx.fillRect(k-2,0,3,3)}ctx.fillStyle='#ffcf5c';ctx.fillRect(-12,7,24,2);
+  }else if(kind==='harbor'){
+   ctx.fillStyle='#4b5960';ctx.fillRect(-10,-2,20,5);ctx.fillRect(-8,-11,3,10);ctx.fillRect(6,-14,3,13);ctx.fillRect(-8,-13,17,2);ctx.strokeStyle='#ffe66d';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(4,-11);ctx.lineTo(4,-5);ctx.stroke();ctx.fillStyle='#f6f3ff';ctx.fillRect(-5,-5,5,3);
+  }else if(kind==='ruins'){
+   ctx.fillStyle='#887d61';ctx.fillRect(-9,-12,5,15);ctx.fillRect(4,-10,5,13);ctx.fillRect(-11,-14,22,4);ctx.fillStyle='#c4b184';ctx.fillRect(-7,-9,2,2);ctx.fillRect(6,-7,2,2);
+  }else if(kind==='dunes'){
+   ctx.fillStyle='#d9b56e';ctx.fillRect(-12,-3,24,7);ctx.fillRect(-7,-7,14,4);ctx.fillStyle='#b8874d';ctx.fillRect(-10,2,20,2);if(i%4===0){ctx.fillStyle='#4d7048';ctx.fillRect(5,-13,3,13);ctx.fillRect(1,-11,4,3);ctx.fillRect(5,-8,5,3)}
+  }else if(kind==='glacier'){
+   ctx.fillStyle='#dffaff';ctx.beginPath();ctx.moveTo(-9,3);ctx.lineTo(-5,-14);ctx.lineTo(-1,-5);ctx.lineTo(3,-19);ctx.lineTo(10,3);ctx.closePath();ctx.fill();ctx.fillStyle='#8ed8ee';ctx.fillRect(-2,-5,3,8);ctx.fillStyle='#f1ffff';ctx.fillRect(4,-7,2,5);
+  }else if(kind==='city'){const h=13+(i*7)%25,w=7+(i*3)%9;ctx.fillStyle=track==='industrial'?'#242b34':track==='tokyo'?'#322541':'#1b3045';ctx.fillRect(-w/2,-h,w,h);ctx.fillStyle=t.edge;for(let yy=-h+4;yy<-2;yy+=6)for(let xx=-w/2+2;xx<w/2;xx+=4)ctx.fillRect(xx,yy,2,2);if(track==='industrial'){ctx.fillStyle='#777982';ctx.fillRect(-2,-h-8,4,8)}
   }else if(kind==='rock'){ctx.fillStyle=track==='dunes'?'#d9b56e':track==='volcano'?'#312d31':track==='ruins'?'#92896b':'#675044';ctx.fillRect(-8,-7,16,8);ctx.fillRect(-5,-11,10,4);ctx.fillStyle=t.edge;ctx.fillRect(-2,-5,4,2);
   }else if(kind==='ice'){ctx.fillStyle='#e8fbff';ctx.fillRect(-5,-12,3,12);ctx.fillRect(-2,-8,5,8);ctx.fillStyle=t.edge;ctx.fillRect(3,-5,3,5);
   }else if(kind==='moon'){ctx.strokeStyle='#8884aa';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,0,4+(i%4),0,Math.PI*2);ctx.stroke();ctx.fillStyle='#55536d';ctx.fillRect(-2,-1,4,2);
@@ -122,7 +140,20 @@ traceTrack(ROAD/2+8);ctx.lineWidth=4;ctx.strokeStyle='#e7e0d8';ctx.stroke();
 traceTrack(0);ctx.lineWidth=ROAD;ctx.strokeStyle=t.road;ctx.stroke();
 traceTrack(-ROAD/2);ctx.lineWidth=2;ctx.setLineDash([12,12]);ctx.strokeStyle='#ffeab0';ctx.stroke();ctx.setLineDash([]);
 traceTrack(ROAD/2);ctx.lineWidth=4;ctx.strokeStyle=t.edge;ctx.stroke();
-for(let a=0;a<Math.PI*2;a+=Math.PI/16){const q=geometry(a/(Math.PI*2),ROAD/2+11);ctx.fillStyle=t.edge;ctx.fillRect(q.x-2,q.y-2,4,4)}
+ // Circuit-specific kerbs and surface markings make the racing line readable at a glance.
+ for(let phase=.015;phase<1;phase+=track==='stadium'?.025:.045){
+  const p=geometry(phase,track==='industrial'?ROAD*.32:track==='tokyo'?ROAD*.29:0),angle=Math.atan2(p.ty,p.tx);
+  ctx.save();ctx.translate(p.x,p.y);ctx.rotate(angle);
+  if(track==='tokyo'){ctx.fillStyle='#ff6bd6';ctx.fillRect(-5,-ROAD*.34,10,4);ctx.fillStyle='#f6f3ff';ctx.fillRect(-5,-ROAD*.34+5,10,3)}
+  else if(track==='industrial'){ctx.fillStyle='#ffad42';ctx.fillRect(-4,-ROAD*.36,8,4);ctx.fillStyle='#17191d';ctx.fillRect(-4,-ROAD*.36+4,8,3)}
+  else if(track==='stadium'){ctx.strokeStyle='#f6f3ff55';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(-3,-ROAD*.3);ctx.lineTo(3,-ROAD*.3);ctx.stroke()}
+  else if(track==='desert'||track==='dunes'){ctx.fillStyle='#fff0a3';ctx.fillRect(-3,-ROAD*.32,6,2)}
+  else if(track==='snow'||track==='glacier'){ctx.fillStyle='#c9f7ff';ctx.fillRect(-4,ROAD*.31,8,2)}
+  else if(track==='volcano'){ctx.fillStyle='#ff6847';ctx.fillRect(-4,ROAD*.32,8,3)}
+  else if(track==='coast'||track==='harbor'){ctx.fillStyle='#f6f3ff';ctx.fillRect(-3,ROAD*.31,6,2)}
+  ctx.restore();
+ }
+ for(let a=0;a<Math.PI*2;a+=Math.PI/16){const q=geometry(a/(Math.PI*2),ROAD/2+11);ctx.fillStyle=t.edge;ctx.fillRect(q.x-2,q.y-2,4,4)}
 const p=geometry(0),tan=Math.atan2(p.ty,p.tx);ctx.save();ctx.translate(p.x,p.y);ctx.rotate(tan+Math.PI/2);for(let i=-4;i<5;i++)for(let j=0;j<2;j++){ctx.fillStyle=(i+j)%2?'#111':'#fff';ctx.fillRect(i*9-4,j*9-9,9,9)}ctx.restore();
 const pit=geometry(.83,ROAD/2+17);ctx.fillStyle='#9dff87';ctx.fillRect(pit.x-8,pit.y-5,16,10);ctx.fillStyle='#111';ctx.font='bold 8px monospace';ctx.fillText('PIT',pit.x-7,pit.y+3);
 if(weather==='wet'){ctx.fillStyle='#a9d9ff18';ctx.fillRect(0,0,W,H);for(let i=0;i<(quality==='low'?12:35);i++){const x=(i*73+elapsed*90)%W,y=(i*117+elapsed*170)%H;ctx.strokeStyle='#c9e8ff55';ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-4,y+9);ctx.stroke()}}
