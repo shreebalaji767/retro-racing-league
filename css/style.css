@@ -21,3 +21,11 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 #replayStatus,#editorStatus{overflow-wrap:anywhere}
 @media(max-width:520px){.touch-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.touch-controls button{padding:8px 4px;font-size:.78rem;min-width:0}.race-strip{display:grid;grid-template-columns:1fr 1fr;gap:5px}.mast{align-items:flex-start;flex-direction:column}.free-tag{margin-top:0}.button-pair{grid-template-columns:1fr 1fr}}
 @media(orientation:landscape) and (max-height:520px){.shell{padding:6px}.mast{padding:5px}.mast h1{font-size:1.25rem}.game-panel{padding:6px}.touch-controls button{min-height:40px}.hint{margin:4px 0}}
+
+/* Visible circuit picker: works alongside the native select and on touch screens. */
+.track-picker{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:8px 0}
+.track-pick{min-width:0;min-height:42px;padding:7px 8px;font-size:.76rem;line-height:1.2;text-align:left;border:1px solid var(--line);background:#101018;box-shadow:none;overflow-wrap:anywhere}
+.track-pick::before{content:"";display:inline-block;width:8px;height:8px;margin-right:6px;border-radius:2px;background:var(--track-color,var(--cyan));vertical-align:middle}
+.track-pick[aria-pressed="true"]{border:2px solid var(--cyan);background:#17313a;color:#fff;box-shadow:inset 3px 0 var(--cyan)}
+.track-details{margin:4px 0 10px;padding:9px;background:#101018;border-left:3px solid var(--pink);color:var(--muted);font-size:.8rem;min-height:42px}
+.track-details strong{color:var(--cyan)}
