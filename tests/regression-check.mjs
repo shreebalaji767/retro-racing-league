@@ -25,6 +25,10 @@ assert.match(game,/loadReplays/,'Local race replay history should be supported')
 assert.match(game,/race engineer|engineerAdvice/i,'Rule-based race engineer UI should exist');
 assert.match(game,/rrl-custom-tracks/,'Saved custom circuits must load in the game');
 assert.match(game,/function drawTrackScenery\(t\)/,'Circuits should have themed trackside scenery');
+assert.match(game,/function trackPoint\(a,offset=0\)/,'Track paths should use per-circuit geometry');
+for(const shape of ["stadium","industrial","tokyo","dunes","volcano","mountain","wetlands","ruins","glacier","coast","harbor","farmland","skyline","night","desert"])assert(game.includes("id==='"+shape+"'"),'Distinct circuit shape missing: '+shape);
+for(const landmark of ["kind==='stadium'","kind==='tokyo'","kind==='volcano'","kind==='wetlands'","kind==='farmland'","kind==='harbor'","kind==='ruins'","kind==='dunes'","kind==='glacier'"])assert(game.includes(landmark),'Unique trackside landmark missing: '+landmark);
+
 assert.match(game,/trackGrip=currentTrack\(\)\.grip/,'Circuit surface grip should affect vehicle handling');
 for(const id of ['skyline','volcano','wetlands','tokyo','ruins','dunes','glacier','farmland','industrial','lunar']){assert(game.includes(id+":{name:"),`Track definition missing: ${id}`);assert(html.includes('<option value="'+id+'">'),`Track selector missing: ${id}`);}
 
