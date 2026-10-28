@@ -34,3 +34,16 @@
 - Test touch controls with pointer release/cancel and keyboard controls.
 - Check narrow mobile width and button tap targets.
 - Enable GitHub Pages from main and /(root); verify the live page loads and inspect console/network requests.
+
+## New phase 1-4 regression coverage
+- [ ] Run the GitHub Actions "Static regression checks" workflow and confirm it passes.
+- [ ] Complete a full Grand Prix at Easy, Normal, Hard and Expert; verify checkpoints advance in order and one finish/reward occurs per race.
+- [ ] Repeatedly contact rivals at high speed; steering remains responsive and damage/speed react.
+- [ ] Test passing rivals on inside/outside lines and confirm no rival can permanently block the player.
+- [ ] Complete multiple Grand Prix rounds and verify recent results and local points render in Championship Standings.
+- [ ] Complete each challenge preset; confirm Time Attack records improve only when a faster time is achieved.
+- [ ] Create, save, reload and race a custom circuit; verify it appears in the circuit selector.
+- [ ] Test high contrast, large text, reduced motion and alternate theme; refresh and verify preferences persist.
+- [ ] Use touch controls on a narrow phone viewport, including pointer cancellation and loss of focus.
+- [ ] Test keyboard-only navigation, visible focus indicators and screen-reader labels/status messages.
+- [ ] Confirm no external network requests are required and the page still runs as static files.
