@@ -22,7 +22,7 @@ const tracks={
  glacier:{name:'Glacier Ring',rx:252,ry:140,wx:.018,wy:.11,wx2:.01,wy2:.024,grass:'#a9d4dc',road:'#485666',edge:'#f1ffff',grip:.86,surface:'PACKED ICE'},
  farmland:{name:'Harvest Raceway',rx:238,ry:158,wx:.07,wy:.065,wx2:.015,wy2:.012,grass:'#668447',road:'#48433b',edge:'#ffcf5c',grip:.98,surface:'RURAL TARMAC'},
  industrial:{name:'Industrial Zone',rx:226,ry:162,wx:.105,wy:.045,wx2:.025,wy2:.016,grass:'#4a5055',road:'#30343c',edge:'#ffad42',grip:1.01,surface:'GRIP ASPHALT'},
- lunar:{name:'Lunar Circuit',rx:256,ry:136,wx:.035,wy:.085,wx2:.022,wy2:.02,grass:'#343444',road:'#555461',edge:'#b7a5ff',grip:.98,surface:'MOON DUST'}
+ lunar:{name:'Lunar Circuit',rx:256,ry:136,wx:.035,wy:.085,wx2:.022,wy2:.02,grass:'#343444',road:'#555461',edge:'#b7a5ff',grip:.98,surface:'MOON DUST'},
  'alpine-switchback':{name:'Alpine Switchback',rx:218,ry:128,wx:0.018,wy:0.037,wx2:0.004,wy2:0.003,grass:'#355b3d',road:'#383846',edge:'#79d6cf',grip:0.95,surface:'ALPINE ASPHALT',shapeIndex:0},
  'grand-canyon-rally':{name:'Grand Canyon Rally',rx:235,ry:151,wx:0.074,wy:0.072,wx2:0.016,wy2:0.018,grass:'#915b3d',road:'#383846',edge:'#ff9c4a',grip:0.93,surface:'GRITTY CANYON',shapeIndex:1},
  'coral-bay-sprint':{name:'Coral Bay Sprint',rx:252,ry:131,wx:0.034,wy:0.023,wx2:0.004,wy2:0.015,grass:'#287c87',road:'#383846',edge:'#4ce6dc',grip:1.01,surface:'COASTAL TARMAC',shapeIndex:2},
@@ -159,7 +159,7 @@ function drawTrackScenery(t){
  const count=quality==='low'?22:54;
  for(let i=0;i<count;i++){
   const phase=(i/count+((i%3)*.013))%1,side=i%2?1:-1,offset=side*(ROAD/2+24+(i*17)%34),p=geometry(phase,offset);
-  const x=Math.round(p.x),y=Math.round(p.y),kind=['stadium','tokyo','volcano','wetlands','farmland','harbor','ruins','dunes','glacier'].includes(track)?track:track==='skyline'||track==='industrial'?'city':track==='canyon'?'rock':track==='snow'?'ice':track==='lunar'?'moon':track==='forest'||track==='mountain'?'tree':track==='coast'?'coast':'light';
+  const x=Math.round(p.x),y=Math.round(p.y),kind=['stadium','tokyo','volcano','wetlands','farmland','harbor','ruins','dunes','glacier'].includes(track)?track:track==='skyline'||track==='industrial'?'city':track==='canyon'?'rock':track==='snow'?'ice':track==='lunar'?'moon':track==='forest'||track==='mountain'?'tree':track==='coast'?'coast':t.shapeIndex!==undefined?['stadium','tokyo','volcano','wetlands','farmland','harbor','ruins','dunes','glacier','city','rock','ice','moon','tree','coast'][t.shapeIndex%15]:'light';
   ctx.save();ctx.translate(x,y);
   if(kind==='stadium'){
    ctx.fillStyle='#1b3a31';ctx.fillRect(-12,-11,24,12);ctx.fillStyle='#e3e0d5';ctx.fillRect(-12,-11,24,3);for(let k=0;k<5;k++){ctx.fillStyle=k%2?'#ff4f9a':'#4ce6dc';ctx.fillRect(-10+k*5,-7,3,3)}ctx.fillStyle='#ffe66d';ctx.fillRect(-3,-17,6,4);
