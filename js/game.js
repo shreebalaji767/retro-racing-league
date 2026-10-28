@@ -3,16 +3,16 @@ const $=id=>document.getElementById(id),canvas=$('game'),ctx=canvas.getContext('
 const W=800,H=500,ROAD=78,START_ANGLE=-Math.PI/2,CHAMP_ROUNDS=5;
 const levels={easy:{rival:.74,max:220},normal:{rival:.88,max:260},hard:{rival:1.02,max:292},expert:{rival:1.14,max:320}};
 const tracks={
- neon:{name:'Neon City',rx:244,ry:151,wx:.025,wy:.035,wx2:.012,wy2:.01,grass:'#254e45',road:'#343344',edge:'#ff4f9a'},
- desert:{name:'Pixel Desert',rx:238,ry:158,wx:.075,wy:.025,wx2:.018,wy2:.008,grass:'#b78a48',road:'#62565a',edge:'#ffe66d'},
- forest:{name:'Forest Sprint',rx:254,ry:142,wx:.035,wy:.07,wx2:.008,wy2:.025,grass:'#1c5039',road:'#303b36',edge:'#9dff87'},
- coast:{name:'Coastal Run',rx:230,ry:166,wx:.065,wy:.02,wx2:.025,wy2:.006,grass:'#287c87',road:'#3c3b4d',edge:'#f6f3ff'},
- night:{name:'Midnight Run',rx:248,ry:148,wx:.015,wy:.06,wx2:.008,wy2:.022,grass:'#121d32',road:'#282b43',edge:'#4ce6dc'},
- canyon:{name:'Canyon Loop',rx:236,ry:154,wx:.11,wy:.035,wx2:.02,wy2:.01,grass:'#915b3d',road:'#48404a',edge:'#ff9c4a'},
- snow:{name:'Snow Circuit',rx:250,ry:145,wx:.03,wy:.085,wx2:.01,wy2:.02,grass:'#7c9ca7',road:'#414957',edge:'#b9f5ff'},
- harbor:{name:'Pixel Harbor',rx:226,ry:164,wx:.08,wy:.025,wx2:.015,wy2:.012,grass:'#28616c',road:'#3d3b4b',edge:'#ffe66d'},
- mountain:{name:'Mountain Pass',rx:256,ry:137,wx:.045,wy:.095,wx2:.02,wy2:.015,grass:'#355b3d',road:'#49424b',edge:'#ff4f9a'},
- stadium:{name:'Turbo Stadium',rx:240,ry:156,wx:.012,wy:.012,wx2:.004,wy2:.004,grass:'#386747',road:'#333342',edge:'#4ce6dc'},
+ neon:{name:'Neon City',rx:244,ry:151,wx:.025,wy:.035,wx2:.012,wy2:.01,grass:'#254e45',road:'#343344',edge:'#ff4f9a',grip:1,surface:'CITY ASPHALT'},
+ desert:{name:'Pixel Desert',rx:238,ry:158,wx:.075,wy:.025,wx2:.018,wy2:.008,grass:'#b78a48',road:'#62565a',edge:'#ffe66d',grip:0.94,surface:'SANDY ASPHALT'},
+ forest:{name:'Forest Sprint',rx:254,ry:142,wx:.035,wy:.07,wx2:.008,wy2:.025,grass:'#1c5039',road:'#303b36',edge:'#9dff87',grip:0.98,surface:'FOREST TARMAC'},
+ coast:{name:'Coastal Run',rx:230,ry:166,wx:.065,wy:.02,wx2:.025,wy2:.006,grass:'#287c87',road:'#3c3b4d',edge:'#f6f3ff',grip:1.01,surface:'COASTAL TARMAC'},
+ night:{name:'Midnight Run',rx:248,ry:148,wx:.015,wy:.06,wx2:.008,wy2:.022,grass:'#121d32',road:'#282b43',edge:'#4ce6dc',grip:1,surface:'NIGHT ASPHALT'},
+ canyon:{name:'Canyon Loop',rx:236,ry:154,wx:.11,wy:.035,wx2:.02,wy2:.01,grass:'#915b3d',road:'#48404a',edge:'#ff9c4a',grip:0.97,surface:'CANYON ASPHALT'},
+ snow:{name:'Snow Circuit',rx:250,ry:145,wx:.03,wy:.085,wx2:.01,wy2:.02,grass:'#7c9ca7',road:'#414957',edge:'#b9f5ff',grip:0.88,surface:'PACKED SNOW'},
+ harbor:{name:'Pixel Harbor',rx:226,ry:164,wx:.08,wy:.025,wx2:.015,wy2:.012,grass:'#28616c',road:'#3d3b4b',edge:'#ffe66d',grip:0.99,surface:'HARBOR TARMAC'},
+ mountain:{name:'Mountain Pass',rx:256,ry:137,wx:.045,wy:.095,wx2:.02,wy2:.015,grass:'#355b3d',road:'#49424b',edge:'#ff4f9a',grip:0.95,surface:'MOUNTAIN ASPHALT'},
+ stadium:{name:'Turbo Stadium',rx:240,ry:156,wx:.012,wy:.012,wx2:.004,wy2:.004,grass:'#386747',road:'#333342',edge:'#4ce6dc',grip:1.04,surface:'RACE ASPHALT'},
  skyline:{name:'Skyline Express',rx:258,ry:132,wx:.085,wy:.018,wx2:.012,wy2:.018,grass:'#233d57',road:'#3b3c4e',edge:'#7df9ff'},
  volcano:{name:'Volcano Run',rx:224,ry:160,wx:.095,wy:.075,wx2:.022,wy2:.012,grass:'#63352f',road:'#39343b',edge:'#ff6847'},
  wetlands:{name:'Marshland GP',rx:246,ry:148,wx:.025,wy:.105,wx2:.018,wy2:.02,grass:'#405d43',road:'#343c3b',edge:'#d5f26b'},
@@ -22,8 +22,16 @@ const tracks={
  glacier:{name:'Glacier Ring',rx:252,ry:140,wx:.018,wy:.11,wx2:.01,wy2:.024,grass:'#a9d4dc',road:'#485666',edge:'#f1ffff'},
  farmland:{name:'Harvest Raceway',rx:238,ry:158,wx:.07,wy:.065,wx2:.015,wy2:.012,grass:'#668447',road:'#48433b',edge:'#ffcf5c'},
  industrial:{name:'Industrial Zone',rx:226,ry:162,wx:.105,wy:.045,wx2:.025,wy2:.016,grass:'#4a5055',road:'#30343c',edge:'#ffad42'},
- lunar:{name:'Lunar Circuit',rx:256,ry:136,wx:.035,wy:.085,wx2:.022,wy2:.02,grass:'#343444',road:'#555461',edge:'#b7a5ff'}
-};
+ lunar:{name:'Lunar Circuit',rx:256,ry:136,wx:.035,wy:.085,wx2:.022,wy2:.02,grass:'#343444',road:'#555461',edge:'#b7a5ff',grip:.98,surface:'MOON DUST'},
+ skyline:{name:'Skyline Express',rx:258,ry:132,wx:.085,wy:.018,wx2:.012,wy2:.018,grass:'#233d57',road:'#3b3c4e',edge:'#7df9ff',grip:1.02,surface:'CITY ASPHALT'},
+ volcano:{name:'Volcano Run',rx:224,ry:160,wx:.095,wy:.075,wx2:.022,wy2:.012,grass:'#63352f',road:'#39343b',edge:'#ff6847',grip:.96,surface:'VOLCANIC GRIT'},
+ wetlands:{name:'Marshland GP',rx:246,ry:148,wx:.025,wy:.105,wx2:.018,wy2:.02,grass:'#405d43',road:'#343c3b',edge:'#d5f26b',grip:.94,surface:'DAMP TARMAC'},
+ tokyo:{name:'Pixel Tokyo',rx:232,ry:170,wx:.055,wy:.045,wx2:.024,wy2:.008,grass:'#42305b',road:'#333144',edge:'#ff6bd6',grip:1.02,surface:'CITY ASPHALT'},
+ ruins:{name:'Temple Ruins',rx:260,ry:128,wx:.105,wy:.03,wx2:.018,wy2:.022,grass:'#6b7550',road:'#4b4940',edge:'#e7c878',grip:.98,surface:'OLD STONE'},
+ dunes:{name:'Dune Serpent',rx:218,ry:166,wx:.12,wy:.018,wx2:.025,wy2:.008,grass:'#c49a58',road:'#685a50',edge:'#fff0a3',grip:.92,surface:'LOOSE SAND'},
+ glacier:{name:'Glacier Ring',rx:252,ry:140,wx:.018,wy:.11,wx2:.01,wy2:.024,grass:'#a9d4dc',road:'#485666',edge:'#f1ffff',grip:.86,surface:'PACKED ICE'},
+ farmland:{name:'Harvest Raceway',rx:238,ry:158,wx:.07,wy:.065,wx2:.015,wy2:.012,grass:'#668447',road:'#48433b',edge:'#ffcf5c',grip:.98,surface:'RURAL TARMAC'},
+ industrial:{name:'Industrial Zone',rx:226,ry:162,wx:.105,wy:.045,wx2:.025,wy2:.016,grass:'#4a5055',road:'#30343c',edge:'#ffad42',grip:1.01,surface:'GRIP ASPHALT'}};
 try{const custom=JSON.parse(localStorage.getItem('rrl-custom-tracks')||'[]');custom.filter(t=>t&&typeof t.id==='string'&&/^custom-[a-z0-9-]+$/.test(t.id)).slice(0,8).forEach(t=>{tracks[t.id]={name:String(t.name||'Custom Circuit').slice(0,22),rx:clamp(Number(t.rx)||240,205,270),ry:clamp((Number(t.rx)||240)*.62,125,175),wx:clamp(Number(t.wx)||0,0,.12),wy:clamp(Number(t.wy)||0,0,.12),wx2:clamp(Number(t.wx2)||0,0,.025),wy2:clamp(Number(t.wy2)||0,0,.025),grass:'#28533d',road:'#383846',edge:'#baff00'};const sel=document.getElementById('track');if(sel&&!Array.from(sel.options).some(o=>o.value===t.id)){const option=document.createElement('option');option.value=t.id;option.textContent=tracks[t.id].name;sel.appendChild(option)}})}catch{}
 const cars=[
 {id:'gt',name:'PIXEL GT',color:'#4ce6dc',cost:0,top:1,acc:1,grip:1,desc:'Balanced starter car.'},
@@ -65,7 +73,23 @@ function initRivals(){const cfg=levels[difficulty];rivals=mode==='timeattack'||m
 ];rivals.forEach((r,i)=>{r.base*=cfg.rival/0.88;r.progress=r.phase; r.lane=r.offset;r.laneV=0;r.index=i;r.laps=0})}
 function drawCar(x,y,angle,color,scale=1){ctx.save();ctx.translate(x,y);ctx.rotate(angle);ctx.scale(scale,scale);ctx.fillStyle='#08080d';ctx.fillRect(-13,-20,26,40);ctx.fillStyle=color;ctx.fillRect(-10,-19,20,37);ctx.fillStyle='#b9f5ff';ctx.fillRect(-8,-12,16,8);ctx.fillStyle='#31334d';ctx.fillRect(-8,1,16,8);ctx.fillStyle='#fff4ad';ctx.fillRect(-8,-19,4,3);ctx.fillRect(4,-19,4,3);ctx.fillStyle='#ff5c7a';ctx.fillRect(-8,15,4,3);ctx.fillRect(4,15,4,3);ctx.fillStyle='#151522';ctx.fillRect(-13,-11,4,8);ctx.fillRect(9,-11,4,8);ctx.fillRect(-13,7,4,8);ctx.fillRect(9,7,4,8);ctx.restore()}
 function traceTrack(offset=0){ctx.beginPath();for(let i=0;i<=320;i++){const p=geometry(i/320,offset);if(i===0)ctx.moveTo(p.x,p.y);else ctx.lineTo(p.x,p.y)}ctx.closePath()}
-function drawTrack(){const t=currentTrack();ctx.fillStyle=t.grass;ctx.fillRect(0,0,W,H);
+function drawTrackScenery(t){
+ const count=quality==='low'?22:54;
+ for(let i=0;i<count;i++){
+  const phase=(i/count+((i%3)*.013))%1,side=i%2?1:-1,offset=side*(ROAD/2+24+(i*17)%34),p=geometry(phase,offset);
+  const x=Math.round(p.x),y=Math.round(p.y),kind=track==='skyline'||track==='tokyo'||track==='industrial'?'city':track==='volcano'||track==='ruins'||track==='dunes'||track==='canyon'?'rock':track==='glacier'||track==='snow'?'ice':track==='lunar'?'moon':track==='forest'||track==='wetlands'||track==='farmland'||track==='mountain'?'tree':track==='coast'||track==='harbor'?'coast':'light';
+  ctx.save();ctx.translate(x,y);
+  if(kind==='city'){const h=13+(i*7)%25,w=7+(i*3)%9;ctx.fillStyle=track==='industrial'?'#242b34':track==='tokyo'?'#322541':'#1b3045';ctx.fillRect(-w/2,-h,w,h);ctx.fillStyle=t.edge;for(let yy=-h+4;yy<-2;yy+=6)for(let xx=-w/2+2;xx<w/2;xx+=4)ctx.fillRect(xx,yy,2,2);if(track==='industrial'){ctx.fillStyle='#777982';ctx.fillRect(-2,-h-8,4,8)}
+  }else if(kind==='rock'){ctx.fillStyle=track==='dunes'?'#d9b56e':track==='volcano'?'#312d31':track==='ruins'?'#92896b':'#675044';ctx.fillRect(-8,-7,16,8);ctx.fillRect(-5,-11,10,4);ctx.fillStyle=t.edge;ctx.fillRect(-2,-5,4,2);
+  }else if(kind==='ice'){ctx.fillStyle='#e8fbff';ctx.fillRect(-5,-12,3,12);ctx.fillRect(-2,-8,5,8);ctx.fillStyle=t.edge;ctx.fillRect(3,-5,3,5);
+  }else if(kind==='moon'){ctx.strokeStyle='#8884aa';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,0,4+(i%4),0,Math.PI*2);ctx.stroke();ctx.fillStyle='#55536d';ctx.fillRect(-2,-1,4,2);
+  }else if(kind==='tree'){ctx.fillStyle='#49362a';ctx.fillRect(-2,-5,4,8);ctx.fillStyle=track==='farmland'?'#7e9b45':track==='wetlands'?'#477b55':'#1e7548';ctx.fillRect(-7,-13,14,9);ctx.fillRect(-5,-17,10,5);ctx.fillStyle=t.edge;ctx.fillRect(-1,-12,2,2);
+  }else if(kind==='coast'){ctx.fillStyle=track==='harbor'?'#5c777f':'#b4d8dc';ctx.fillRect(-7,-3,14,6);ctx.fillStyle=t.edge;ctx.fillRect(-4,-6,2,3);ctx.fillRect(2,-6,2,3);
+  }else{ctx.fillStyle='#20252c';ctx.fillRect(-2,-12,4,12);ctx.fillStyle=t.edge;ctx.fillRect(-5,-14,10,4);ctx.fillStyle='#fff3b0';ctx.fillRect(-2,-13,4,2)}
+  ctx.restore();
+ }
+}
+function drawTrack(){const t=currentTrack();ctx.fillStyle=t.grass;ctx.fillRect(0,0,W,H);drawTrackScenery(t);
 const deco=quality==='low'?24:80;for(let i=0;i<deco;i++){const x=(i*137+17)%W,y=(i*83+31)%H;ctx.fillStyle=i%3===0?'#ffffff12':t.edge+'18';ctx.fillRect(x,y,3+(i%3),3+(i%3))}
 traceTrack(ROAD/2+8);ctx.lineWidth=4;ctx.strokeStyle='#e7e0d8';ctx.stroke();
 traceTrack(0);ctx.lineWidth=ROAD;ctx.strokeStyle=t.road;ctx.stroke();
@@ -77,7 +101,7 @@ const pit=geometry(.83,ROAD/2+17);ctx.fillStyle='#9dff87';ctx.fillRect(pit.x-8,p
 if(weather==='wet'){ctx.fillStyle='#a9d9ff18';ctx.fillRect(0,0,W,H);for(let i=0;i<(quality==='low'?12:35);i++){const x=(i*73+elapsed*90)%W,y=(i*117+elapsed*170)%H;ctx.strokeStyle='#c9e8ff55';ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-4,y+9);ctx.stroke()}}
 }
 function drawDuelScene(frame=null){ctx.clearRect(0,0,W,H);const p1=frame?{p:frame.p,l:frame.l,s:frame.s,lap:frame.lap}: {p:progress,l:lane,s:speed,lap};const p2=frame&&frame.p2?{p:frame.p2.p,l:frame.p2.l,s:frame.p2.s,lap:frame.p2.lap}:{p:p2Progress,l:p2Lane,s:p2Speed,lap:p2Lap};const view=(y,player,label)=>{ctx.save();ctx.beginPath();ctx.rect(0,y,W,H/2);ctx.clip();ctx.translate(0,y);ctx.scale(1,.5);drawTrack();const p=geometry(player.p,player.l);drawCar(p.x,p.y,Math.atan2(p.ty,p.tx)+Math.PI/2,label==='P1'?currentPaint().color:'#ff9c4a',1);ctx.fillStyle='#080811dd';ctx.fillRect(12,12,220,48);ctx.fillStyle='#ffe66d';ctx.font='bold 14px monospace';ctx.fillText(label+' · LAP '+Math.min((player.lap||0)+1,lapsTarget())+'/'+lapsTarget(),22,31);ctx.fillStyle='#fff';ctx.fillText('SPEED '+Math.round(player.s||0),22,49);ctx.restore()};view(0,p1,'P1');view(H/2,p2,'P2');ctx.fillStyle='#f6f3ff';ctx.fillRect(0,H/2-2,W,4)}
-function drawHud(){ctx.fillStyle='#080811bd';ctx.fillRect(12,12,180,56);ctx.fillStyle='#ffe66d';ctx.font='bold 13px monospace';ctx.fillText(currentTrack().name.toUpperCase(),22,31);ctx.fillStyle='#fff';ctx.fillText(mode.toUpperCase()+' · '+weather.toUpperCase(),22,50);ctx.fillStyle='#080811bd';ctx.fillRect(610,12,178,56);ctx.fillStyle='#4ce6dc';ctx.fillText('NITRO '+Math.round(nitro)+'%',622,31);ctx.fillStyle='#fff';ctx.fillText('DAMAGE '+Math.round(damage)+'%',622,50)}
+function drawHud(){ctx.fillStyle='#080811bd';ctx.fillRect(12,12,180,56);ctx.fillStyle='#ffe66d';ctx.font='bold 13px monospace';ctx.fillText(currentTrack().name.toUpperCase(),22,31);ctx.fillStyle='#fff';ctx.fillText((currentTrack().surface||'ROAD')+' · '+weather.toUpperCase(),22,50);ctx.fillStyle='#080811bd';ctx.fillRect(610,12,178,56);ctx.fillStyle='#4ce6dc';ctx.fillText('NITRO '+Math.round(nitro)+'%',622,31);ctx.fillStyle='#fff';ctx.fillText('DAMAGE '+Math.round(damage)+'%',622,50)}
 function draw(){ctx.clearRect(0,0,W,H);if(mode==='duel'){drawDuelScene();return}drawTrack();if(mode==='timeattack'&&ghost.length){const sample=ghost[Math.min(ghost.length-1,Math.floor(elapsed/.08))];if(sample){const gp=geometry(sample.p,sample.l);ctx.globalAlpha=.32;drawCar(gp.x,gp.y,Math.atan2(gp.ty,gp.tx)+Math.PI/2,'#ffffff',.94);ctx.globalAlpha=1}}rivals.filter(r=>r.active).forEach(r=>{const p=geometry(r.progress,r.lane);drawCar(p.x,p.y,Math.atan2(p.ty,p.tx)+Math.PI/2,r.color,.83)});const p=geometry(progress,lane);const car=currentCar();drawCar(p.x,p.y,Math.atan2(p.ty,p.tx)+Math.PI/2+clamp(laneVelocity*.004,-.18,.18),currentPaint().color,1);
 effects=effects.filter(e=>elapsed-e.t<.55);effects.forEach(e=>{const alpha=1-(elapsed-e.t)/.55;ctx.globalAlpha=alpha;ctx.fillStyle=e.color;ctx.fillRect(e.x+(elapsed-e.t)*e.dx,e.y+(elapsed-e.t)*e.dy,4,4);ctx.globalAlpha=1});drawHud();
 if(state!=='racing'){ctx.fillStyle='#080811aa';ctx.fillRect(205,180,390,125);ctx.strokeStyle='#4ce6dc';ctx.lineWidth=3;ctx.strokeRect(205,180,390,125);ctx.textAlign='center';ctx.fillStyle='#ffe66d';ctx.font='bold 25px monospace';ctx.fillText(state==='finished'?'CHECKERED FLAG!':state==='paused'?'PAUSED':'RETRO RACING LEAGUE',400,222);ctx.fillStyle='#fff';ctx.font='15px monospace';const sub=state==='finished'?'Start another race to keep your career going':state==='paused'?'Press P or Resume to continue':lapsTarget()+' laps · '+(rivals.length+1)+' racers · '+(mode==='grandprix'?'championship round':'free mode');ctx.fillText(sub,400,255);ctx.textAlign='start'}}
@@ -91,7 +115,7 @@ saveData.races++;if(lapTimes.length){const best=Math.min(...lapTimes);if(!saveDa
 if(mode==='grandprix'&&saveData.raceNo>=CHAMP_ROUNDS){const board=saveData.driverStandings||{},table=Object.entries(board).map(([name,s])=>({name,points:Number(s.points)||0,wins:Number(s.wins)||0})).sort((a,b)=>b.points-a.points||b.wins-a.wins);const champion=table[0]?.name||'YOU';saveData.seasons=Array.isArray(saveData.seasons)?saveData.seasons:[];saveData.seasons.push({number:saveData.seasons.length+1,champion,points:saveData.championshipPoints,standings:table,completedAt:Date.now()});saveData.seasons=saveData.seasons.slice(-10);if(champion==='YOU'){saveData.championshipWins=(saveData.championshipWins||0)+1;toast='SEASON COMPLETE · YOU ARE CHAMPION!'}else toast='SEASON COMPLETE · '+champion+' WINS';saveData.driverStandings={};saveData.raceNo=1;saveData.championshipPoints=0}else if(mode==='grandprix')saveData.raceNo=Math.min(CHAMP_ROUNDS,saveData.raceNo+1);
 unlockAchievements();save();$('overlayTitle').textContent=mode==='timeattack'?'TIME ATTACK COMPLETE':mode==='duel'?(rank===1?'PLAYER 1 WINS!':'PLAYER 2 WINS!'):rank===1?'YOU WIN!':'RACE COMPLETE';$('overlayText').textContent=mode==='timeattack'?'Time: '+fmt(finishTime)+' · Best: '+fmt(saveData.trackRecords[track]):'Position '+rank+' · Earned credits · Championship points '+points+'.';draw();updateUI()}
 function loop(now){if(state!=='racing')return;const dt=clamp((now-last)/1000,0,.032);last=now;elapsed+=dt;const cfg=levels[difficulty],car=currentCar(),gas=keys.has('ArrowUp')||touch.has('gas'),brake=keys.has('ArrowDown')||touch.has('brake'),left=keys.has('ArrowLeft')||touch.has('left'),right=keys.has('ArrowRight')||touch.has('right'),boost=(keys.has(' ')||touch.has('nitro'))&&nitro>0;
-const wet=weather==='wet',grip=car.grip*(wet?.76:1)*(1+saveData.handling*.035),max=(cfg.max+saveData.engine*10)*car.top;
+const wet=weather==='wet',trackGrip=currentTrack().grip||1,grip=car.grip*trackGrip*(wet?.76:1)*(1+saveData.handling*.035),max=(cfg.max+saveData.engine*10)*car.top;
 const accel=(gas?145*car.acc:0)-(brake?220:0)-(gas?0:34);speed=clamp(speed+accel*dt,0,max+(boost&&speed>25?32:0));if(boost&&speed>25){speed+=80*dt;nitro=Math.max(0,nitro-31*dt)}else nitro=Math.min(100,nitro+10*dt);
 const steer=(left?-1:0)+(right?1:0);const cornerLoad=Math.abs(Math.sin((progress%1)*Math.PI*2))*Math.max(0,speed-90)/180;const traction=clamp(grip-cornerLoad*.42,.35,1.15);laneVelocity+=steer*155*traction*dt;laneVelocity*=Math.pow(wet?.18:.12,dt);lane=clamp(lane+laneVelocity*dt,-ROAD*.88,ROAD*.88);
 const offroad=Math.abs(lane)>ROAD*.37;if(offroad){speed=Math.max(0,speed-(wet?115:82)*dt);damage=clamp(damage+3*dt,0,100)}else damage=Math.max(0,damage-0.45*dt);
