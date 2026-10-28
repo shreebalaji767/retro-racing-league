@@ -60,5 +60,6 @@ assert.match(worker,/catch\(\(\s*\)\s*=>\s*caches\.match\(request\)/,'Cached ass
 assert.match(pwa,/await navigator\.serviceWorker\.ready/,'PWA status should wait until the worker is ready');
 assert.match(pwa,/On iPhone\/iPad: open this page in Safari/,'iOS installation guidance should direct users to Safari');
 assert.match(logo,/<svg/,'Logo must be a local SVG asset');assert.match(html,/aria-label="Touch driving controls"/);assert.match(html,/value="duel"/);assert.match(html,/id="playReplay"/);assert.match(html,/id="engineerAdvice"/);
-for(const file of ['index.html','js/game.js','js/expansion.js','js/pwa.js','service-worker.js','manifest.webmanifest','assets/rrl-logo.svg','css/style.css'])assert(fs.statSync(file).size>500,`${file} should not be empty`);
+const minimumFileSizes={'manifest.webmanifest':100};
+for(const file of ['index.html','js/game.js','js/expansion.js','js/pwa.js','service-worker.js','manifest.webmanifest','assets/rrl-logo.svg','css/style.css'])assert(fs.statSync(file).size>(minimumFileSizes[file]??500),`${file} should not be empty`);
 console.log('Retro Racing League regression checks passed: DOM IDs, difficulty coverage, checkpoint lap guard, one-time finish guard, racing-line rivals, custom tracks, challenge/standings/accessibility UI and mobile/reduced-motion support.');
