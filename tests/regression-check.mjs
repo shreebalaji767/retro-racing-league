@@ -47,7 +47,7 @@ assert.equal(manifest.display,'standalone');
 assert.ok(manifest.icons.some(icon=>icon.src==='assets/rrl-logo.svg'&&icon.sizes==='any'),'PWA manifest should declare its scalable SVG icon accurately');
 assert.match(worker,/rrl-shell-v2/,'App shell cache must be versioned when cache behavior changes');
 assert.match(worker,/event\.waitUntil\(caches\.open\(CACHE_NAME\)\.then\(cache=>cache\.put\(request,copy\)\)\)/,'Fresh network responses should be retained for offline use');
-assert.match(worker,/fetch\(request\)\.then\(response=>/,'App shell should refresh from the network when online');
+assert.match(worker,/fetch\(request\)\.then\(response\s*=>/,'App shell should refresh from the network when online');
 assert.match(worker,/catch\(\s*\)\s*=>\s*caches\.match\(request\)/,'Cached assets should remain available offline');
 assert.match(pwa,/await navigator\.serviceWorker\.ready/,'PWA status should wait until the worker is ready');
 assert.match(pwa,/On iPhone\/iPad: open this page in Safari/,'iOS installation guidance should direct users to Safari');
