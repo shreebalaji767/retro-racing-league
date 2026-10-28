@@ -68,7 +68,7 @@ assert.match(worker,/caches\.open/,'Offline app shell caching should exist');
 assert.equal(manifest.name,'Retro Racing League');
 assert.equal(manifest.display,'standalone');
 assert.ok(manifest.icons.some(icon=>icon.src==='assets/rrl-icon.svg'&&icon.sizes==='any'),'PWA manifest should declare the compact scalable app icon accurately');
-assert.match(worker,/rrl-shell-v3/,'App shell cache must be versioned when cache behavior changes');
+assert.match(worker,/rrl-shell-v4/,'App shell cache must be versioned when cache behavior changes');
 assert.match(worker,/assets\/rrl-icon\.svg/,'The compact app icon should be cached for offline installation');
 assert.match(html,/rel="icon" type="image\/svg\+xml" href="assets\/rrl-icon\.svg"/,'Browser favicon should use the compact app icon');
 assert.match(worker,/event\.waitUntil\(caches\.open\(CACHE_NAME\)\.then\(cache\s*=>\s*cache\.put\(request,\s*copy\)\)\)/,'Fresh network responses should be retained for offline use');
