@@ -11,6 +11,6 @@
   "theme_color": "#101018",
   "categories": ["games", "entertainment"],
   "icons": [
-    { "src": "assets/rrl-logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+    { "src": "assets/rrl-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
   ]
 }
