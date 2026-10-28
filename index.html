@@ -1,77 +1,15 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101018">
-<meta name="description" content="A free, retro arcade racing game. No accounts, ads, paid content, AI services, or external dependencies.">
-<title>Retro Racing League</title>
-<style>
-:root{color-scheme:dark;--bg:#101018;--panel:#1b1b2b;--ink:#f6f3ff;--muted:#aaa7c3;--pink:#ff4f9a;--cyan:#4ce6dc;--yellow:#ffe66d;--line:#46435d}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#282047 0,#101018 58%);color:var(--ink);font:16px/1.45 system-ui,sans-serif;min-height:100vh}button,select{font:inherit}button{cursor:pointer;border:2px solid var(--cyan);background:#182a35;color:var(--ink);padding:.7rem 1rem;font-weight:800;box-shadow:3px 3px 0 #000;border-radius:4px}button:hover,button:focus-visible{background:var(--cyan);color:#101018;outline:2px solid white;outline-offset:2px}button:disabled{opacity:.4;cursor:not-allowed}.wrap{max-width:1100px;margin:auto;padding:18px}.mast{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--pink);padding-bottom:14px}.logo{font-size:clamp(1.35rem,4vw,2.3rem);font-weight:1000;letter-spacing:.04em;text-shadow:3px 3px #9a2876}.logo span{color:var(--cyan)}.eyebrow{color:var(--yellow);font-size:.78rem;font-weight:900;letter-spacing:.18em}.panel{background:#171725ed;border:2px solid var(--line);padding:16px;box-shadow:5px 5px 0 #0005;border-radius:6px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px;margin-top:18px}.game-shell{min-width:0}.canvas-wrap{position:relative;background:#080b12;border:3px solid #77718f;line-height:0;overflow:hidden}canvas{display:block;width:100%;height:auto;aspect-ratio:800/500;image-rendering:pixelated;touch-action:none}.status{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:10px 0;color:var(--cyan);font-weight:800;font-size:.9rem}.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.controls button{touch-action:none;user-select:none;min-height:54px}.side{display:flex;flex-direction:column;gap:12px}.side h2{font-size:1rem;margin:0 0 8px;color:var(--yellow);letter-spacing:.08em}.field{display:grid;gap:5px;margin:10px 0}.field label{color:var(--muted);font-size:.88rem}.field select{width:100%;padding:10px;background:#101018;border:1px solid var(--line);color:var(--ink);border-radius:4px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}.stat{background:#101018;padding:10px;border:1px solid var(--line)}.stat small{display:block;color:var(--muted)}.stat strong{font-size:1.2rem;color:var(--cyan)}.wide{width:100%;margin-top:8px}.notice{color:var(--muted);font-size:.85rem}.kbd{border:1px solid #666;padding:1px 5px;border-radius:3px;color:var(--yellow)}.footer{padding:24px 0;color:var(--muted);font-size:.82rem;text-align:center}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-@media(max-width:760px){.layout{grid-template-columns:1fr}.side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.side .panel:first-child{grid-column:1/-1}.wrap{padding:12px}.controls button{padding:.6rem .25rem;font-size:.9rem}}@media(max-width:420px){.side{grid-template-columns:1fr}.side .panel:first-child{grid-column:auto}.controls{gap:5px}.controls button{font-size:.82rem}}
-</style>
-</head>
-<body>
-<div class="wrap">
-<header class="mast"><div><div class="eyebrow">INSERT COIN? NO. JUST PLAY.</div><div class="logo">RETRO <span>RACING</span> LEAGUE</div></div><div class="eyebrow">100% FREE • NO AI SERVICES • NO ADS</div></header>
-<main class="layout">
-<section class="game-shell panel" aria-label="Racing game">
-<div class="canvas-wrap"><canvas id="game" width="800" height="500" aria-label="Top-down arcade racing game. Use arrow keys or on-screen controls."></canvas></div>
-<div class="status"><span id="message" role="status" aria-live="polite">READY, RACER? PRESS START.</span><span id="speed">SPEED 000</span></div>
-<div class="controls" aria-label="Touch driving controls">
-<button data-control="left" aria-label="Steer left">◀ LEFT</button><button data-control="brake" aria-label="Brake">▼ BRAKE</button><button data-control="right" aria-label="Steer right">RIGHT ▶</button>
-<button data-control="nitro" aria-label="Nitro boost">⚡ NITRO</button><button id="start" style="grid-column:span 1">▶ START</button><button data-control="gas" aria-label="Accelerate">▲ GAS</button>
-</div>
-<p class="notice">Keyboard: <span class="kbd">←</span> <span class="kbd">→</span> steer · <span class="kbd">↑</span> accelerate · <span class="kbd">↓</span> brake · <span class="kbd">Space</span> nitro · <span class="kbd">P</span> pause</p>
-</section>
-<aside class="side">
-<section class="panel"><h2>RACE SETUP</h2><div class="field"><label for="difficulty">Difficulty</label><select id="difficulty"><option value="easy">Easy</option><option value="normal" selected>Normal</option><option value="hard">Hard</option><option value="expert">Expert</option></select></div><div class="field"><label for="track">Circuit</label><select id="track"><option value="city">Neon City</option><option value="desert">Pixel Desert</option><option value="night">Midnight Run</option></select></div><button id="restart" class="wide">↻ NEW RACE</button><button id="pause" class="wide">Ⅱ PAUSE</button></section>
-<section class="panel"><h2>RACE TELEMETRY</h2><div class="stats"><div class="stat"><small>Lap</small><strong id="lap">0 / 3</strong></div><div class="stat"><small>Position</small><strong id="position">— / 4</strong></div><div class="stat"><small>Credits</small><strong id="credits">0</strong></div><div class="stat"><small>Best time</small><strong id="best">—</strong></div></div><p class="notice">Credits and records are saved on this device only.</p></section>
-<section class="panel"><h2>GARAGE</h2><p id="carname"><strong>01 — PIXEL GT</strong></p><p class="notice">Win races to earn credits. Upgrades are earned in-game; there are no purchases.</p><button id="upgrade" class="wide">ENGINE UPGRADE · 100 CR</button><p id="upgradeInfo" class="notice">Engine level: 0</p></section>
-<section class="panel"><h2>HOW TO WIN</h2><p class="notice">Complete 3 laps, pass the programmed rival cars, and stay on the road. Nitro recharges over time. Rival behavior is ordinary local JavaScript—not an AI service.</p></section>
-</aside>
-</main>
-<footer class="footer">RETRO RACING LEAGUE · Built with vanilla JavaScript + Canvas · No trackers, accounts, APIs or paid dependencies.</footer>
-</div>
-<script>
-(()=>{'use strict';
-const canvas=document.querySelector('#game'),ctx=canvas.getContext('2d');
-const $=id=>document.getElementById(id);
-const W=800,H=500,keys=new Set(),held=new Set();
-let running=false,paused=false,finished=false,last=0,raf=0,elapsed=0,lap=0,credits=Number(localStorage.getItem('rrl-credits')||0),engine=Number(localStorage.getItem('rrl-engine')||0),best=Number(localStorage.getItem('rrl-best')||0),difficulty='normal',track='city',speed=0,nitro=100,playerX=0,roadScroll=0,finishTimer=0;
-const rivals=[{x:-.55,z:.2,v:.62,color:'#ff4f9a',name:'PINK COMET'},{x:.48,z:.55,v:.68,color:'#ffe66d',name:'GOLD BUG'},{x:.05,z:.82,v:.58,color:'#b39aff',name:'VIOLET RX'}];
-const settings={easy:{max:250,rival:.47},normal:{max:290,rival:.59},hard:{max:320,rival:.69},expert:{max:350,rival:.78}};
-function save(){localStorage.setItem('rrl-credits',credits);localStorage.setItem('rrl-engine',engine);localStorage.setItem('rrl-best',best)}
-function roadAt(y){const bend=Math.sin((y+roadScroll)*.006)*95+Math.sin((y+roadScroll)*.002)*55;return W/2+bend}
-function drawCar(x,y,color,scale=1){ctx.save();ctx.translate(x,y);ctx.scale(scale,scale);ctx.fillStyle='#08080d';ctx.fillRect(-15,-24,30,48);ctx.fillStyle=color;ctx.fillRect(-12,-25,24,48);ctx.fillStyle='#b9f5ff';ctx.fillRect(-9,-15,18,10);ctx.fillStyle='#31334d';ctx.fillRect(-9,4,18,9);ctx.fillStyle='#fff4ad';ctx.fillRect(-10,-25,5,4);ctx.fillRect(5,-25,5,4);ctx.fillStyle='#ff5c7a';ctx.fillRect(-10,18,5,4);ctx.fillRect(5,18,5,4);ctx.restore()}
-function draw(){
- const sky=track==='night'?'#090d24':track==='desert'?'#c96d50':'#232044',grass=track==='desert'?'#c9a15b':track==='night'?'#121d32':'#254e45';
- ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);ctx.fillStyle=grass;ctx.fillRect(0,H*.23,W,H*.77);
- for(let y=0;y<H;y+=24){let c=roadAt(y),w=track==='desert'?250:280;ctx.fillStyle=Math.floor((y+roadScroll/2)/24)%2?'#e9e3da':'#aaa4b5';ctx.fillRect(c-w/2-12,y,w+24,24);ctx.fillStyle='#343344';ctx.fillRect(c-w/2,y,w,24)}
- for(let y=0;y<H;y+=34){const c=roadAt(y);ctx.fillStyle='#fff1a6';ctx.fillRect(c-3,y+((roadScroll+y)%34),6,17)}
- // decorative roadside pixels
- for(let y=0;y<H;y+=52){const c=roadAt(y);ctx.fillStyle=track==='night'?'#4ce6dc':'#ff4f9a';ctx.fillRect(c-185,y+((roadScroll+y)%52),9,16);ctx.fillRect(c+176,y+((roadScroll+y)%52),9,16)}
- rivals.forEach(r=>{const y=H*(.3+r.z*.53);const x=roadAt(y)+r.x*190;drawCar(x,y,r.color,.78)});
- const py=H*.78,px=roadAt(py)+playerX*190;drawCar(px,py,'#4ce6dc',1);
- if(!running||paused||finished){ctx.fillStyle='#090916d9';ctx.fillRect(150,170,500,125);ctx.strokeStyle='#4ce6dc';ctx.lineWidth=3;ctx.strokeRect(150,170,500,125);ctx.textAlign='center';ctx.fillStyle='#ffe66d';ctx.font='bold 29px monospace';ctx.fillText(finished?'RACE COMPLETE!':paused?'PAUSED':'RETRO RACING LEAGUE',400,215);ctx.fillStyle='#fff';ctx.font='16px monospace';ctx.fillText(finished?'Press NEW RACE to race again':paused?'Press P or RESUME to continue':'Press START to hit the track',400,253)}
-}
-function updateHud(){ $('lap').textContent=Math.min(lap,3)+' / 3';$('credits').textContent=credits;$('best').textContent=best?format(best):'—';$('speed').textContent='SPEED '+String(Math.round(speed)).padStart(3,'0');$('position').textContent=running?(1+rivals.filter(r=>r.z>.65).length)+' / 4':'— / 4';$('upgradeInfo').textContent='Engine level: '+engine;$('upgrade').disabled=credits<100||engine>=5;$('upgrade').textContent=engine>=5?'ENGINE MAX LEVEL':'ENGINE UPGRADE · 100 CR'}
-function format(s){return (s/1000).toFixed(2)+'s'}
-function startRace(){cancelAnimationFrame(raf);difficulty=$('difficulty').value;track=$('track').value;running=true;paused=false;finished=false;elapsed=0;lap=0;speed=0;nitro=100;playerX=0;roadScroll=0;finishTimer=0;rivals.forEach((r,i)=>{r.z=.15+i*.19;r.x=[-.55,.48,.05][i];r.v=settings[difficulty].rival*(.88+i*.07)});$('message').textContent='GREEN LIGHT! GO GO GO!';$('pause').textContent='Ⅱ PAUSE';last=performance.now();draw();raf=requestAnimationFrame(loop);updateHud()}
-function endRace(){running=false;finished=true;const win=lap>=3;const reward=win?150:25;credits+=reward;if(!best||elapsed<best)best=elapsed;save();$('message').textContent=win?'CHECKERED FLAG! +'+reward+' CREDITS':'RACE OVER · +'+reward+' CREDITS';updateHud();draw()}
-function loop(now){if(!running||paused)return;const dt=Math.min((now-last)/1000,.04);last=now;elapsed+=dt;const cfg=settings[difficulty],gas=keys.has('ArrowUp')||held.has('gas'),brake=keys.has('ArrowDown')||held.has('brake'),left=keys.has('ArrowLeft')||held.has('left'),right=keys.has('ArrowRight')||held.has('right'),boost=(keys.has(' ')||held.has('nitro'))&&nitro>0;
- const max=cfg.max+engine*8;speed+=gas?125*dt:-55*dt;if(brake)speed-=185*dt;if(boost&&speed>80){speed+=180*dt;nitro-=32*dt}else nitro=Math.min(100,nitro+11*dt);speed=Math.max(0,Math.min(max+(boost?35:0),speed));playerX+=(right?1:0-left?1:0)*0; if(left)playerX-=dt*(.9+speed/230);if(right)playerX+=dt*(.9+speed/230);playerX=Math.max(-1.05,Math.min(1.05,playerX));if(Math.abs(playerX)>.86)speed=Math.max(55,speed-115*dt);
- roadScroll+=speed*dt*1.65;
- rivals.forEach((r,i)=>{r.z+=(r.v-speed/500)*dt*.16;if(r.z>1.2){r.z=-.05;r.x=[-.55,.48,.05][i];lap+=i===0?1:0}if(r.z<-.1)r.z=1.15;});
- if(roadScroll>2300){roadScroll=0;lap++}if(lap>=3){lap=3;endRace();return}
- draw();updateHud();raf=requestAnimationFrame(loop)}
-function togglePause(){if(!running)return;paused=!paused;$('pause').textContent=paused?'▶ RESUME':'Ⅱ PAUSE';$('message').textContent=paused?'RACE PAUSED':'BACK ON TRACK';if(paused){cancelAnimationFrame(raf);draw()}else{last=performance.now();raf=requestAnimationFrame(loop)}}
-document.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key))e.preventDefault();keys.add(e.key);if(e.key.toLowerCase()==='p')togglePause()});
-document.addEventListener('keyup',e=>keys.delete(e.key));document.querySelectorAll('[data-control]').forEach(b=>{const k=b.dataset.control;const down=e=>{e.preventDefault();held.add(k);b.setPointerCapture?.(e.pointerId)};const up=e=>{e.preventDefault();held.delete(k)};b.addEventListener('pointerdown',down);['pointerup','pointercancel','lostpointercapture'].forEach(ev=>b.addEventListener(ev,up))});
-$('start').addEventListener('click',startRace);$('restart').addEventListener('click',startRace);$('pause').addEventListener('click',togglePause);$('upgrade').addEventListener('click',()=>{if(credits>=100&&engine<5){credits-=100;engine++;save();updateHud();$('message').textContent='ENGINE UPGRADED!'}});
-window.addEventListener('blur',()=>{keys.clear();held.clear()});window.addEventListener('resize',draw);
-updateHud();draw();
-})();
-</script>
-</body></html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101018"><meta name="description" content="Free pixel-art arcade racing, rival championships and garage upgrades. No paid services or AI APIs."><title>Retro Racing League</title><link rel="stylesheet" href="css/style.css"></head>
+<body><div class="shell">
+<header class="mast"><div><p class="eyebrow">INSERT COIN? NO. JUST PLAY.</p><h1>RETRO <span>RACING</span> LEAGUE</h1></div><p class="free-tag">100% FREE · NO AI SERVICES · NO ADS</p></header>
+<main>
+<section class="game-panel"><div class="canvas-frame"><canvas id="game" width="800" height="500" aria-label="Top-down racing game. Use arrow keys or touch controls."></canvas><div id="overlay" class="overlay"><h2 id="overlayTitle">READY, RACER?</h2><p id="overlayText">Race three laps. Beat the rivals. Win credits.</p><button id="startBtn">▶ START RACE</button></div></div>
+<div class="race-strip"><span id="status" role="status" aria-live="polite">GRID READY</span><span id="speed">SPEED 000</span><span id="lap">LAP 0 / 3</span><span id="position">POS — / 4</span></div>
+<div class="touch-controls" aria-label="Touch driving controls"><button data-control="left">◀ LEFT</button><button data-control="brake">▼ BRAKE</button><button data-control="right">RIGHT ▶</button><button data-control="nitro">⚡ NITRO</button><button id="mobileStart">▶ START</button><button data-control="gas">▲ GAS</button></div>
+<p class="hint">KEYS: <kbd>←</kbd><kbd>→</kbd> steer · <kbd>↑</kbd> accelerate · <kbd>↓</kbd> brake · <kbd>SPACE</kbd> nitro · <kbd>P</kbd> pause</p></section>
+<aside class="sidebar">
+<section class="panel"><h2>RACE SETUP</h2><label for="difficulty">Difficulty</label><select id="difficulty"><option value="easy">Easy</option><option value="normal" selected>Normal</option><option value="hard">Hard</option><option value="expert">Expert</option></select><label for="track">Circuit</label><select id="track"><option value="neon">Neon City</option><option value="desert">Pixel Desert</option><option value="night">Midnight Run</option></select><button id="newRace" class="wide">↻ NEW RACE</button><button id="pauseBtn" class="wide secondary">Ⅱ PAUSE</button></section>
+<section class="panel"><h2>TELEMETRY</h2><div class="stats"><div><small>Race</small><strong id="raceNo">1 / 3</strong></div><div><small>Lap</small><strong id="lapStat">0 / 3</strong></div><div><small>Credits</small><strong id="credits">0</strong></div><div><small>Best lap</small><strong id="best">—</strong></div></div><p class="muted" id="championship">Championship points: 0</p></section>
+<section class="panel"><h2>GARAGE</h2><p class="car-name">01 — PIXEL GT</p><p class="muted">Spend earned credits on permanent upgrades. No purchases or premium currency.</p><button id="upgradeEngine" class="wide">ENGINE +1 · 100 CR</button><button id="upgradeHandling" class="wide secondary">HANDLING +1 · 100 CR</button><p class="muted" id="upgradeStats">Engine 0/5 · Handling 0/5</p></section>
+<section class="panel"><h2>FREE BY DESIGN</h2><ul><li>Local JavaScript rival logic</li><li>Browser-only saves</li><li>No accounts, APIs or ads</li><li>Keyboard and touch controls</li></ul></section>
+</aside></main><footer>RETRO RACING LEAGUE · VANILLA JAVASCRIPT + CANVAS · NO PAID DEPENDENCIES</footer></div><script src="js/game.js" defer></script></body></html>
