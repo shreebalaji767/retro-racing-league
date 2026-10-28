@@ -59,7 +59,21 @@ function raceAtDifficulty(level){
 }
 const timings={};
 for(const level of ['easy','normal','hard','expert'])timings[level]=raceAtDifficulty(level);
+elements.get('mode').value='duel';
+dispatchDocument('keydown',{key:'ArrowUp'});dispatchDocument('keydown',{key:'w'});
+elements.get('startBtn').click();
+let duelFrames=0;
+while(window.__RRL_TEST__.getState().state==='racing'&&duelFrames<2400){
+ const entry=rafQueue.entries().next().value;assert.ok(entry,'duel animation should keep scheduling frames');
+ rafQueue.delete(entry[0]);now+=32;entry[1](now);duelFrames++;
+}
+dispatchDocument('keyup',{key:'ArrowUp'});dispatchDocument('keyup',{key:'w'});
+const duelState=window.__RRL_TEST__.getState();
+assert.equal(duelState.state,'finished','two-player duel should finish');
+assert.ok(duelState.replayCurrent.some(frame=>frame.p2&&Number.isFinite(frame.p2.p)),'duel replay should include player two');
+assert.ok(duelFrames<2400,'duel should finish within smoke-test frame budget');
 const replays=JSON.parse(storage.get('rrl-replays')||'[]');
-assert.equal(replays.length,4,'each completed race should save a local replay');
+assert.equal(replays.length,5,'each completed race should save a local replay');
 assert.ok(replays.every(r=>r.frames.length>0&&r.track==='neon'),'saved replays should contain frames and circuit identity');
-console.log('Runtime smoke tests passed: complete 3-lap Grand Prix races on all four difficulties; career saves and local replay recording verified. Frames: '+JSON.stringify(timings));
+assert.ok(replays[0].frames.some(frame=>frame.p2),'saved duel replay should retain player two frames');
+console.log('Runtime smoke tests passed: complete 3-lap Grand Prix races on all four difficulties, complete local 2-player duel, career saves and replay recording verified. Frames: '+JSON.stringify({...timings,duel:duelFrames}));
