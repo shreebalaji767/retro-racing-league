@@ -15,6 +15,7 @@ class FakeElement {
  dispatch(type,event={}){for(const fn of this.handlers[type]||[])fn({preventDefault(){},target:this,...event})}
  click(){this.dispatch('click')}
  appendChild(el){this.options.push(el);if(!this.value)this.value=el.value;return el}
+ replaceChildren(...els){this.children=els;this.options=els;}
  setPointerCapture(){}
  getContext(){return ctx}
 }
