@@ -44,6 +44,13 @@ assert.match(pwa,/navigator\.serviceWorker\.register/,'Service worker registrati
 assert.match(worker,/caches\.open/,'Offline app shell caching should exist');
 assert.equal(manifest.name,'Retro Racing League');
 assert.equal(manifest.display,'standalone');
+assert.ok(manifest.icons.some(icon=>icon.src==='assets/rrl-logo.svg'&&icon.sizes==='any'),'PWA manifest should declare its scalable SVG icon accurately');
+assert.match(worker,/rrl-shell-v2/,'App shell cache must be versioned when cache behavior changes');
+assert.match(worker,/event\.waitUntil\(caches\.open\(CACHE_NAME\)\.then\(cache=>cache\.put\(request,copy\)\)\)/,'Fresh network responses should be retained for offline use');
+assert.match(worker,/fetch\(request\)\.then\(response=>/,'App shell should refresh from the network when online');
+assert.match(worker,/catch\(\)=>caches\.match\(request\)/,'Cached assets should remain available offline');
+assert.match(pwa,/await navigator\.serviceWorker\.ready/,'PWA status should wait until the worker is ready');
+assert.match(pwa,/On iPhone\/iPad: open this page in Safari/,'iOS installation guidance should direct users to Safari');
 assert.match(logo,/<svg/,'Logo must be a local SVG asset');assert.match(html,/aria-label="Touch driving controls"/);assert.match(html,/value="duel"/);assert.match(html,/id="playReplay"/);assert.match(html,/id="engineerAdvice"/);
 for(const file of ['index.html','js/game.js','js/expansion.js','js/pwa.js','service-worker.js','manifest.webmanifest','assets/rrl-logo.svg','css/style.css'])assert(fs.statSync(file).size>500,`${file} should not be empty`);
 console.log('Retro Racing League regression checks passed: DOM IDs, difficulty coverage, checkpoint lap guard, one-time finish guard, racing-line rivals, custom tracks, challenge/standings/accessibility UI and mobile/reduced-motion support.');
