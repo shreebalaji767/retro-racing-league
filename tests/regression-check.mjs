@@ -16,7 +16,7 @@ assert.match(game,/raceRewarded=true/,'Race rewards must be guarded against dupl
 assert.match(game,/r\.lane\+=clamp\(targetLane-r\.lane/,'Rivals should steer toward a racing line');
 assert.match(game,/rrl-custom-tracks/,'Saved custom circuits must load in the game');
 assert.match(expansion,/rrl-challenge-records/);assert.match(expansion,/rrl-accessibility/);
-assert.match(expansion,/saveCustomTrack/);assert.match(expansion,/renderStandings/);
+assert.match(expansion,/saveCustomTrack/);assert.match(expansion,/renderStandings/);assert.match(game,/unlockedPaints/);assert.match(game,/currentPaint\(\)\.color/);
 assert.match(css,/prefers-reduced-motion/);assert.match(css,/@media\(max-width:760px\)/);
 assert.match(html,/aria-live="polite"/);assert.match(html,/aria-label="Touch driving controls"/);
 for(const file of ['index.html','js/game.js','js/expansion.js','css/style.css'])assert(fs.statSync(file).size>500,`${file} should not be empty`);
