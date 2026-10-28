@@ -3,11 +3,13 @@
 A free top-down 16-bit-style arcade racing game built with HTML, CSS, Canvas and vanilla JavaScript. It is designed for static GitHub Pages hosting: no framework, build step, backend, third-party API, AI service, paid asset, advertisement, account, or subscription.
 
 ## Features
-- Track-edge driving physics, off-road slowdown, wet-weather grip, damage, steering, nitro and rival collision response
+- Track-edge driving physics, wet-weather traction loss, steering inertia, damage, nitro, collision knockback and checkpoint-sequenced lap validation
 - Ten visually distinct, procedurally shaped circuits
 - Four selectable difficulty levels and four modes: Grand Prix, Time Attack, Elimination and Endurance
-- Scripted local rivals; no AI service, remote calls or online account
-- Five-round Grand Prix career, points, wins, podiums, credits, achievements and personal bests
+- Local racing-line rivals with lane changes, passing attempts and corner-sensitive pace; no AI service, remote calls or online account
+- Five-round Grand Prix career, saved race history, points, wins, podiums, credits, achievements and personal bests
+- Local challenge board, saved custom circuit editor, championship results table and per-challenge records
+- High-contrast, large-text, reduced-motion and alternate-theme options
 - Twelve original car profiles; unlock cars and buy engine/handling upgrades with earned in-game credits only
 - Local Time Attack ghost recording/playback and per-track records
 - Endurance pit service, rain effects, original synthesized sound effects, optional CRT scanlines and reduced-effects mode
@@ -30,6 +32,6 @@ Open index.html in a modern browser, or serve the directory using any local stat
 Career data stays in the browser's local storage. Export a JSON backup to move progress to another device. There is no global leaderboard or online synchronization. Time-trial ghosts are also stored locally.
 
 ## Validation
-The game JavaScript was syntax-parsed and exercised in a mocked browser runtime. Simulated Grand Prix, wet Time Attack, Elimination and eight-lap Endurance races all completed; tests also checked track/car counts, lap progression, rewards, time-trial ghost recording, elimination events, DOM ID coverage and sound control wiring. See tests/manual-test-plan.md for checks still recommended in a real browser.
+The game JavaScript was syntax-parsed and exercised in a mocked browser runtime. A GitHub Actions workflow now runs JavaScript syntax checks and static regression checks on pushes and pull requests. Simulated Grand Prix, wet Time Attack, Elimination and eight-lap Endurance races all completed; tests also checked track/car counts, lap progression, rewards, time-trial ghost recording, elimination events, DOM ID coverage and sound control wiring. See tests/manual-test-plan.md for checks still recommended in a real browser, including a full race on each difficulty and testing saved custom circuits.
 
 A real-browser play-through and the live GitHub Pages deployment were not independently verified as part of these checks.
