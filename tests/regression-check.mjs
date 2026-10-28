@@ -33,7 +33,7 @@ assert.equal((builtInTrackRegistry.match(/name:'/g)||[]).length,75,'The built-in
 assert.equal(generatedTrackIds.length,55,'Exactly 55 additional named circuits should be registered');
 assert.equal(new Set(generatedTrackIds.map(([,id])=>id)).size,55,'All additional circuit IDs should be unique');
 assert.match(game,/t\.shapeIndex!==undefined/,'New circuits should use their own route-shape profiles');
-for(const id of ['aurora-archipelago','skyfall-viaduct','obsidian-hairpin','mangrove-delta','solar-flare-speedway'])assert.match(game,new RegExp("'"+id+"':\\\\{name:"),'New additive circuit should be registered: '+id);
+for(const id of ['aurora-archipelago','skyfall-viaduct','obsidian-hairpin','mangrove-delta','solar-flare-speedway'])assert(game.includes("'"+id+"':{name:"),'New additive circuit should be registered: '+id);
 assert.doesNotMatch(game,/const k=t\.shapeIndex,f=k%10/,'Expansion track profiles must not recycle the same ten route families');
 assert.match(game,/const f1=2\+\(k%7\),f2=3\+\(\(k\*3\+1\)%8\)/,'Each expansion circuit should derive its own harmonic route signature');
 assert.match(game,/const exponentX=\.34\+\.012\*\(k%25\),exponentY=\.39\+\.011\*\(\(k\*9\)%25\)/,'Expansion circuits should vary their corner geometry');
