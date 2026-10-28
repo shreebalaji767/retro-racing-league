@@ -27,6 +27,8 @@ assert.match(game,/rrl-custom-tracks/,'Saved custom circuits must load in the ga
 assert.match(game,/function drawTrackScenery\(t\)/,'Circuits should have themed trackside scenery');
 assert.match(game,/function trackPoint\(a,offset=0\)/,'Track paths should use per-circuit geometry');
 const generatedTrackIds=[...game.matchAll(/'([a-z0-9-]+)':\{name:'[^']+',rx:\d+,ry:\d+,[^}]*shapeIndex:(\d+)\}/g)];
+const builtInTrackRegistry=game.slice(game.indexOf('const tracks={'),game.indexOf('\n};',game.indexOf('const tracks={')));
+assert.equal((builtInTrackRegistry.match(/name:'/g)||[]).length,70,'The built-in track registry should contain 70 circuits total');
 assert.equal(generatedTrackIds.length,50,'Exactly 50 additional named circuits should be registered');
 assert.equal(new Set(generatedTrackIds.map(([,id])=>id)).size,50,'All additional circuit IDs should be unique');
 assert.match(game,/t\.shapeIndex!==undefined/,'New circuits should use their own route-shape profiles');
