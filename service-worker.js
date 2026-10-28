@@ -1,6 +1,6 @@
 'use strict';
 // Bump this name whenever the app shell changes so installed clients can refresh.
-const CACHE_NAME = 'rrl-shell-v3';
+const CACHE_NAME = 'rrl-shell-v4';
 const APP_SHELL = [
   './',
   './index.html',
