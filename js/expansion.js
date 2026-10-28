@@ -7,15 +7,16 @@ const save=()=>read('rrl-save',{});
 function renderStandings(){
  const data=save();
  const results=Array.isArray(data.seasonResults)?data.seasonResults:[];
- const gp=results.filter(r=>r.mode==='grandprix');
- const points=gp.reduce((n,r)=>n+(Number(r.points)||0),0);
- const wins=gp.filter(r=>r.rank===1).length;
- const row=['1','YOU',points,wins,gp.length].map(v=>'<td>'+safe(v)+'</td>').join('');
+ const board=data.driverStandings&&typeof data.driverStandings==='object'?data.driverStandings:{};
+ const entries=Object.entries(board).map(([name,s])=>({name,points:Number(s.points)||0,wins:Number(s.wins)||0,rounds:Number(s.rounds)||0}));
+ if(!entries.some(r=>r.name==='YOU'))entries.push({name:'YOU',points:results.filter(r=>r.mode==='grandprix').reduce((n,r)=>n+(Number(r.points)||0),0),wins:results.filter(r=>r.mode==='grandprix'&&r.rank===1).length,rounds:results.filter(r=>r.mode==='grandprix').length});
+ entries.sort((a,b)=>b.points-a.points||b.wins-a.wins||a.name.localeCompare(b.name));
+ const rows=entries.map((r,i)=>'<tr><td>'+(i+1)+'</td><td>'+safe(r.name)+'</td><td>'+r.points+'</td><td>'+r.wins+'</td><td>'+r.rounds+'</td></tr>').join('');
  const recent=results.slice(-5).reverse().map(r=>{
   const result=r.mode==='timeattack'?Number(r.time).toFixed(2)+'s':'P'+r.rank+' · '+r.points+' pts';
   return '<li>'+safe(r.track)+' · '+safe(r.mode)+' · '+safe(result)+'</li>';
  }).join('');
- $('standings').innerHTML='<table><thead><tr><th>#</th><th>Driver</th><th>Pts</th><th>Wins</th><th>Rounds</th></tr></thead><tbody><tr>'+row+'</tr></tbody></table><p class="muted">Recent results</p>'+(recent?'<ol>'+recent+'</ol>':'<p class="muted">Finish a race to start your local record.</p>');
+ $('standings').innerHTML='<table><thead><tr><th>#</th><th>Driver</th><th>Pts</th><th>Wins</th><th>Rounds</th></tr></thead><tbody>'+rows+'</tbody></table><p class="muted">Recent results</p>'+(recent?'<ol>'+recent+'</ol>':'<p class="muted">Finish a Grand Prix race to build the local standings.</p>');
 }
 const challenges={
  clean:{track:'forest',difficulty:'normal',mode:'grandprix',weather:'dry',label:'Clean Racer'},
