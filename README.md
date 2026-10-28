@@ -8,7 +8,8 @@ A free top-down 16-bit-style arcade racing game built with HTML, CSS, Canvas and
 - Four selectable difficulty levels and four modes: Grand Prix, Time Attack, Elimination and Endurance
 - Local racing-line rivals with lane changes, passing attempts and corner-sensitive pace; no AI service, remote calls or online account
 - Five-round Grand Prix career, saved race history, points, wins, podiums, credits, achievements and personal bests
-- Local challenge board, saved custom circuit editor, championship results table, per-challenge records and earnable cosmetic paint with no performance advantage
+- Local challenge board, saved custom circuit editor, season standings/archive, per-challenge records and earnable cosmetic paint with no performance advantage
+- Automatic local race replays (last five races), with in-game playback controls
 - High-contrast, large-text, reduced-motion and alternate-theme options
 - Twelve original car profiles; unlock cars and buy engine/handling upgrades with earned in-game credits only
 - Local Time Attack ghost recording/playback and per-track records
