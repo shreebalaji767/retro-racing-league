@@ -1,0 +1,24 @@
+name: Static regression checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check JavaScript syntax
+        run: |
+          node --check js/game.js
+          node --check js/expansion.js
+          node --check tests/regression-check.mjs
+      - name: Run static regression checks
+        run: node tests/regression-check.mjs
