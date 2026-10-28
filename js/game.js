@@ -58,7 +58,7 @@ traceTrack(0);ctx.lineWidth=ROAD;ctx.strokeStyle=t.road;ctx.stroke();
 traceTrack(-ROAD/2);ctx.lineWidth=2;ctx.setLineDash([12,12]);ctx.strokeStyle='#ffeab0';ctx.stroke();ctx.setLineDash([]);
 traceTrack(ROAD/2);ctx.lineWidth=4;ctx.strokeStyle=t.edge;ctx.stroke();
 for(let a=0;a<Math.PI*2;a+=Math.PI/16){const q=geometry(a/(Math.PI*2),ROAD/2+11);ctx.fillStyle=t.edge;ctx.fillRect(q.x-2,q.y-2,4,4)}
-const p=geometry(0),tan=Math.atan2(p.ty,p.tx);ctx.save();ctx.translate(p.x,p.y);ctx.rotate(tan);for(let i=-4;i<5;i++)for(let j=0;j<2;j++){ctx.fillStyle=(i+j)%2?'#111':'#fff';ctx.fillRect(i*9-4,j*9-9,9,9)}ctx.restore();
+const p=geometry(0),tan=Math.atan2(p.ty,p.tx);ctx.save();ctx.translate(p.x,p.y);ctx.rotate(tan+Math.PI/2);for(let i=-4;i<5;i++)for(let j=0;j<2;j++){ctx.fillStyle=(i+j)%2?'#111':'#fff';ctx.fillRect(i*9-4,j*9-9,9,9)}ctx.restore();
 const pit=geometry(.83,ROAD/2+17);ctx.fillStyle='#9dff87';ctx.fillRect(pit.x-8,pit.y-5,16,10);ctx.fillStyle='#111';ctx.font='bold 8px monospace';ctx.fillText('PIT',pit.x-7,pit.y+3);
 if(weather==='wet'){ctx.fillStyle='#a9d9ff18';ctx.fillRect(0,0,W,H);for(let i=0;i<(quality==='low'?12:35);i++){const x=(i*73+elapsed*90)%W,y=(i*117+elapsed*170)%H;ctx.strokeStyle='#c9e8ff55';ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-4,y+9);ctx.stroke()}}
 }
@@ -99,6 +99,6 @@ $('startBtn').addEventListener('click',startRace);$('mobileStart').addEventListe
 document.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key))e.preventDefault();keys.add(e.key);if(e.key.toLowerCase()==='p')togglePause();if(e.key==='Enter'&&state!=='racing')startRace()});document.addEventListener('keyup',e=>keys.delete(e.key));
 document.querySelectorAll('[data-control]').forEach(b=>{const k=b.dataset.control;const down=e=>{e.preventDefault();touch.add(k);try{b.setPointerCapture(e.pointerId)}catch{}};const up=e=>{e.preventDefault();touch.delete(k)};b.addEventListener('pointerdown',down);['pointerup','pointercancel','lostpointercapture'].forEach(ev=>b.addEventListener(ev,up))});
 window.addEventListener('blur',()=>{keys.clear();touch.clear()});window.addEventListener('pagehide',save);
-renderCarOptions();renderCarOptions();unlockAchievements();draw();updateUI();
+renderCarOptions();unlockAchievements();draw();updateUI();
 window.__RRL_TEST__={geometry,arcRate,clamp,defaults,cars,tracks,achievementDefs,getState:()=>({state,progress,lap,speed,nitro,lane,track,mode,weather,saveData,rivals,eliminated})};
 })();
