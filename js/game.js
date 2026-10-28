@@ -12,7 +12,17 @@ const tracks={
  snow:{name:'Snow Circuit',rx:250,ry:145,wx:.03,wy:.085,wx2:.01,wy2:.02,grass:'#7c9ca7',road:'#414957',edge:'#b9f5ff'},
  harbor:{name:'Pixel Harbor',rx:226,ry:164,wx:.08,wy:.025,wx2:.015,wy2:.012,grass:'#28616c',road:'#3d3b4b',edge:'#ffe66d'},
  mountain:{name:'Mountain Pass',rx:256,ry:137,wx:.045,wy:.095,wx2:.02,wy2:.015,grass:'#355b3d',road:'#49424b',edge:'#ff4f9a'},
- stadium:{name:'Turbo Stadium',rx:240,ry:156,wx:.012,wy:.012,wx2:.004,wy2:.004,grass:'#386747',road:'#333342',edge:'#4ce6dc'}
+ stadium:{name:'Turbo Stadium',rx:240,ry:156,wx:.012,wy:.012,wx2:.004,wy2:.004,grass:'#386747',road:'#333342',edge:'#4ce6dc'},
+ skyline:{name:'Skyline Express',rx:258,ry:132,wx:.085,wy:.018,wx2:.012,wy2:.018,grass:'#233d57',road:'#3b3c4e',edge:'#7df9ff'},
+ volcano:{name:'Volcano Run',rx:224,ry:160,wx:.095,wy:.075,wx2:.022,wy2:.012,grass:'#63352f',road:'#39343b',edge:'#ff6847'},
+ wetlands:{name:'Marshland GP',rx:246,ry:148,wx:.025,wy:.105,wx2:.018,wy2:.02,grass:'#405d43',road:'#343c3b',edge:'#d5f26b'},
+ tokyo:{name:'Pixel Tokyo',rx:232,ry:170,wx:.055,wy:.045,wx2:.024,wy2:.008,grass:'#42305b',road:'#333144',edge:'#ff6bd6'},
+ ruins:{name:'Temple Ruins',rx:260,ry:128,wx:.105,wy:.03,wx2:.018,wy2:.022,grass:'#6b7550',road:'#4b4940',edge:'#e7c878'},
+ dunes:{name:'Dune Serpent',rx:218,ry:166,wx:.12,wy:.018,wx2:.025,wy2:.008,grass:'#c49a58',road:'#685a50',edge:'#fff0a3'},
+ glacier:{name:'Glacier Ring',rx:252,ry:140,wx:.018,wy:.11,wx2:.01,wy2:.024,grass:'#a9d4dc',road:'#485666',edge:'#f1ffff'},
+ farmland:{name:'Harvest Raceway',rx:238,ry:158,wx:.07,wy:.065,wx2:.015,wy2:.012,grass:'#668447',road:'#48433b',edge:'#ffcf5c'},
+ industrial:{name:'Industrial Zone',rx:226,ry:162,wx:.105,wy:.045,wx2:.025,wy2:.016,grass:'#4a5055',road:'#30343c',edge:'#ffad42'},
+ lunar:{name:'Lunar Circuit',rx:256,ry:136,wx:.035,wy:.085,wx2:.022,wy2:.02,grass:'#343444',road:'#555461',edge:'#b7a5ff'}
 };
 try{const custom=JSON.parse(localStorage.getItem('rrl-custom-tracks')||'[]');custom.filter(t=>t&&typeof t.id==='string'&&/^custom-[a-z0-9-]+$/.test(t.id)).slice(0,8).forEach(t=>{tracks[t.id]={name:String(t.name||'Custom Circuit').slice(0,22),rx:clamp(Number(t.rx)||240,205,270),ry:clamp((Number(t.rx)||240)*.62,125,175),wx:clamp(Number(t.wx)||0,0,.12),wy:clamp(Number(t.wy)||0,0,.12),wx2:clamp(Number(t.wx2)||0,0,.025),wy2:clamp(Number(t.wy2)||0,0,.025),grass:'#28533d',road:'#383846',edge:'#baff00'};const sel=document.getElementById('track');if(sel&&!Array.from(sel.options).some(o=>o.value===t.id)){const option=document.createElement('option');option.value=t.id;option.textContent=tracks[t.id].name;sel.appendChild(option)}})}catch{}
 const cars=[
