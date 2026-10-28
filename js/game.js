@@ -40,6 +40,7 @@ function fmt(s){return s>0&&Number.isFinite(s)?s.toFixed(2)+'s':'—'}
 function clamp(v,min,max){return Math.max(min,Math.min(max,v))}
 function norm(a){a%=Math.PI*2;return a<0?a+Math.PI*2:a}
 function currentTrack(){return tracks[track]||tracks.neon}
+window.__RRL_REGISTER_CUSTOM_TRACK=t=>{if(!t||typeof t.id!=='string'||!/^custom-[a-z0-9-]+$/.test(t.id))return false;tracks[t.id]={name:String(t.name||'Custom Circuit').slice(0,22),rx:clamp(Number(t.rx)||240,205,270),ry:clamp((Number(t.rx)||240)*.62,125,175),wx:clamp(Number(t.wx)||0,0,.12),wy:clamp(Number(t.wy)||0,0,.12),wx2:clamp(Number(t.wx2)||0,0,.025),wy2:clamp(Number(t.wy2)||0,0,.025),grass:'#28533d',road:'#383846',edge:'#baff00'};const sel=$('track');if(sel&&!Array.from(sel.options).some(o=>o.value===t.id)){const option=document.createElement('option');option.value=t.id;option.textContent=tracks[t.id].name;sel.appendChild(option)}return true}
 function currentCar(){return cars.find(c=>c.id===saveData.selectedCar&&saveData.unlockedCars.includes(c.id))||cars[0]}
 function lapsTarget(){return mode==='endurance'?8:3}
 function geometry(phase,offset=0){const t=currentTrack(),a=START_ANGLE+phase*2*Math.PI,rx=t.rx+offset,ry=t.ry+offset,c=Math.cos(a),s=Math.sin(a),wx=t.wx||0,wy=t.wy||0,wx2=t.wx2||0,wy2=t.wy2||0;return{x:W/2+rx*(c+wx*Math.sin(3*a)+wx2*Math.sin(5*a)),y:H/2+ry*(s+wy*Math.sin(2*a)+wy2*Math.sin(4*a)),angle:a,tx:rx*(-s+3*wx*Math.cos(3*a)+5*wx2*Math.cos(5*a)),ty:ry*(c+2*wy*Math.cos(2*a)+4*wy2*Math.cos(4*a))}}
