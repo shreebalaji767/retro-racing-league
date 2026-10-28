@@ -4,25 +4,15 @@ const W=800,H=500,ROAD=78,START_ANGLE=-Math.PI/2,CHAMP_ROUNDS=5;
 const levels={easy:{rival:.74,max:220},normal:{rival:.88,max:260},hard:{rival:1.02,max:292},expert:{rival:1.14,max:320}};
 const tracks={
  neon:{name:'Neon City',rx:244,ry:151,wx:.025,wy:.035,wx2:.012,wy2:.01,grass:'#254e45',road:'#343344',edge:'#ff4f9a',grip:1,surface:'CITY ASPHALT'},
- desert:{name:'Pixel Desert',rx:238,ry:158,wx:.075,wy:.025,wx2:.018,wy2:.008,grass:'#b78a48',road:'#62565a',edge:'#ffe66d',grip:0.94,surface:'SANDY ASPHALT'},
- forest:{name:'Forest Sprint',rx:254,ry:142,wx:.035,wy:.07,wx2:.008,wy2:.025,grass:'#1c5039',road:'#303b36',edge:'#9dff87',grip:0.98,surface:'FOREST TARMAC'},
+ desert:{name:'Pixel Desert',rx:238,ry:158,wx:.075,wy:.025,wx2:.018,wy2:.008,grass:'#b78a48',road:'#62565a',edge:'#ffe66d',grip:.94,surface:'SANDY ASPHALT'},
+ forest:{name:'Forest Sprint',rx:254,ry:142,wx:.035,wy:.07,wx2:.008,wy2:.025,grass:'#1c5039',road:'#303b36',edge:'#9dff87',grip:.98,surface:'FOREST TARMAC'},
  coast:{name:'Coastal Run',rx:230,ry:166,wx:.065,wy:.02,wx2:.025,wy2:.006,grass:'#287c87',road:'#3c3b4d',edge:'#f6f3ff',grip:1.01,surface:'COASTAL TARMAC'},
  night:{name:'Midnight Run',rx:248,ry:148,wx:.015,wy:.06,wx2:.008,wy2:.022,grass:'#121d32',road:'#282b43',edge:'#4ce6dc',grip:1,surface:'NIGHT ASPHALT'},
- canyon:{name:'Canyon Loop',rx:236,ry:154,wx:.11,wy:.035,wx2:.02,wy2:.01,grass:'#915b3d',road:'#48404a',edge:'#ff9c4a',grip:0.97,surface:'CANYON ASPHALT'},
- snow:{name:'Snow Circuit',rx:250,ry:145,wx:.03,wy:.085,wx2:.01,wy2:.02,grass:'#7c9ca7',road:'#414957',edge:'#b9f5ff',grip:0.88,surface:'PACKED SNOW'},
- harbor:{name:'Pixel Harbor',rx:226,ry:164,wx:.08,wy:.025,wx2:.015,wy2:.012,grass:'#28616c',road:'#3d3b4b',edge:'#ffe66d',grip:0.99,surface:'HARBOR TARMAC'},
- mountain:{name:'Mountain Pass',rx:256,ry:137,wx:.045,wy:.095,wx2:.02,wy2:.015,grass:'#355b3d',road:'#49424b',edge:'#ff4f9a',grip:0.95,surface:'MOUNTAIN ASPHALT'},
+ canyon:{name:'Canyon Loop',rx:236,ry:154,wx:.11,wy:.035,wx2:.02,wy2:.01,grass:'#915b3d',road:'#48404a',edge:'#ff9c4a',grip:.97,surface:'CANYON ASPHALT'},
+ snow:{name:'Snow Circuit',rx:250,ry:145,wx:.03,wy:.085,wx2:.01,wy2:.02,grass:'#7c9ca7',road:'#414957',edge:'#b9f5ff',grip:.88,surface:'PACKED SNOW'},
+ harbor:{name:'Pixel Harbor',rx:226,ry:164,wx:.08,wy:.025,wx2:.015,wy2:.012,grass:'#28616c',road:'#3d3b4b',edge:'#ffe66d',grip:.99,surface:'HARBOR TARMAC'},
+ mountain:{name:'Mountain Pass',rx:256,ry:137,wx:.045,wy:.095,wx2:.02,wy2:.015,grass:'#355b3d',road:'#49424b',edge:'#ff4f9a',grip:.95,surface:'MOUNTAIN ASPHALT'},
  stadium:{name:'Turbo Stadium',rx:240,ry:156,wx:.012,wy:.012,wx2:.004,wy2:.004,grass:'#386747',road:'#333342',edge:'#4ce6dc',grip:1.04,surface:'RACE ASPHALT'},
-
-
-
-
-
-
-
-
-,
- lunar:{name:'Lunar Circuit',rx:256,ry:136,wx:.035,wy:.085,wx2:.022,wy2:.02,grass:'#343444',road:'#555461',edge:'#b7a5ff',grip:.98,surface:'MOON DUST'},
  skyline:{name:'Skyline Express',rx:258,ry:132,wx:.085,wy:.018,wx2:.012,wy2:.018,grass:'#233d57',road:'#3b3c4e',edge:'#7df9ff',grip:1.02,surface:'CITY ASPHALT'},
  volcano:{name:'Volcano Run',rx:224,ry:160,wx:.095,wy:.075,wx2:.022,wy2:.012,grass:'#63352f',road:'#39343b',edge:'#ff6847',grip:.96,surface:'VOLCANIC GRIT'},
  wetlands:{name:'Marshland GP',rx:246,ry:148,wx:.025,wy:.105,wx2:.018,wy2:.02,grass:'#405d43',road:'#343c3b',edge:'#d5f26b',grip:.94,surface:'DAMP TARMAC'},
@@ -31,7 +21,9 @@ const tracks={
  dunes:{name:'Dune Serpent',rx:218,ry:166,wx:.12,wy:.018,wx2:.025,wy2:.008,grass:'#c49a58',road:'#685a50',edge:'#fff0a3',grip:.92,surface:'LOOSE SAND'},
  glacier:{name:'Glacier Ring',rx:252,ry:140,wx:.018,wy:.11,wx2:.01,wy2:.024,grass:'#a9d4dc',road:'#485666',edge:'#f1ffff',grip:.86,surface:'PACKED ICE'},
  farmland:{name:'Harvest Raceway',rx:238,ry:158,wx:.07,wy:.065,wx2:.015,wy2:.012,grass:'#668447',road:'#48433b',edge:'#ffcf5c',grip:.98,surface:'RURAL TARMAC'},
- industrial:{name:'Industrial Zone',rx:226,ry:162,wx:.105,wy:.045,wx2:.025,wy2:.016,grass:'#4a5055',road:'#30343c',edge:'#ffad42',grip:1.01,surface:'GRIP ASPHALT'}};
+ industrial:{name:'Industrial Zone',rx:226,ry:162,wx:.105,wy:.045,wx2:.025,wy2:.016,grass:'#4a5055',road:'#30343c',edge:'#ffad42',grip:1.01,surface:'GRIP ASPHALT'},
+ lunar:{name:'Lunar Circuit',rx:256,ry:136,wx:.035,wy:.085,wx2:.022,wy2:.02,grass:'#343444',road:'#555461',edge:'#b7a5ff',grip:.98,surface:'MOON DUST'}
+};
 try{const custom=JSON.parse(localStorage.getItem('rrl-custom-tracks')||'[]');custom.filter(t=>t&&typeof t.id==='string'&&/^custom-[a-z0-9-]+$/.test(t.id)).slice(0,8).forEach(t=>{tracks[t.id]={name:String(t.name||'Custom Circuit').slice(0,22),rx:clamp(Number(t.rx)||240,205,270),ry:clamp((Number(t.rx)||240)*.62,125,175),wx:clamp(Number(t.wx)||0,0,.12),wy:clamp(Number(t.wy)||0,0,.12),wx2:clamp(Number(t.wx2)||0,0,.025),wy2:clamp(Number(t.wy2)||0,0,.025),grass:'#28533d',road:'#383846',edge:'#baff00'};const sel=document.getElementById('track');if(sel&&!Array.from(sel.options).some(o=>o.value===t.id)){const option=document.createElement('option');option.value=t.id;option.textContent=tracks[t.id].name;sel.appendChild(option)}})}catch{}
 const cars=[
 {id:'gt',name:'PIXEL GT',color:'#4ce6dc',cost:0,top:1,acc:1,grip:1,desc:'Balanced starter car.'},
