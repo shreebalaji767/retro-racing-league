@@ -129,17 +129,24 @@ function trackPoint(a,offset=0){
  else if(id==='glacier'){x+=.055*Math.sin(4*a);y+=.075*Math.sin(3*a);radial+=.075*Math.cos(6*a)+.025*Math.sin(10*a)}
  else if(id==='lunar'){radial+=.065*Math.sin(9*a)+.035*Math.cos(13*a);x+=.04*Math.sin(4*a)}
  else if(id==='neon'){radial+=.055*Math.cos(6*a)+.025*Math.sin(10*a)}
- else if(t.shapeIndex!==undefined){const k=t.shapeIndex,f=k%10,phase=k*.37;
- if(f===0){const e=.38+(k%5)*.11;x=Math.sign(c)*Math.pow(Math.abs(c),e);y=Math.sign(s)*Math.pow(Math.abs(s),.45+(k%4)*.13);radial+=.025*Math.cos((5+k%4)*a+phase)}
- else if(f===1){radial+=.055*Math.cos((3+k%5)*a+phase)+.025*Math.sin((7+k%4)*a-phase);x+=.035*Math.sin((2+k%3)*a)}
- else if(f===2){x+=.10*Math.sin((2+k%3)*a+phase);y+=.07*Math.sin((3+k%4)*a-phase);radial+=.035*Math.cos((5+k%4)*a)}
- else if(f===3){x+=.16*Math.sin(2*a+phase);y+=.10*Math.sin(3*a+phase*.6);radial+=.045*Math.cos((4+k%3)*a)}
- else if(f===4){const e=.5+(k%4)*.15;x=Math.sign(c)*Math.pow(Math.abs(c),e);y=Math.sign(s)*Math.pow(Math.abs(s),e*.8);radial+=.07*Math.cos(4*a+phase)+.025*Math.sin(9*a)}
- else if(f===5){x+=.12*Math.sin(3*a+phase)+.04*Math.sin(5*a);y+=.08*Math.sin(2*a-phase);radial+=.03*Math.cos(7*a)}
- else if(f===6){radial+=.08*Math.cos(3*a+phase)+.035*Math.cos(6*a-phase);x+=.045*Math.sin(4*a)}
- else if(f===7){radial+=.07*Math.cos(4*a+phase)+.035*Math.sin(8*a);x+=.08*Math.sin(2*a+phase);y+=.04*Math.sin(5*a)}
- else if(f===8){x+=.19*Math.sin(2*a+phase);y+=.045*Math.sin(4*a-phase);radial+=.065*Math.sin(5*a+phase)}
- else {const e=.42+(k%4)*.12;x=Math.sign(c)*Math.pow(Math.abs(c),e)+.06*Math.sin(4*a+phase);y=Math.sign(s)*Math.pow(Math.abs(s),.55)+.09*Math.sin(3*a-phase);radial+=.04*Math.cos(7*a+phase)}}
+ else if(t.shapeIndex!==undefined){
+ const k=t.shapeIndex,phase=k*2.399963229728653;
+ // The 50 expansion circuits each receive their own non-repeating geometric signature.
+ // Avoid the former k%10 profile loop which recycled the same ten track families.
+ const f1=2+(k%7),f2=3+((k*3+1)%8),f3=4+((k*5+2)%9),f4=5+((k*7+3)%10);
+ const p1=.035+.0017*k,p2=.022+.0011*(49-k),p3=.014+.0008*((k*11)%50),p4=.009+.0006*((k*17)%50);
+ const skewX=.035+.0013*k,skewY=.028+.0012*(49-k);
+ const exponentX=.34+.012*(k%25),exponentY=.39+.011*((k*9)%25);
+ // Every profile has a different harmonic mix, phase, corner bias and lateral asymmetry.
+ x=Math.sign(c)*Math.pow(Math.abs(c),exponentX)+skewX*Math.sin(f1*a+phase)+p3*Math.sin(f3*a-phase*.71);
+ y=Math.sign(s)*Math.pow(Math.abs(s),exponentY)+skewY*Math.sin(f2*a-phase*.83)+p4*Math.cos(f4*a+phase*.57);
+ radial+=p1*Math.cos((3+(k%6))*a+phase)+p2*Math.sin((5+((k*2)%7))*a-phase*.61);
+ if(k%5===0){x+=.09*Math.sin(2*a+phase);y+=.035*Math.cos(7*a-phase)}
+ else if(k%5===1){x+=.035*Math.cos(8*a+phase);y+=.095*Math.sin(2*a-phase)}
+ else if(k%5===2){radial+=.045*Math.cos(9*a+phase);x+=.065*Math.sin(5*a-phase)}
+ else if(k%5===3){radial+=.035*Math.sin(11*a-phase);y+=.06*Math.cos(6*a+phase)}
+ else {x+=.055*Math.sin(6*a+phase);y+=.045*Math.cos(9*a-phase)}
+}
  return {x:W/2+rx*x*radial,y:H/2+ry*y*radial};
 }
 function geometry(phase,offset=0){
