@@ -61,6 +61,19 @@ function raceAtDifficulty(level){
  assert.ok(frames<2400,level+' race should finish within smoke-test frame budget');
  return frames;
 }
+const api=window.__RRL_TEST__;
+assert.equal(Object.keys(api.tracks).length,75,'all 75 built-in circuits should be registered');
+for(const [id,definition] of Object.entries(api.tracks)){
+ api.setTrackForTest(id);
+ assert.ok(Number.isFinite(api.surfaceGrip())&&api.surfaceGrip()>0,id+' should have valid surface grip');
+ for(let sample=0;sample<64;sample++){
+  const phase=sample/64,p=api.geometry(phase),rate=api.arcRate(phase),corner=api.cornerDemand(phase);
+  assert.ok(Number.isFinite(p.x)&&Number.isFinite(p.y)&&Number.isFinite(p.tx)&&Number.isFinite(p.ty),id+' geometry should remain finite at phase '+phase);
+  assert.ok(Number.isFinite(rate)&&rate>0,id+' arc length should be valid at phase '+phase);
+  assert.ok(Number.isFinite(corner)&&corner>=0&&corner<=1,id+' corner demand should stay bounded at phase '+phase);
+ }
+}
+api.setTrackForTest('neon');
 const timings={};
 for(const level of ['easy','normal','hard','expert'])timings[level]=raceAtDifficulty(level);
 elements.get('mode').value='duel';
