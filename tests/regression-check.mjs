@@ -26,6 +26,12 @@ assert.match(game,/race engineer|engineerAdvice/i,'Rule-based race engineer UI s
 assert.match(game,/rrl-custom-tracks/,'Saved custom circuits must load in the game');
 assert.match(game,/function drawTrackScenery\(t\)/,'Circuits should have themed trackside scenery');
 assert.match(game,/function trackPoint\(a,offset=0\)/,'Track paths should use per-circuit geometry');
+const generatedTrackIds=[...game.matchAll(/'([a-z0-9-]+)':\{name:'[^']+',rx:\d+,ry:\d+,[^}]*shapeIndex:(\d+)\}/g)];
+assert.equal(generatedTrackIds.length,50,'Exactly 50 additional named circuits should be registered');
+assert.equal(new Set(generatedTrackIds.map(([,id])=>id)).size,50,'All additional circuit IDs should be unique');
+assert.match(game,/t\.shapeIndex!==undefined/,'New circuits should use their own route-shape profiles');
+assert.match(game,/Object\.entries\(tracks\)\.forEach\(\(\[id,t\]\)=>\{if\(!Array\.from\(select\.options\)/,'All built-in circuits should be added to the native selector');
+assert.match(game,/t\.shapeIndex%15/,'New circuits should vary their trackside scenery');
 for(const shape of ["stadium","industrial","tokyo","dunes","volcano","mountain","wetlands","ruins","glacier","coast","harbor","farmland","skyline","night","desert"])assert(game.includes("id==='"+shape+"'"),'Distinct circuit shape missing: '+shape);
 for(const landmark of ["kind==='stadium'","kind==='tokyo'","kind==='volcano'","kind==='wetlands'","kind==='farmland'","kind==='harbor'","kind==='ruins'","kind==='dunes'","kind==='glacier'"])assert(game.includes(landmark),'Unique trackside landmark missing: '+landmark);
 
