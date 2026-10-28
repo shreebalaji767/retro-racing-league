@@ -14,10 +14,15 @@ assert.match(game,/const levels=\{easy:/);assert.match(game,/normal:/);assert.ma
 assert.match(game,/checkpoint===3&&newCheckpoint===0/,'Lap counting must validate the ordered checkpoint loop');
 assert.match(game,/raceRewarded=true/,'Race rewards must be guarded against duplicate finish');
 assert.match(game,/r\.lane\+=clamp\(targetLane-r\.lane/,'Rivals should steer toward a racing line');
+assert.match(game,/mode==='duel'/,'Local two-player duel mode should exist');
+assert.match(game,/p2Finished/,'Split-screen finish crossing should be guarded');
+assert.match(game,/drawDuelScene/,'Split-screen view should render both drivers');
+assert.match(game,/loadReplays/,'Local race replay history should be supported');
+assert.match(game,/race engineer|engineerAdvice/i,'Rule-based race engineer UI should exist');
 assert.match(game,/rrl-custom-tracks/,'Saved custom circuits must load in the game');
 assert.match(expansion,/rrl-challenge-records/);assert.match(expansion,/rrl-accessibility/);
 assert.match(expansion,/saveCustomTrack/);assert.match(expansion,/renderStandings/);assert.match(game,/unlockedPaints/);assert.match(game,/currentPaint\(\)\.color/);
 assert.match(css,/prefers-reduced-motion/);assert.match(css,/@media\(max-width:760px\)/);
-assert.match(html,/aria-live="polite"/);assert.match(html,/aria-label="Touch driving controls"/);
+assert.match(html,/aria-live="polite"/);assert.match(html,/aria-label="Touch driving controls"/);assert.match(html,/value="duel"/);assert.match(html,/id="playReplay"/);assert.match(html,/id="engineerAdvice"/);
 for(const file of ['index.html','js/game.js','js/expansion.js','css/style.css'])assert(fs.statSync(file).size>500,`${file} should not be empty`);
 console.log('Retro Racing League regression checks passed: DOM IDs, difficulty coverage, checkpoint lap guard, one-time finish guard, racing-line rivals, custom tracks, challenge/standings/accessibility UI and mobile/reduced-motion support.');
