@@ -59,7 +59,7 @@ setInterval(()=>{
  if(count!==previousRaceCount){renderStandings();previousRaceCount=count;
   if(activeChallenge&&count>lastRaceCount){
    const results=Array.isArray(data.seasonResults)?data.seasonResults:[],r=results[results.length-1];
-   if(r&&r.track===activeChallenge.track&&r.difficulty===activeChallenge.difficulty&&r.mode===activeChallenge.mode){
+   if(r&&r.trackId===activeChallenge.track&&r.difficulty===activeChallenge.difficulty&&r.mode===activeChallenge.mode){
     const records=read('rrl-challenge-records',{}),key=activeChallenge.label;
     if(r.mode==='timeattack'){if(!records[key]||r.time<records[key])records[key]=r.time;write('rrl-challenge-records',records);renderChallengeRecords()}
     else{$('challengeRecord').textContent=key+' completed · position '+r.rank+'. Personal challenge completion saved in race history.'}
