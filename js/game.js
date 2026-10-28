@@ -23,6 +23,56 @@ const tracks={
  farmland:{name:'Harvest Raceway',rx:238,ry:158,wx:.07,wy:.065,wx2:.015,wy2:.012,grass:'#668447',road:'#48433b',edge:'#ffcf5c',grip:.98,surface:'RURAL TARMAC'},
  industrial:{name:'Industrial Zone',rx:226,ry:162,wx:.105,wy:.045,wx2:.025,wy2:.016,grass:'#4a5055',road:'#30343c',edge:'#ffad42',grip:1.01,surface:'GRIP ASPHALT'},
  lunar:{name:'Lunar Circuit',rx:256,ry:136,wx:.035,wy:.085,wx2:.022,wy2:.02,grass:'#343444',road:'#555461',edge:'#b7a5ff',grip:.98,surface:'MOON DUST'}
+ 'alpine-switchback':{name:'Alpine Switchback',rx:218,ry:128,wx:0.018,wy:0.037,wx2:0.004,wy2:0.003,grass:'#355b3d',road:'#383846',edge:'#79d6cf',grip:0.95,surface:'ALPINE ASPHALT',shapeIndex:0},
+ 'grand-canyon-rally':{name:'Grand Canyon Rally',rx:235,ry:151,wx:0.074,wy:0.072,wx2:0.016,wy2:0.018,grass:'#915b3d',road:'#383846',edge:'#ff9c4a',grip:0.93,surface:'GRITTY CANYON',shapeIndex:1},
+ 'coral-bay-sprint':{name:'Coral Bay Sprint',rx:252,ry:131,wx:0.034,wy:0.023,wx2:0.004,wy2:0.015,grass:'#287c87',road:'#383846',edge:'#4ce6dc',grip:1.01,surface:'COASTAL TARMAC',shapeIndex:2},
+ 'monsoon-delta':{name:'Monsoon Delta',rx:226,ry:154,wx:0.090,wy:0.058,wx2:0.016,wy2:0.012,grass:'#405d43',road:'#383846',edge:'#d5f26b',grip:0.89,surface:'WATERLOGGED TARMAC',shapeIndex:3},
+ 'metro-flyover':{name:'Metro Flyover',rx:243,ry:134,wx:0.050,wy:0.093,wx2:0.004,wy2:0.009,grass:'#4a5055',road:'#383846',edge:'#ffad42',grip:1.03,surface:'URBAN ASPHALT',shapeIndex:4},
+ 'sakura-express':{name:'Sakura Express',rx:260,ry:157,wx:0.106,wy:0.044,wx2:0.016,wy2:0.006,grass:'#42305b',road:'#383846',edge:'#ff6bd6',grip:1.02,surface:'CITY ASPHALT',shapeIndex:5},
+ 'pyramid-run':{name:'Pyramid Run',rx:234,ry:137,wx:0.066,wy:0.079,wx2:0.004,wy2:0.003,grass:'#6b7550',road:'#383846',edge:'#e7c878',grip:0.96,surface:'ANCIENT STONE',shapeIndex:6},
+ 'mirage-rally':{name:'Mirage Rally',rx:251,ry:160,wx:0.026,wy:0.030,wx2:0.016,wy2:0.018,grass:'#c49a58',road:'#383846',edge:'#fff0a3',grip:0.9,surface:'DEEP SAND',shapeIndex:7},
+ 'arctic-needle':{name:'Arctic Needle',rx:225,ry:140,wx:0.082,wy:0.065,wx2:0.004,wy2:0.015,grass:'#a9d4dc',road:'#383846',edge:'#b9f5ff',grip:0.84,surface:'GLACIER ICE',shapeIndex:8},
+ 'harvest-oval':{name:'Harvest Oval',rx:242,ry:163,wx:0.042,wy:0.016,wx2:0.016,wy2:0.012,grass:'#668447',road:'#383846',edge:'#ffcf5c',grip:0.99,surface:'RURAL TARMAC',shapeIndex:9},
+ 'cobalt-speedway':{name:'Cobalt Speedway',rx:259,ry:143,wx:0.098,wy:0.051,wx2:0.004,wy2:0.009,grass:'#386747',road:'#383846',edge:'#45a4ff',grip:1.05,surface:'RACE ASPHALT',shapeIndex:10},
+ 'serpent-ridge':{name:'Serpent Ridge',rx:233,ry:166,wx:0.058,wy:0.086,wx2:0.016,wy2:0.006,grass:'#355b3d',road:'#383846',edge:'#9dff87',grip:0.92,surface:'RIDGE ROAD',shapeIndex:11},
+ 'twin-peak-figure-eight':{name:'Twin Peak Figure Eight',rx:250,ry:146,wx:0.018,wy:0.037,wx2:0.004,wy2:0.003,grass:'#7c9ca7',road:'#383846',edge:'#f1ffff',grip:0.9,surface:'FROST ASPHALT',shapeIndex:12},
+ 'lighthouse-causeway':{name:'Lighthouse Causeway',rx:224,ry:169,wx:0.074,wy:0.072,wx2:0.016,wy2:0.018,grass:'#28616c',road:'#383846',edge:'#ffe66d',grip:1,surface:'SEA-WALL TARMAC',shapeIndex:13},
+ 'red-rock-hairpins':{name:'Red Rock Hairpins',rx:241,ry:149,wx:0.034,wy:0.023,wx2:0.004,wy2:0.015,grass:'#915b3d',road:'#383846',edge:'#ff6847',grip:0.91,surface:'RED ROCK GRIT',shapeIndex:14},
+ 'palm-coast-gp':{name:'Palm Coast GP',rx:258,ry:129,wx:0.090,wy:0.058,wx2:0.016,wy2:0.012,grass:'#287c87',road:'#383846',edge:'#45e0b8',grip:1,surface:'TROPICAL TARMAC',shapeIndex:15},
+ 'thunder-bowl':{name:'Thunder Bowl',rx:232,ry:152,wx:0.050,wy:0.093,wx2:0.004,wy2:0.009,grass:'#386747',road:'#383846',edge:'#b39aff',grip:1.04,surface:'BANKED ASPHALT',shapeIndex:16},
+ 'orbital-switchyard':{name:'Orbital Switchyard',rx:249,ry:132,wx:0.106,wy:0.044,wx2:0.016,wy2:0.006,grass:'#343444',road:'#383846',edge:'#b7a5ff',grip:0.96,surface:'MOON DUST',shapeIndex:17},
+ 'pine-needle-run':{name:'Pine Needle Run',rx:223,ry:155,wx:0.066,wy:0.079,wx2:0.004,wy2:0.003,grass:'#1c5039',road:'#383846',edge:'#9dff87',grip:0.97,surface:'FOREST ASPHALT',shapeIndex:18},
+ 'salt-flat-500':{name:'Salt Flat 500',rx:240,ry:135,wx:0.026,wy:0.030,wx2:0.016,wy2:0.018,grass:'#b78a48',road:'#383846',edge:'#ffe66d',grip:1.02,surface:'HARD SALT',shapeIndex:19},
+ 'old-town-corkscrew':{name:'Old Town Corkscrew',rx:257,ry:158,wx:0.082,wy:0.065,wx2:0.004,wy2:0.015,grass:'#42305b',road:'#383846',edge:'#ff4f9a',grip:0.98,surface:'COBBLE TARMAC',shapeIndex:20},
+ 'delta-causeway':{name:'Delta Causeway',rx:231,ry:138,wx:0.042,wy:0.016,wx2:0.016,wy2:0.012,grass:'#405d43',road:'#383846',edge:'#a8df9d',grip:0.91,surface:'DAMP TARMAC',shapeIndex:21},
+ 'skybridge-chicane':{name:'Skybridge Chicane',rx:248,ry:161,wx:0.098,wy:0.051,wx2:0.004,wy2:0.009,grass:'#233d57',road:'#383846',edge:'#7df9ff',grip:1.03,surface:'ELEVATED ASPHALT',shapeIndex:22},
+ 'obsidian-ring':{name:'Obsidian Ring',rx:222,ry:141,wx:0.058,wy:0.086,wx2:0.016,wy2:0.006,grass:'#63352f',road:'#383846',edge:'#ff6847',grip:0.94,surface:'VOLCANIC ROCK',shapeIndex:23},
+ 'glacier-maze':{name:'Glacier Maze',rx:239,ry:164,wx:0.018,wy:0.037,wx2:0.004,wy2:0.003,grass:'#a9d4dc',road:'#383846',edge:'#f1ffff',grip:0.82,surface:'BLACK ICE',shapeIndex:24},
+ 'citrus-valley':{name:'Citrus Valley',rx:256,ry:144,wx:0.074,wy:0.072,wx2:0.016,wy2:0.018,grass:'#668447',road:'#383846',edge:'#ffcf5c',grip:0.98,surface:'VALLEY TARMAC',shapeIndex:25},
+ 'neon-cloverleaf':{name:'Neon Cloverleaf',rx:230,ry:167,wx:0.034,wy:0.023,wx2:0.004,wy2:0.015,grass:'#254e45',road:'#383846',edge:'#ff4f9a',grip:1.02,surface:'NEON CITY ASPHALT',shapeIndex:26},
+ 'switchback-quarry':{name:'Switchback Quarry',rx:247,ry:147,wx:0.090,wy:0.058,wx2:0.016,wy2:0.012,grass:'#4a5055',road:'#383846',edge:'#ffad42',grip:0.95,surface:'QUARRY ASPHALT',shapeIndex:27},
+ 'moon-crater-gp':{name:'Moon Crater GP',rx:221,ry:170,wx:0.050,wy:0.093,wx2:0.004,wy2:0.009,grass:'#343444',road:'#383846',edge:'#b7a5ff',grip:0.9,surface:'LUNAR REGOLITH',shapeIndex:28},
+ 'tidal-flats':{name:'Tidal Flats',rx:238,ry:150,wx:0.106,wy:0.044,wx2:0.016,wy2:0.006,grass:'#28616c',road:'#383846',edge:'#4ce6dc',grip:0.94,surface:'WET CONCRETE',shapeIndex:29},
+ 'cinder-cone-sprint':{name:'Cinder Cone Sprint',rx:255,ry:130,wx:0.066,wy:0.079,wx2:0.004,wy2:0.003,grass:'#63352f',road:'#383846',edge:'#ff6847',grip:0.93,surface:'CINDER GRIT',shapeIndex:30},
+ 'alpine-viaduct':{name:'Alpine Viaduct',rx:229,ry:153,wx:0.026,wy:0.030,wx2:0.016,wy2:0.018,grass:'#355b3d',road:'#383846',edge:'#b9f5ff',grip:0.96,surface:'HIGH-ALTITUDE TARMAC',shapeIndex:31},
+ 'bamboo-grand-prix':{name:'Bamboo Grand Prix',rx:246,ry:133,wx:0.082,wy:0.065,wx2:0.004,wy2:0.015,grass:'#1c5039',road:'#383846',edge:'#9dff87',grip:0.99,surface:'BAMBOO GROVE ROAD',shapeIndex:32},
+ 'dune-rallycross':{name:'Dune Rallycross',rx:220,ry:156,wx:0.042,wy:0.016,wx2:0.016,wy2:0.012,grass:'#c49a58',road:'#383846',edge:'#fff0a3',grip:0.88,surface:'SOFT SAND',shapeIndex:33},
+ 'marina-figure-eight':{name:'Marina Figure Eight',rx:237,ry:136,wx:0.098,wy:0.051,wx2:0.004,wy2:0.009,grass:'#28616c',road:'#383846',edge:'#ffe66d',grip:1.01,surface:'MARINA TARMAC',shapeIndex:34},
+ 'metro-ring-road':{name:'Metro Ring Road',rx:254,ry:159,wx:0.058,wy:0.086,wx2:0.016,wy2:0.006,grass:'#4a5055',road:'#383846',edge:'#45a4ff',grip:1.04,surface:'EXPRESSWAY ASPHALT',shapeIndex:35},
+ 'temple-spiral':{name:'Temple Spiral',rx:228,ry:139,wx:0.018,wy:0.037,wx2:0.004,wy2:0.003,grass:'#6b7550',road:'#383846',edge:'#e7c878',grip:0.92,surface:'WEATHERED STONE',shapeIndex:36},
+ 'black-ice-arena':{name:'Black Ice Arena',rx:245,ry:162,wx:0.074,wy:0.072,wx2:0.016,wy2:0.018,grass:'#a9d4dc',road:'#383846',edge:'#f1ffff',grip:0.8,surface:'GLAZED ICE',shapeIndex:37},
+ 'wildflower-circuit':{name:'Wildflower Circuit',rx:219,ry:142,wx:0.034,wy:0.023,wx2:0.004,wy2:0.015,grass:'#668447',road:'#383846',edge:'#ffcf5c',grip:1,surface:'COUNTRY TARMAC',shapeIndex:38},
+ 'comet-tail-raceway':{name:'Comet Tail Raceway',rx:236,ry:165,wx:0.090,wy:0.058,wx2:0.016,wy2:0.012,grass:'#343444',road:'#383846',edge:'#b7a5ff',grip:0.98,surface:'MOON DUST',shapeIndex:39},
+ 'coastal-cliff-run':{name:'Coastal Cliff Run',rx:253,ry:145,wx:0.050,wy:0.093,wx2:0.004,wy2:0.009,grass:'#287c87',road:'#383846',edge:'#4ce6dc',grip:0.95,surface:'CLIFFSIDE TARMAC',shapeIndex:40},
+ 'furnace-works':{name:'Furnace Works',rx:227,ry:168,wx:0.106,wy:0.044,wx2:0.016,wy2:0.006,grass:'#63352f',road:'#383846',edge:'#ff6847',grip:0.96,surface:'HOT CINDER ASPHALT',shapeIndex:41},
+ 'mossy-ruins-gp':{name:'Mossy Ruins GP',rx:244,ry:148,wx:0.066,wy:0.079,wx2:0.004,wy2:0.003,grass:'#6b7550',road:'#383846',edge:'#d5f26b',grip:0.93,surface:'MOSSY STONE',shapeIndex:42},
+ 'polar-research-loop':{name:'Polar Research Loop',rx:218,ry:128,wx:0.026,wy:0.030,wx2:0.016,wy2:0.018,grass:'#7c9ca7',road:'#383846',edge:'#b9f5ff',grip:0.86,surface:'COMPACTED SNOW',shapeIndex:43},
+ 'vineyard-s-bends':{name:'Vineyard S-Bends',rx:235,ry:151,wx:0.082,wy:0.065,wx2:0.004,wy2:0.015,grass:'#668447',road:'#383846',edge:'#ffcf5c',grip:0.97,surface:'VINEYARD TARMAC',shapeIndex:44},
+ 'aqua-tunnel-circuit':{name:'Aqua Tunnel Circuit',rx:252,ry:131,wx:0.042,wy:0.016,wx2:0.016,wy2:0.012,grass:'#28616c',road:'#383846',edge:'#4ce6dc',grip:1,surface:'DAMP CONCRETE',shapeIndex:45},
+ 'hyperloop-test-ring':{name:'Hyperloop Test Ring',rx:226,ry:154,wx:0.098,wy:0.051,wx2:0.004,wy2:0.009,grass:'#233d57',road:'#383846',edge:'#7df9ff',grip:1.06,surface:'POLISHED ASPHALT',shapeIndex:46},
+ 'rusted-foundry-run':{name:'Rusted Foundry Run',rx:243,ry:134,wx:0.058,wy:0.086,wx2:0.016,wy2:0.006,grass:'#4a5055',road:'#383846',edge:'#ffad42',grip:0.96,surface:'INDUSTRIAL GRIT',shapeIndex:47},
+ 'emerald-gorge':{name:'Emerald Gorge',rx:260,ry:157,wx:0.018,wy:0.037,wx2:0.004,wy2:0.003,grass:'#1c5039',road:'#383846',edge:'#9dff87',grip:0.94,surface:'GORGE ASPHALT',shapeIndex:48},
+ 'final-boss-megacircuit':{name:'Final Boss Megacircuit',rx:234,ry:137,wx:0.074,wy:0.072,wx2:0.016,wy2:0.018,grass:'#386747',road:'#383846',edge:'#ff4f9a',grip:1.02,surface:'CHAMPIONSHIP ASPHALT',shapeIndex:49}
 };
 try{const custom=JSON.parse(localStorage.getItem('rrl-custom-tracks')||'[]');custom.filter(t=>t&&typeof t.id==='string'&&/^custom-[a-z0-9-]+$/.test(t.id)).slice(0,8).forEach(t=>{tracks[t.id]={name:String(t.name||'Custom Circuit').slice(0,22),rx:clamp(Number(t.rx)||240,205,270),ry:clamp((Number(t.rx)||240)*.62,125,175),wx:clamp(Number(t.wx)||0,0,.12),wy:clamp(Number(t.wy)||0,0,.12),wx2:clamp(Number(t.wx2)||0,0,.025),wy2:clamp(Number(t.wy2)||0,0,.025),grass:'#28533d',road:'#383846',edge:'#baff00'};const sel=document.getElementById('track');if(sel&&!Array.from(sel.options).some(o=>o.value===t.id)){const option=document.createElement('option');option.value=t.id;option.textContent=tracks[t.id].name;sel.appendChild(option)}})}catch{}
 const cars=[
@@ -79,6 +129,17 @@ function trackPoint(a,offset=0){
  else if(id==='glacier'){x+=.055*Math.sin(4*a);y+=.075*Math.sin(3*a);radial+=.075*Math.cos(6*a)+.025*Math.sin(10*a)}
  else if(id==='lunar'){radial+=.065*Math.sin(9*a)+.035*Math.cos(13*a);x+=.04*Math.sin(4*a)}
  else if(id==='neon'){radial+=.055*Math.cos(6*a)+.025*Math.sin(10*a)}
+ else if(t.shapeIndex!==undefined){const k=t.shapeIndex,f=k%10,phase=k*.37;
+ if(f===0){const e=.38+(k%5)*.11;x=Math.sign(c)*Math.pow(Math.abs(c),e);y=Math.sign(s)*Math.pow(Math.abs(s),.45+(k%4)*.13);radial+=.025*Math.cos((5+k%4)*a+phase)}
+ else if(f===1){radial+=.055*Math.cos((3+k%5)*a+phase)+.025*Math.sin((7+k%4)*a-phase);x+=.035*Math.sin((2+k%3)*a)}
+ else if(f===2){x+=.10*Math.sin((2+k%3)*a+phase);y+=.07*Math.sin((3+k%4)*a-phase);radial+=.035*Math.cos((5+k%4)*a)}
+ else if(f===3){x+=.16*Math.sin(2*a+phase);y+=.10*Math.sin(3*a+phase*.6);radial+=.045*Math.cos((4+k%3)*a)}
+ else if(f===4){const e=.5+(k%4)*.15;x=Math.sign(c)*Math.pow(Math.abs(c),e);y=Math.sign(s)*Math.pow(Math.abs(s),e*.8);radial+=.07*Math.cos(4*a+phase)+.025*Math.sin(9*a)}
+ else if(f===5){x+=.12*Math.sin(3*a+phase)+.04*Math.sin(5*a);y+=.08*Math.sin(2*a-phase);radial+=.03*Math.cos(7*a)}
+ else if(f===6){radial+=.08*Math.cos(3*a+phase)+.035*Math.cos(6*a-phase);x+=.045*Math.sin(4*a)}
+ else if(f===7){radial+=.07*Math.cos(4*a+phase)+.035*Math.sin(8*a);x+=.08*Math.sin(2*a+phase);y+=.04*Math.sin(5*a)}
+ else if(f===8){x+=.19*Math.sin(2*a+phase);y+=.045*Math.sin(4*a-phase);radial+=.065*Math.sin(5*a+phase)}
+ else {const e=.42+(k%4)*.12;x=Math.sign(c)*Math.pow(Math.abs(c),e)+.06*Math.sin(4*a+phase);y=Math.sign(s)*Math.pow(Math.abs(s),.55)+.09*Math.sin(3*a-phase);radial+=.04*Math.cos(7*a+phase)}}
  return {x:W/2+rx*x*radial,y:H/2+ry*y*radial};
 }
 function geometry(phase,offset=0){
