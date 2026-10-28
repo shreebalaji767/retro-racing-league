@@ -10,6 +10,8 @@ A free top-down 16-bit-style arcade racing game built with HTML, CSS, Canvas and
 - Five-round Grand Prix career, saved race history, points, wins, podiums, credits, achievements and personal bests
 - Local challenge board, saved custom circuit editor, season standings/archive, per-challenge records and earnable cosmetic paint with no performance advantage
 - Automatic local race replays (last five races), with in-game playback controls
+- Local split-screen two-player duel (P1: arrows + Space; P2: WASD + Shift)
+- Rule-based race engineer tips for wet grip, damage, off-road driving, nitro and pit windows
 - High-contrast, large-text, reduced-motion and alternate-theme options
 - Twelve original car profiles; unlock cars and buy engine/handling upgrades with earned in-game credits only
 - Local Time Attack ghost recording/playback and per-track records
