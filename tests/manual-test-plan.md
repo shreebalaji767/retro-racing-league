@@ -1,29 +1,36 @@
 # Manual test plan
 
-## Static/syntax checks
-- Run `node --check js/game.js`.
-- Verify `index.html` loads `css/style.css` and `js/game.js` with relative paths.
-- Verify no external scripts, fonts, images, API endpoints, or build dependencies are present.
+## Automated checks already performed
+- JavaScript syntax parsing and startup in a mocked browser environment.
+- All referenced HTML element IDs exist.
+- Ten circuit definitions and twelve car profiles are present.
+- Simulated Grand Prix completed 3 laps, awarded credits and advanced the round.
+- Simulated wet Time Attack completed and saved a local ghost recording.
+- Simulated Elimination removed rivals during a race and completed.
+- Simulated Endurance completed eight laps.
+- Sound toggle event wiring was checked.
 
-## Physics and laps
+## Real-browser physics and laps
 - Start each difficulty and verify acceleration, braking, steering and nitro.
 - Steer beyond both track edges; speed should drop and damage should increase.
-- Wet mode should reduce grip and speed.
-- Verify the first lap is only counted after a full circuit, and the finish triggers once after 3 laps (or 8 for Endurance).
-- Hit rivals from close range; speed/damage should react without locking controls.
-- Pause and resume repeatedly; time should not jump while paused.
+- Wet mode should reduce grip; handling upgrades should improve grip.
+- Verify the first lap is counted only after a full circuit and finish triggers once after 3 laps (or 8 for Endurance).
+- Confirm each of the ten circuit shapes, start line and pit marker align with the track.
+- Hit rivals; speed/damage should react without locking controls.
+- Pause/resume repeatedly; time should not jump while paused.
 
-## Modes and progression
-- Grand Prix: finish five rounds; verify points, round number, wins and podiums.
-- Time Attack: verify solo race, best time per track and time-based reward.
-- Elimination: verify rivals are removed at intervals and remaining field/position updates.
-- Endurance: verify the target is eight laps.
+## Modes, progression and garage
+- Grand Prix: finish five rounds; verify points, round number, wins, podiums and champion achievement.
+- Time Attack: verify solo race, ghost playback on a subsequent attempt and best time per track.
+- Elimination: verify rivals are removed at intervals and finish position reflects eliminated drivers.
+- Endurance: verify eight laps and pit stop only works when slow in the outer pit lane.
 - Earn credits, unlock cars, buy engine/handling upgrades and verify insufficient credits/max levels.
 - Unlock achievements and verify they persist after reload.
-- Export save, reset, import save; verify progression restores.
-- Reload and verify local progress persists.
+- Export save, reset, import save; verify progression and ghosts restore.
 
-## Responsive/static hosting
-- Test narrow mobile width and tap/hold/release each touch control.
-- Check keyboard input, pause, tab focus and save import/export.
-- Enable GitHub Pages from `main` and `/(root)`; verify the live page loads and inspect console/network requests.
+## Sound, accessibility and static hosting
+- Enable sound after a user click and check synthesized effects; disable it again.
+- Toggle CRT scanlines and reduced-effects mode.
+- Test touch controls with pointer release/cancel and keyboard controls.
+- Check narrow mobile width and button tap targets.
+- Enable GitHub Pages from main and /(root); verify the live page loads and inspect console/network requests.
