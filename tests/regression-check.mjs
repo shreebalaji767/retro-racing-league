@@ -41,7 +41,11 @@ assert.match(game,/t\.shapeIndex%15/,'New circuits should vary their trackside s
 for(const shape of ["stadium","industrial","tokyo","dunes","volcano","mountain","wetlands","ruins","glacier","coast","harbor","farmland","skyline","night","desert"])assert(game.includes("id==='"+shape+"'"),'Distinct circuit shape missing: '+shape);
 for(const landmark of ["kind==='stadium'","kind==='tokyo'","kind==='volcano'","kind==='wetlands'","kind==='farmland'","kind==='harbor'","kind==='ruins'","kind==='dunes'","kind==='glacier'"])assert(game.includes(landmark),'Unique trackside landmark missing: '+landmark);
 
-assert.match(game,/trackGrip=currentTrack\(\)\.grip/,'Circuit surface grip should affect vehicle handling');
+assert.match(game,/function cornerDemand\(phase\)/,'Cornering demand should be derived from the actual circuit curve');
+assert.match(game,/const cornerLimit=max\*\(1-corner\*\.24\)/,'High-curvature corners should reduce safe speed');
+assert.match(game,/function surfaceGrip\(\)/,'Track surface material should affect grip');
+assert.match(game,/trackGrip=surfaceGrip\(\)/,'Circuit surface grip should affect vehicle handling');
+assert.match(game,/cornerDemand\(r\.progress%1\)/,'Scripted rivals should slow for real track corners');
 for(const id of ['skyline','volcano','wetlands','tokyo','ruins','dunes','glacier','farmland','industrial','lunar']){assert(game.includes(id+":{name:"),`Track definition missing: ${id}`);assert(html.includes('<option value="'+id+'">'),`Track selector missing: ${id}`);}
 
 assert.match(expansion,/rrl-challenge-records/);assert.match(expansion,/rrl-accessibility/);
