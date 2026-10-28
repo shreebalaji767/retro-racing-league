@@ -58,26 +58,27 @@ function lapsTarget(){return mode==='endurance'?8:3}
 function trackPoint(a,offset=0){
  const t=currentTrack(),id=track,c=Math.cos(a),s=Math.sin(a),rx=t.rx+offset,ry=t.ry+offset,wx=t.wx||0,wy=t.wy||0,wx2=t.wx2||0,wy2=t.wy2||0;
  let x=c+wx*Math.sin(3*a)+wx2*Math.sin(5*a),y=s+wy*Math.sin(2*a)+wy2*Math.sin(4*a),radial=1;
- // Deliberately different circuit silhouettes: not twenty recolours of one oval.
- if(id==='stadium'){x=Math.sign(c)*Math.pow(Math.abs(c),.72);y=Math.sign(s)*Math.pow(Math.abs(s),.72)}
- else if(id==='industrial'){x=Math.sign(c)*Math.pow(Math.abs(c),.48);y=Math.sign(s)*Math.pow(Math.abs(s),.48);radial+=.035*Math.cos(8*a)}
- else if(id==='night'){radial+=.065*Math.cos(8*a);x+=.035*Math.sin(2*a);y+=.025*Math.cos(3*a)}
- else if(id==='tokyo'){radial+=.105*Math.cos(4*a)+.025*Math.cos(8*a)}
- else if(id==='dunes'){x+=.16*Math.sin(2*a);y+=.105*Math.sin(3*a)}
- else if(id==='volcano'){radial+=.075*Math.sin(7*a)+.035*Math.sin(11*a)}
- else if(id==='mountain'){radial+=.07*Math.sin(5*a)+.035*Math.sin(9*a)}
- else if(id==='wetlands'){x+=.11*Math.sin(3*a+.6);y+=.045*Math.sin(5*a)}
- else if(id==='ruins'){radial+=.09*Math.cos(4*a)+.025*Math.sin(8*a)}
- else if(id==='glacier'||id==='snow'){radial+=.045*Math.cos(6*a)+.018*Math.sin(10*a)}
- else if(id==='lunar'){radial+=.045*Math.sin(9*a)+.025*Math.cos(13*a)}
- else if(id==='coast'){x+=.085*Math.sin(a);y+=.045*Math.sin(2*a+.8)}
- else if(id==='harbor'){radial+=.045*Math.cos(6*a);x+=.045*Math.sin(2*a)}
- else if(id==='farmland'){x=Math.sign(c)*Math.pow(Math.abs(c),.84);y=Math.sign(s)*Math.pow(Math.abs(s),.84);radial+=.025*Math.sin(8*a)}
- else if(id==='skyline'){radial+=.035*Math.cos(6*a)+.025*Math.sin(10*a)}
- else if(id==='canyon'){radial+=.08*Math.sin(3*a)+.04*Math.cos(7*a)}
- else if(id==='forest'){radial+=.035*Math.sin(6*a)+.025*Math.cos(9*a)}
- else if(id==='desert'){x+=.075*Math.sin(2*a);y+=.04*Math.sin(5*a);radial+=.035*Math.cos(7*a)}
- else if(id==='neon'){radial+=.035*Math.cos(6*a)}
+ // Every venue gets a recognizable route profile, not just a palette swap.
+ if(id==='stadium'){x=Math.sign(c)*Math.pow(Math.abs(c),.34);y=Math.sign(s)*Math.pow(Math.abs(s),.34);radial+=.018*Math.cos(8*a)}
+ else if(id==='industrial'){x=Math.sign(c)*Math.pow(Math.abs(c),.24);y=Math.sign(s)*Math.pow(Math.abs(s),.24);radial+=.065*Math.cos(8*a)+.018*Math.sin(12*a)}
+ else if(id==='tokyo'){x=Math.sign(c)*Math.pow(Math.abs(c),.68);y=Math.sign(s)*Math.pow(Math.abs(s),.68);radial+=.11*Math.cos(4*a)+.035*Math.cos(8*a)}
+ else if(id==='skyline'){radial+=.09*Math.cos(3*a)+.045*Math.sin(7*a);x+=.035*Math.sin(4*a)}
+ else if(id==='night'){radial+=.09*Math.cos(8*a);x+=.06*Math.sin(2*a);y+=.035*Math.cos(3*a)}
+ else if(id==='desert'){x+=.13*Math.sin(2*a);y+=.07*Math.sin(5*a);radial+=.055*Math.cos(7*a)}
+ else if(id==='dunes'){x+=.21*Math.sin(2*a);y+=.12*Math.sin(3*a);radial+=.035*Math.cos(5*a)}
+ else if(id==='forest'){x+=.09*Math.sin(3*a);y+=.07*Math.sin(4*a);radial+=.04*Math.cos(6*a)}
+ else if(id==='coast'){x+=.13*Math.sin(a)+.04*Math.sin(4*a);y+=.06*Math.sin(2*a+.8);radial+=.035*Math.cos(5*a)}
+ else if(id==='harbor'){x=Math.sign(c)*Math.pow(Math.abs(c),.62);y=Math.sign(s)*Math.pow(Math.abs(s),.82);radial+=.075*Math.cos(6*a);x+=.055*Math.sin(2*a)}
+ else if(id==='mountain'){radial+=.105*Math.sin(5*a)+.055*Math.sin(9*a);x+=.04*Math.cos(3*a)}
+ else if(id==='canyon'){x+=.14*Math.sin(2*a);y+=.06*Math.cos(3*a);radial+=.09*Math.sin(3*a)+.045*Math.cos(7*a)}
+ else if(id==='volcano'){radial+=.09*Math.sin(7*a)+.045*Math.sin(11*a);x+=.055*Math.cos(3*a)}
+ else if(id==='wetlands'){x+=.15*Math.sin(3*a+.6);y+=.075*Math.sin(5*a);radial+=.035*Math.cos(7*a)}
+ else if(id==='ruins'){x=Math.sign(c)*Math.pow(Math.abs(c),.76);y=Math.sign(s)*Math.pow(Math.abs(s),.76);radial+=.11*Math.cos(4*a)+.035*Math.sin(8*a)}
+ else if(id==='farmland'){x=Math.sign(c)*Math.pow(Math.abs(c),.56);y=Math.sign(s)*Math.pow(Math.abs(s),.56);radial+=.045*Math.sin(8*a)}
+ else if(id==='snow'){radial+=.055*Math.cos(6*a)+.025*Math.sin(10*a);x+=.035*Math.sin(3*a)}
+ else if(id==='glacier'){x+=.055*Math.sin(4*a);y+=.075*Math.sin(3*a);radial+=.075*Math.cos(6*a)+.025*Math.sin(10*a)}
+ else if(id==='lunar'){radial+=.065*Math.sin(9*a)+.035*Math.cos(13*a);x+=.04*Math.sin(4*a)}
+ else if(id==='neon'){radial+=.055*Math.cos(6*a)+.025*Math.sin(10*a)}
  return {x:W/2+rx*x*radial,y:H/2+ry*y*radial};
 }
 function geometry(phase,offset=0){
