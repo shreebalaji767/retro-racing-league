@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "Retro Racing League",
+  "short_name": "Retro Racing",
+  "description": "A free retro arcade racing game. Play offline after the first visit.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#101018",
+  "theme_color": "#101018",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    { "src": "assets/rrl-logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "assets/rrl-logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
