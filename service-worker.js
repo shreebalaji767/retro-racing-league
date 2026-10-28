@@ -1,6 +1,6 @@
 'use strict';
 // Bump this name whenever the app shell changes so installed clients can refresh.
-const CACHE_NAME = 'rrl-shell-v2';
+const CACHE_NAME = 'rrl-shell-v3';
 const APP_SHELL = [
   './',
   './index.html',
@@ -9,7 +9,8 @@ const APP_SHELL = [
   './js/expansion.js',
   './js/pwa.js',
   './manifest.webmanifest',
-  './assets/rrl-logo.svg'
+  './assets/rrl-logo.svg',
+  './assets/rrl-icon.svg'
 ];
 self.addEventListener('install', event => {
   event.waitUntil(
