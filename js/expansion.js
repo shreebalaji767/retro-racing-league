@@ -5,12 +5,17 @@ const write=(key,value)=>{try{localStorage.setItem(key,JSON.stringify(value));re
 const safe=s=>String(s).replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 const save=()=>read('rrl-save',{});
 function renderStandings(){
- const data=save(),results=Array.isArray(data.seasonResults)?data.seasonResults:[];
- const points=results.filter(r=>r.mode==='grandprix').reduce((n,r)=>n+(Number(r.points)||0),0);
- const wins=results.filter(r=>r.mode==='grandprix'&&r.rank===1).length;
- const rows=[['1','YOU',points,wins,results.filter(r=>r.mode==='grandprix').length]];
- const last=results.slice(-5).reverse();
- $('standings').innerHTML='<table><thead><tr><th>#</th><th>Driver</th><th>Pts</th><th>Wins</th><th>Rounds</th></tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(v=>'<td>'+safe(v)+'</td>').join('')+'</tr></tbody></table><p class="muted">Recent results</p>'+(last.length?'<ol>'+last.map(r=>'<li>'+safe(r.track)+' · '+safe(r.mode)+' · '+(r.mode==='timeattack'?safe(Number(r.time).toFixed(2))+'s':'P'+safe(r.rank)+' · '+safe(r.points)+' pts')+'</li>').join('')+'</ol>':'<p class="muted">Finish a race to start your local record.</p>');
+ const data=save();
+ const results=Array.isArray(data.seasonResults)?data.seasonResults:[];
+ const gp=results.filter(r=>r.mode==='grandprix');
+ const points=gp.reduce((n,r)=>n+(Number(r.points)||0),0);
+ const wins=gp.filter(r=>r.rank===1).length;
+ const row=['1','YOU',points,wins,gp.length].map(v=>'<td>'+safe(v)+'</td>').join('');
+ const recent=results.slice(-5).reverse().map(r=>{
+  const result=r.mode==='timeattack'?Number(r.time).toFixed(2)+'s':'P'+r.rank+' · '+r.points+' pts';
+  return '<li>'+safe(r.track)+' · '+safe(r.mode)+' · '+safe(result)+'</li>';
+ }).join('');
+ $('standings').innerHTML='<table><thead><tr><th>#</th><th>Driver</th><th>Pts</th><th>Wins</th><th>Rounds</th></tr></thead><tbody><tr>'+row+'</tr></tbody></table><p class="muted">Recent results</p>'+(recent?'<ol>'+recent+'</ol>':'<p class="muted">Finish a race to start your local record.</p>');
 }
 const challenges={
  clean:{track:'forest',difficulty:'normal',mode:'grandprix',weather:'dry',label:'Clean Racer'},
