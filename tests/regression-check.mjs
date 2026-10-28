@@ -33,6 +33,9 @@ assert.equal((builtInTrackRegistry.match(/name:'/g)||[]).length,70,'The built-in
 assert.equal(generatedTrackIds.length,50,'Exactly 50 additional named circuits should be registered');
 assert.equal(new Set(generatedTrackIds.map(([,id])=>id)).size,50,'All additional circuit IDs should be unique');
 assert.match(game,/t\.shapeIndex!==undefined/,'New circuits should use their own route-shape profiles');
+assert.doesNotMatch(game,/const k=t\.shapeIndex,f=k%10/,'Expansion track profiles must not recycle the same ten route families');
+assert.match(game,/const f1=2\+\(k%7\),f2=3\+\(\(k\*3\+1\)%8\)/,'Each expansion circuit should derive its own harmonic route signature');
+assert.match(game,/const exponentX=\.34\+\.012\*\(k%25\),exponentY=\.39\+\.011\*\(\(k\*9\)%25\)/,'Expansion circuits should vary their corner geometry');
 assert.match(game,/Object\.entries\(tracks\)\.forEach\(\(\[id,t\]\)=>\{if\(!Array\.from\(select\.options\)/,'All built-in circuits should be added to the native selector');
 assert.match(game,/t\.shapeIndex%15/,'New circuits should vary their trackside scenery');
 for(const shape of ["stadium","industrial","tokyo","dunes","volcano","mountain","wetlands","ruins","glacier","coast","harbor","farmland","skyline","night","desert"])assert(game.includes("id==='"+shape+"'"),'Distinct circuit shape missing: '+shape);
