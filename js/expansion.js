@@ -48,6 +48,7 @@ function saveTrack(){
  const track={id,name,rx:v.rx,wx:v.wx,wy:v.wy,wx2:v.wx2,wy2:v.wy2};
  const next=[track,...list.filter(t=>t.id!==id)].slice(0,8);
  if(!write('rrl-custom-tracks',next)){$('editorStatus').textContent='Storage unavailable. Free browser space and retry.';return}
+ if(window.__RRL_REGISTER_CUSTOM_TRACK)window.__RRL_REGISTER_CUSTOM_TRACK(track);
  const selector=$('track');let option=Array.from(selector.options).find(o=>o.value===id);if(!option){option=document.createElement('option');option.value=id;selector.appendChild(option)}option.textContent=name;selector.value=id;
  $('editorStatus').textContent='Saved '+name+'. Circuit is ready in the race selector.';preview();
 }
