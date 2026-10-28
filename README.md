@@ -18,10 +18,13 @@ A free top-down 16-bit-style arcade racing game built with HTML, CSS, Canvas and
 - Endurance pit service, rain effects, original synthesized sound effects, optional CRT scanlines and reduced-effects mode
 - Keyboard and visible touch controls, pause/resume and responsive layout
 - Local save, JSON export/import and reset
-- Original Canvas pixel-art visuals, no external images, fonts, libraries or paid dependencies
+- Original Canvas pixel-art visuals and a custom SVG logo used as the site favicon
+- Installable PWA with offline app-shell caching after first successful visit (HTTPS/localhost required)
+- Responsive desktop, tablet, mobile and landscape layouts with touch-sized controls
+- No external images, fonts, libraries or paid dependencies
 
 ## Run and publish
-Open index.html in a modern browser, or serve the directory using any local static file server. For GitHub Pages, open Settings → Pages, choose Deploy from a branch, then select main and /(root). See the [GitHub Pages publishing guide](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+Open index.html in a modern browser for gameplay, or serve the directory using a local static file server. PWA installation and offline caching require HTTPS (GitHub Pages provides HTTPS) or localhost. On supported browsers, use **INSTALL APP**; if the browser does not offer an install prompt, the button explains the browser-specific Add to Home Screen path. iPhone/iPad installation is available through Safari's Share → Add to Home Screen flow. For GitHub Pages, open Settings → Pages, choose Deploy from a branch, then select main and /(root). See the [GitHub Pages publishing guide](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
 ## Controls
 - Arrow keys: steer, accelerate, brake
