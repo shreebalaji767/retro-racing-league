@@ -56,3 +56,11 @@
 - [ ] Finish Time Attack, Elimination and Endurance; verify they do not add Grand Prix championship points.
 - [ ] Verify the race ranking does not penalize the player merely for cars eliminated earlier.
 - [ ] Confirm the automated runtime smoke test completes three laps on Easy, Normal, Hard and Expert.
+
+
+## Local multiplayer and race engineer
+- [ ] Run Local 2-Player Duel; confirm top/bottom views show both cars.
+- [ ] Drive P1 with arrow keys and Space nitro; drive P2 with WASD and Shift nitro.
+- [ ] Confirm the duel ends when either player completes three laps and reports the winner.
+- [ ] Play a saved duel replay and confirm both cars are visible.
+- [ ] Confirm engineer guidance changes for wet conditions, off-road driving, damage, low nitro and endurance pit windows.
