@@ -13,3 +13,11 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 .extras-panel button{min-height:42px}.extras-panel label{display:block;margin-top:8px}
 @media(max-width:760px){.layout,main{grid-template-columns:minmax(0,1fr)}.extras-panel{grid-column:auto}.shell{padding:9px}.game-panel,.panel{padding:10px}.touch-controls button{min-height:48px;touch-action:manipulation}button,select,input{font-size:16px}.race-strip{font-size:.78rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Local duel and contextual engineer */
+#engineerAdvice{border-left:3px solid var(--cyan);padding:8px 10px;background:#101018;border-radius:0 5px 5px 0;min-height:42px}
+#game{display:block;width:100%;height:auto;aspect-ratio:8/5;touch-action:none}
+.hint{line-height:1.8;overflow-wrap:anywhere}
+#replayStatus,#editorStatus{overflow-wrap:anywhere}
+@media(max-width:520px){.touch-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.touch-controls button{padding:8px 4px;font-size:.78rem;min-width:0}.race-strip{display:grid;grid-template-columns:1fr 1fr;gap:5px}.mast{align-items:flex-start;flex-direction:column}.free-tag{margin-top:0}.button-pair{grid-template-columns:1fr 1fr}}
+@media(orientation:landscape) and (max-height:520px){.shell{padding:6px}.mast{padding:5px}.mast h1{font-size:1.25rem}.game-panel{padding:6px}.touch-controls button{min-height:40px}.hint{margin:4px 0}}
