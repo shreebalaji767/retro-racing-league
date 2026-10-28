@@ -11,7 +11,7 @@ body.high-contrast{--bg:#000;--panel:#000;--ink:#fff;--muted:#fff;--line:#fff;ba
 body.large-text{font-size:19px}body.alt-theme{--pink:#ffb000;--cyan:#baff00;--yellow:#ffb000}
 body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 .extras-panel button{min-height:42px}.extras-panel label{display:block;margin-top:8px}
-@media(max-width:760px){.layout,main{grid-template-columns:minmax(0,1fr)}.extras-panel{grid-column:auto}.shell{padding:9px}.game-panel,.panel{padding:10px}.touch-controls button{min-height:48px;touch-action:manipulation}button,select,input{font-size:16px}.race-strip{font-size:.78rem}}
+@media(max-width:760px){.layout,main{grid-template-columns:minmax(0,1fr)}.sidebar{display:flex;flex-direction:column}.extras-panel{grid-column:auto}.shell{padding:9px}.game-panel,.panel{padding:10px}.touch-controls button{min-height:48px;touch-action:manipulation}button,select,input{font-size:16px}.race-strip{font-size:.78rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
 /* Local duel and contextual engineer */
