@@ -4,7 +4,7 @@ A free top-down 16-bit-style arcade racing game built with HTML, CSS, Canvas and
 
 ## Features
 - Track-edge driving physics, wet-weather traction loss, steering inertia, damage, nitro, collision knockback and checkpoint-sequenced lap validation
-- Twenty visually distinct, procedurally shaped circuits with themed trackside scenery and per-circuit surface grip (ice, sand, city asphalt and more)
+- **70 built-in circuits**: 20 original venues plus 50 new tracks with varied route profiles, distinct names, themed trackside scenery, and per-circuit surface grip (ice, sand, city asphalt and more). Choose from the clickable circuit grid or the native selector. Saved custom circuits remain supported.
 - Four selectable difficulty levels and four modes: Grand Prix, Time Attack, Elimination and Endurance
 - Local racing-line rivals with lane changes, passing attempts and corner-sensitive pace; no AI service, remote calls or online account
 - Five-round Grand Prix career, saved race history, points, wins, podiums, credits, achievements and personal bests
