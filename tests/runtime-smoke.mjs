@@ -73,6 +73,18 @@ for(const [id,definition] of Object.entries(api.tracks)){
   assert.ok(Number.isFinite(corner)&&corner>=0&&corner<=1,id+' corner demand should stay bounded at phase '+phase);
  }
 }
+// Assert that expansion tracks differ geometrically, not only by color/name.
+const expansion=Object.entries(api.tracks).filter(([,d])=>Number.isInteger(d.shapeIndex));
+assert.equal(expansion.length,55,'55 expansion circuits should use differentiated layouts');
+const signatures=new Set(),families=new Set();
+for(const [id,d] of expansion){
+ api.setTrackForTest(id);
+ const signature=Array.from({length:48},(_,i)=>{const p=api.geometry(i/48);return Math.round(p.x*1000)+','+Math.round(p.y*1000)}).join('|');
+ assert.ok(!signatures.has(signature),id+' should have a unique centerline signature');
+ signatures.add(signature);
+ families.add(Math.floor(d.shapeIndex/11));
+}
+assert.equal(families.size,5,'expansion circuits should cover five layout archetypes');
 api.setTrackForTest('neon');
 const timings={};
 for(const level of ['easy','normal','hard','expert'])timings[level]=raceAtDifficulty(level);
