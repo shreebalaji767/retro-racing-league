@@ -113,3 +113,28 @@ body{background-image:none}
 .mast-actions .install-button:hover,.mast-actions .install-button:focus-visible{background:#d0d0d0;color:#000;outline:1px dotted #000;outline-offset:2px}
 .mast-actions .install-button:disabled{background:#e0e0e0;color:#404040;opacity:.65}
 .install-status{color:#404040}
+
+/* Device adaptability: safe-area padding, small viewports, coarse touch and landscape phones. */
+html{min-width:320px;min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{min-height:100vh;min-height:100dvh}
+.shell{padding-left:max(7px,env(safe-area-inset-left));padding-right:max(7px,env(safe-area-inset-right));padding-bottom:max(12px,env(safe-area-inset-bottom))}
+button,a,select,input{touch-action:manipulation}
+button,[role=button],select{min-height:44px}
+.canvas-frame{width:100%;max-width:100%;margin-inline:auto}
+#game{width:100%;height:auto;max-width:100%;aspect-ratio:8/5;object-fit:contain}
+.touch-controls{grid-template-columns:repeat(3,minmax(0,1fr))}
+.touch-controls button{min-width:0;min-height:48px;padding-inline:clamp(4px,1.2vw,12px);font-size:clamp(.7rem,1.8vw,.95rem);white-space:normal;overflow-wrap:anywhere}
+@media(max-width:360px){.touch-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.touch-controls button{font-size:.75rem}.mast h1{font-size:1rem}.race-strip{font-size:.7rem}.hint{font-size:.7rem}}
+@media(hover:none),(pointer:coarse){button:hover{background:inherit;color:inherit}button:active{background:#e0e0e0;color:#000}button:focus-visible{outline:3px solid #0000ee;outline-offset:2px}}
+@media(orientation:landscape) and (max-height:600px) and (max-width:900px){
+ .shell{padding-top:5px}
+ .mast{padding-bottom:5px}
+ .site-nav{margin:6px 0;padding:4px}
+ .site-nav a{padding:5px 8px}
+ .game-panel{padding:6px}
+ .canvas-frame{max-height:58dvh}
+ #game{max-height:58dvh;width:auto;max-width:100%;margin-inline:auto}
+ .touch-controls button{min-height:42px}
+ .hint{margin:5px 0;line-height:1.5}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
