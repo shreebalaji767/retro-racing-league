@@ -82,3 +82,28 @@ button{border-color:#b9a16b;background:#49402f;color:#f0e4c8;box-shadow:3px 3px 
 kbd{border-color:#8d7958;color:#e5c887;border-radius:0}.stats>div{background:#211d18;border-color:#655542}.track-details{background:#211d18;border-left-color:#b9a16b}.track-pick{background:#211d18;border-color:#655542}.track-pick[aria-pressed=true],.track-pick.selected{background:#b9a16b;color:#211d18;border-color:#e5c887}.track-favorite[aria-pressed=true]{background:#49402f;border-color:#e5c887;color:#e5c887}
 .site-nav{background:#302a22;border-color:#655542;border-radius:0}.site-nav a{color:#e5c887;border-radius:0}.site-nav a:hover,.site-nav a:focus-visible{background:#e5c887;color:#211d18}
 .landing-hero,.subpage-hero{background:#302a22;border-color:#9a7548;box-shadow:5px 5px 0 #120f0b;border-radius:0}.landing-hero h2,.subpage-hero h2{color:#f0e4c8;text-shadow:2px 2px #51402d}.landing-hero h2 span{color:#c8ad76}.landing-mark img{filter:none}.landing-start{background:#49402f;border-color:#e5c887;color:#e5c887;border-radius:0;box-shadow:3px 3px 0 #120f0b}.landing-start:hover,.landing-start:focus-visible{background:#e5c887;color:#211d18}.landing-features b{color:#c8ad76}.landing-features h3{color:#e5c887}.landing-free{color:#c8ad76}
+
+/* Classic plain-HTML era palette: grey page, white panels, black text, blue links. */
+:root{color-scheme:light;--bg:#c0c0c0;--panel:#fff;--ink:#000;--muted:#404040;--pink:#000080;--cyan:#0000ee;--yellow:#000080;--line:#808080}
+html{background:#c0c0c0}
+body{margin:0;background:#c0c0c0;color:#000;font:16px/1.4 Arial,Helvetica,sans-serif;background-image:none}
+a{color:#0000ee;text-decoration:underline}a:visited{color:#551a8b}
+.shell{max-width:1000px}
+.mast{border-bottom:2px solid #808080}
+.mast h1,.mast h1 span{color:#000;text-shadow:none}
+.eyebrow,.free-tag,.race-strip,.stats strong,.panel h2,.overlay h2,.landing-hero h2,.landing-hero h2 span,.subpage-hero h2,.landing-features b,.landing-features h3,.landing-free{color:#000;text-shadow:none}
+.game-panel,.panel,.landing-features article{background:#fff;border:1px solid #808080;box-shadow:none;border-radius:0;color:#000}
+.canvas-frame{border:2px solid #808080;background:#000}.overlay{background:#ffffffed}.overlay h2{color:#000;text-shadow:none}
+button{border:1px solid #808080;border-radius:0;background:#e0e0e0;color:#000;box-shadow:none;font-weight:normal;padding:.5rem .75rem}
+button:hover,button:focus-visible{background:#d0d0d0;color:#000;outline:1px dotted #000;outline-offset:2px}
+button.secondary{background:#e0e0e0;border-color:#808080;color:#000}.danger{background:#e0e0e0;border-color:#808080;color:#000}
+.panel select,.track-tools input[type=search],.panel input:not([type=checkbox]):not([type=range]){background:#fff;border:1px solid #808080;border-radius:0;color:#000}
+kbd{border:1px solid #808080;border-radius:0;color:#000;background:#eee}
+.stats>div{background:#fff;border:1px solid #808080}.track-details{background:#fff;border-left:2px solid #808080;color:#000}
+.track-pick{background:#fff;border:1px solid #808080;color:#000}.track-pick[aria-pressed=true],.track-pick.selected{background:#000080;border-color:#000080;color:#fff;box-shadow:none}.track-favorite[aria-pressed=true]{background:#e0e0e0;border-color:#808080;color:#000}
+.site-nav{background:#e0e0e0;border:1px solid #808080;border-radius:0}.site-nav a{color:#0000ee;border:1px solid #808080;border-radius:0;text-decoration:underline}.site-nav a:hover,.site-nav a:focus-visible{background:#d0d0d0;color:#000}
+.landing-hero,.subpage-hero{background:#fff;border:1px solid #808080;box-shadow:none;border-radius:0}.landing-hero h2,.subpage-hero h2{color:#000;text-shadow:none}.landing-hero h2 span{color:#000}.landing-mark img{filter:none}
+.landing-start{background:#e0e0e0;border:1px solid #808080;border-radius:0;box-shadow:none;color:#000;text-decoration:underline;font-weight:normal}.landing-start:hover,.landing-start:focus-visible{background:#d0d0d0;color:#000}
+.landing-features b,.landing-features h3{color:#000}.landing-free{color:#000}
+.free-tag{font-weight:normal;letter-spacing:normal}.eyebrow{font-weight:normal;letter-spacing:normal}.mast h1{letter-spacing:normal}
+body{background-image:none}
