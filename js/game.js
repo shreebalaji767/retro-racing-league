@@ -136,6 +136,45 @@ function trackPoint(a,offset=0){
  else if(id==='neon'){radial+=.055*Math.cos(6*a)+.025*Math.sin(10*a)}
  else if(t.shapeIndex!==undefined){
  const k=t.shapeIndex,phase=k*2.399963229728653;
+ // Give expansion circuits genuinely different route silhouettes, not just
+ // small harmonic ripples on the same oval. Grouped archetypes are blended
+ // with per-track phase/scale so circuits within a family still differ.
+ const family=Math.floor(k/11);
+ const u=k%11;
+ if(family===0){
+  // Broad stadium / rounded-rectangle layouts with long straights.
+  x=Math.sign(c)*Math.pow(Math.abs(c),.22+.018*u)+.035*Math.sin((3+u%4)*a+phase);
+  y=Math.sign(s)*Math.pow(Math.abs(s),.48+.014*u)+.025*Math.sin((5+u%3)*a-phase);
+  radial+=.018*Math.cos((6+u%3)*a+phase);
+ }else if(family===1){
+  // Figure-eight / twin-loop circuits with a visible crossover.
+  x=Math.sin(a)+.035*Math.sin((3+u%4)*a+phase);
+  y=.58*Math.sin(2*a)+.045*Math.cos((5+u%3)*a-phase);
+  radial+=.018*Math.sin((4+u%5)*a+phase);
+ }else if(family===2){
+  // S-bend and chicane circuits: alternating direction changes.
+  x=Math.cos(a)+(.12+.008*u)*Math.sin(3*a+phase)+.035*Math.sin(5*a-phase);
+  y=Math.sin(a)+(.09+.006*u)*Math.sin(2*a-phase)+.025*Math.cos(6*a+phase);
+  radial+=.025*Math.cos((3+u%5)*a+phase);
+ }else if(family===3){
+  // Tight hairpin / angular mountain-road layouts.
+  x=Math.sign(c)*Math.pow(Math.abs(c),.18+.009*u)+.045*Math.sin((4+u%4)*a+phase);
+  y=Math.sign(s)*Math.pow(Math.abs(s),.62+.012*u)+.055*Math.sin((3+u%5)*a-phase);
+  radial+=.04*Math.cos((5+u%4)*a+phase);
+ }else{
+  // Cloverleaf and multi-apex layouts with several pronounced lobes.
+  const lobes=3+(u%3);
+  x=Math.cos(a)+(.12+.006*u)*Math.cos(lobes*a+phase)+.035*Math.sin(5*a-phase);
+  y=Math.sin(a)+(.10+.005*u)*Math.sin(lobes*a-phase)+.035*Math.cos(7*a+phase);
+  radial+=.035*Math.cos((4+u%5)*a+phase)+.018*Math.sin((7+u%4)*a-phase);
+ }
+ // Unique low-amplitude offsets keep every venue's route signature distinct.
+ const f1=2+(k%7),f2=3+((k*3+1)%8),f3=4+((k*5+2)%9),f4=5+((k*7+3)%10);
+ const p1=.012+.00035*k,p2=.009+.0002*(54-k),p3=.008+.0002*((k*11)%55),p4=.006+.0002*((k*17)%55);
+ x+=p3*Math.sin(f3*a-phase*.71);
+ y+=p4*Math.cos(f4*a+phase*.57);
+ radial+=p1*Math.cos((3+(k%6))*a+phase)+p2*Math.sin((5+((k*2)%7))*a-phase*.61);
+
  // The 50 expansion circuits each receive their own non-repeating geometric signature.
  // Avoid the former k%10 profile loop which recycled the same ten track families.
  const f1=2+(k%7),f2=3+((k*3+1)%8),f3=4+((k*5+2)%9),f4=5+((k*7+3)%10);
