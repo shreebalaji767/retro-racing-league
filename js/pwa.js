@@ -15,13 +15,12 @@ function updateInstallUi(){
  installButton.textContent=installPrompt?'⬇ INSTALL GAME':'＋ INSTALL APP';
  installButton.setAttribute('aria-label','Install Retro Racing League as an app');
 }
-window.addEventListener('beforeinstallprompt',()=>{
- // Allow the browser's native install banner to appear. Deferring this event
- // with preventDefault() requires calling prompt() later and suppresses the
- // native banner until the user activates the custom button.
- installPrompt=null;
+window.addEventListener('beforeinstallprompt',event=>{
+ // Keep the browser's deferred prompt and show it only after the user clicks.
+ event.preventDefault();
+ installPrompt=event;
  updateInstallUi();
- setStatus('Install is available · use your browser install banner or menu');
+ setStatus('Ready to install · click INSTALL APP');
 });
 window.addEventListener('appinstalled',()=>{
  installPrompt=null;
@@ -32,14 +31,17 @@ if(installButton)installButton.addEventListener('click',async()=>{
  if(installPrompt){
   const promptEvent=installPrompt;
   installPrompt=null;
+  updateInstallUi();
   try{
    await promptEvent.prompt();
    const choice=await promptEvent.userChoice;
-   updateInstallUi();
-   setStatus(choice&&choice.outcome==='accepted'?'Install accepted':'Install dismissed · you can install later from your browser menu');
-  }catch{
-   updateInstallUi();
-   setStatus('The browser could not open installation. Try the browser menu instead.');
+   if(choice&&choice.outcome==='accepted'){
+    setStatus('Install accepted · launch from your app menu');
+   }else{
+    setStatus('Install dismissed · you can try again from the browser menu');
+   }
+  }catch(error){
+   setStatus('Browser could not open installation · use the browser menu instead');
   }
   return;
  }
@@ -49,11 +51,11 @@ if(installButton)installButton.addEventListener('click',async()=>{
  }
  const ua=navigator.userAgent||'';
  if(/iphone|ipad|ipod/i.test(ua)){
-  setStatus('On iPhone/iPad: open this page in Safari, tap Share, then “Add to Home Screen”.');
+  setStatus('On iPhone/iPad: open in Safari, tap Share, then “Add to Home Screen”.');
  }else if(/android/i.test(ua)){
-  setStatus('If installation is available, open your browser menu and choose “Install app” or “Add to Home screen”.');
+  setStatus('No install prompt yet. Open Chrome menu and choose “Install app” or “Add to Home screen”.');
  }else{
-  setStatus('Open your browser menu and choose “Install app” or “Create shortcut”. Use HTTPS or localhost.');
+  setStatus('Install is not available yet. Use Chrome/Edge menu → “Install app” or “Create shortcut”. Ensure the site is HTTPS.');
  }
 });
 updateInstallUi();
@@ -62,7 +64,7 @@ if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostn
   try{
    const registration=await navigator.serviceWorker.register('./service-worker.js');
    await navigator.serviceWorker.ready;
-   if(!isStandalone())setStatus('Offline support ready · install from this browser when available');
+   if(!isStandalone())setStatus('Offline support ready · install may be available from your browser');
    registration.addEventListener('updatefound',()=>{
     const worker=registration.installing;
     if(worker)worker.addEventListener('statechange',()=>{
