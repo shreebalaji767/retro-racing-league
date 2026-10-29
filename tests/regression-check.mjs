@@ -75,7 +75,7 @@ assert.match(worker,/event\.waitUntil\(caches\.open\(CACHE_NAME\)\.then\(cache\s
 assert.match(worker,/fetch\(request\)\.then\(response\s*=>/,'App shell should refresh from the network when online');
 assert.match(worker,/catch\(\(\s*\)\s*=>\s*caches\.match\(request\)/,'Cached assets should remain available offline');
 assert.match(pwa,/await navigator\.serviceWorker\.ready/,'PWA status should wait until the worker is ready');
-assert.match(pwa,/On iPhone\/iPad: open this page in Safari/,'iOS installation guidance should direct users to Safari');
+assert.match(pwa,/On iPhone\\/iPad: open in Safari, tap Share, then “Add to Home Screen”/,'iOS installation guidance should direct users to Safari and Add to Home Screen');
 assert.match(logo,/<svg/,'Logo must be a local SVG asset');assert.match(icon,/<svg/,'Compact app icon must be a local SVG asset');
 const minimumFileSizes={'manifest.webmanifest':100};
 for(const file of ['index.html','js/game.js','js/expansion.js','js/pwa.js','service-worker.js','manifest.webmanifest','assets/rrl-logo.svg','assets/rrl-icon.svg','css/style.css'])assert(fs.statSync(file).size>(minimumFileSizes[file]??500),`${file} should not be empty`);
