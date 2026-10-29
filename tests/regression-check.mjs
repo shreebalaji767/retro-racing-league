@@ -64,6 +64,12 @@ assert.match(css,/\(pointer:coarse\)/,'Touch-first devices should receive adapte
 assert.match(css,/max-width:360px/,'Very narrow phones should have a dedicated control layout');
 assert.match(game,/visibilitychange/,'Held controls should clear when the page is backgrounded');
 assert.match(game,/pagehide',\(\)=>\{keys\.clear\(\);touch\.clear\(\);save\(\)\}/,'Held controls should clear and progress save when leaving the page');
+assert.match(html,/class="touch-controls" role="group"/,'Driving controls should be clearly grouped for assistive technologies');
+assert.match(html,/data-control="left" aria-label="Hold to steer left"/,'Touch steering buttons should be labeled for press-and-hold');
+assert.match(html,/data-control="gas" aria-label="Hold to accelerate"/,'Touch acceleration button should be labeled');
+assert.match(css,/\.touch-controls \.drive-button\.is-pressed/,'On-screen controls should show their pressed state');
+assert.match(css,/max-width:340px/,'Driving controls should fit very narrow screens');
+assert.match(css,/max-height:560px/,'Driving controls should adapt to short landscape screens');
 assert.match(html,/aria-live="polite"/);
 assert.match(html,/id="installApp"/,'Install button must be present');
 assert.match(html,/assets\/rrl-logo\.svg/,'Logo should be linked locally');
