@@ -138,3 +138,17 @@ button,[role=button],select{min-height:44px}
  .hint{margin:5px 0;line-height:1.5}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+
+/* Compact gamepad: clear, press-and-hold buttons on every viewport. */
+.touch-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(4px,1.2vw,9px);margin-top:8px}
+.touch-controls .drive-button{display:flex;align-items:center;justify-content:center;min-width:0;min-height:clamp(44px,7.5vw,58px);padding:clamp(4px,1.5vw,10px);border:1px solid #808080;background:#e0e0e0;color:#000;font-size:clamp(.72rem,2.3vw,.95rem);font-weight:700;line-height:1.1;box-shadow:1px 1px 0 #808080;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
+.touch-controls .steer-button{font-size:clamp(1.15rem,4vw,1.7rem);font-weight:900}
+.touch-controls .gas-button{background:#d5d5d5}
+.touch-controls .brake-button{background:#f0f0f0}
+.touch-controls .nitro-button{background:#c8c8c8}
+.touch-controls .start-button{background:#fff;border:2px solid #000;font-weight:900}
+.touch-controls .drive-button:active,.touch-controls .drive-button.is-pressed{background:#000080!important;color:#fff!important;outline:2px solid #000080;outline-offset:1px;transform:translateY(1px)}
+@media(min-width:1100px) and (pointer:fine){.touch-controls{max-width:620px;margin-inline:auto}.touch-controls .drive-button{min-height:48px}}
+@media(max-width:480px){.touch-controls{gap:5px}.touch-controls .drive-button{min-height:48px;font-size:.76rem}.touch-controls .steer-button{font-size:1.35rem}.touch-controls .start-button{font-size:.72rem}}
+@media(max-width:340px){.touch-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.touch-controls .drive-button{min-height:46px}}
+@media(orientation:landscape) and (max-height:560px){.touch-controls{grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}.touch-controls .drive-button{min-height:40px;font-size:.72rem;padding:3px}.touch-controls .steer-button{font-size:1.2rem}}
