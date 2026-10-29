@@ -107,3 +107,9 @@ kbd{border:1px solid #808080;border-radius:0;color:#000;background:#eee}
 .landing-features b,.landing-features h3{color:#000}.landing-free{color:#000}
 .free-tag{font-weight:normal;letter-spacing:normal}.eyebrow{font-weight:normal;letter-spacing:normal}.mast h1{letter-spacing:normal}
 body{background-image:none}
+
+/* PWA install control follows the plain grey/white classic site palette. */
+.mast-actions .install-button{background:#e0e0e0;border:1px solid #808080;border-radius:0;color:#000;box-shadow:none;font:inherit;font-weight:normal;text-decoration:underline;min-height:38px}
+.mast-actions .install-button:hover,.mast-actions .install-button:focus-visible{background:#d0d0d0;color:#000;outline:1px dotted #000;outline-offset:2px}
+.mast-actions .install-button:disabled{background:#e0e0e0;color:#404040;opacity:.65}
+.install-status{color:#404040}
