@@ -42,3 +42,25 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 
 /* Circuit browser tools: searchable, keyboard-friendly and usable on narrow screens */
 .track-tools{display:grid;gap:7px;margin:8px 0 10px}.track-search-label{margin:0!important}.track-tools input[type=search]{width:100%;min-width:0;padding:10px;background:#101018;border:1px solid var(--line);border-radius:4px;color:var(--ink)}.track-tool-buttons{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.favorite-filter{display:flex!important;align-items:center;gap:7px;margin:0!important}.favorite-filter input{accent-color:var(--pink);width:18px;height:18px}.track-picker{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;max-height:320px;overflow:auto;overscroll-behavior:contain;padding:2px}.track-tile{display:grid;grid-template-columns:minmax(0,1fr) 38px;gap:4px;min-width:0}.track-tile[hidden]{display:none!important}.track-pick{min-width:0;min-height:42px;padding:7px 6px;text-align:left;font-size:.75rem;line-height:1.25;overflow-wrap:anywhere;border-color:var(--track-color,var(--cyan));box-shadow:2px 2px 0 #000}.track-pick.selected{background:var(--track-color,var(--cyan));color:#101018;outline:2px solid white;outline-offset:1px}.track-favorite{padding:4px;min-width:36px;min-height:42px;border-color:var(--line);color:var(--yellow);font-size:1.1rem;box-shadow:2px 2px 0 #000}.track-favorite[aria-pressed=true]{border-color:var(--yellow);background:#3a3220;color:var(--yellow)}.track-picker[data-empty=true]::after{content:"NO CIRCUITS MATCH — TRY ANOTHER SEARCH";display:block;grid-column:1/-1;padding:14px;color:var(--muted);font-size:.8rem;text-align:center}@media(max-width:520px){.track-picker{grid-template-columns:repeat(2,minmax(0,1fr));max-height:280px}.track-tool-buttons button{font-size:.75rem;padding:.55rem}.track-pick{font-size:.7rem}.track-tile{grid-template-columns:minmax(0,1fr) 34px}.track-favorite{min-width:32px}}
+
+/* Landing screen and hash-based navigation: refresh retains the current view. */
+.brand-home{color:inherit;text-decoration:none}
+.brand-home:focus-visible{outline:3px solid var(--yellow);outline-offset:5px;border-radius:8px}
+.landing-page{display:block!important;max-width:1000px;margin:22px auto 0}
+.landing-hero{position:relative;overflow:hidden;text-align:center;padding:clamp(26px,6vw,70px) 18px;border:2px solid var(--pink);border-radius:8px;background:linear-gradient(145deg,#211c3b,#101018 65%);box-shadow:7px 7px 0 #0006}
+.landing-mark img{width:clamp(82px,14vw,142px);height:auto;filter:drop-shadow(0 0 16px #4ce6dc55)}
+.landing-hero .eyebrow{margin:18px 0 10px}
+.landing-hero h2{font-size:clamp(2rem,7vw,5rem);line-height:1.03;letter-spacing:.025em;margin:0;text-shadow:4px 4px #9a2876}
+.landing-hero h2 span{color:var(--cyan)}
+.landing-copy{max-width:650px;margin:20px auto;color:var(--muted);font-size:clamp(.95rem,2vw,1.15rem)}
+.landing-start{display:inline-block;margin:12px auto;padding:15px 24px;border:2px solid var(--yellow);border-radius:4px;background:#302642;color:var(--yellow);font-weight:900;text-decoration:none;box-shadow:4px 4px 0 #000;font-size:1rem}
+.landing-start:hover,.landing-start:focus-visible{background:var(--yellow);color:#101018;outline:2px solid white;outline-offset:3px}
+.landing-free{font-size:.72rem;font-weight:900;letter-spacing:.12em;color:var(--cyan);margin:20px 0 0}
+.landing-features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+.landing-features article{border:1px solid var(--line);border-radius:5px;background:#171725ed;padding:16px}
+.landing-features b{color:var(--pink);font-size:.75rem;letter-spacing:.1em}
+.landing-features h3{color:var(--yellow);margin:8px 0}
+.landing-features p{color:var(--muted);font-size:.88rem;margin:0}
+.landing-foot{text-align:center;color:var(--muted);font-size:.75rem;letter-spacing:.15em;padding:12px}
+#gamePage[hidden],#landingPage[hidden]{display:none!important}
+@media(max-width:650px){.landing-features{grid-template-columns:1fr}.landing-features article{padding:13px}.landing-hero{padding:30px 14px}.landing-start{width:100%;max-width:320px}}
