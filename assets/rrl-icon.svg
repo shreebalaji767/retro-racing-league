@@ -1,14 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
-<title id="title">Retro Racing League app icon</title>
-<rect width="512" height="512" rx="92" fill="#101018"/>
-<rect x="20" y="20" width="472" height="472" rx="72" fill="#211934" stroke="#4ce6dc" stroke-width="16"/>
-<path d="M58 84h92v18H58zm304 0h92v18h-92zM58 410h92v18H58zm304 0h92v18h-92z" fill="#ff4f9a"/>
-<g stroke="#f6f3ff" stroke-width="10" stroke-linejoin="round">
-<path d="M124 282l30-94q8-25 35-25h135q27 0 37 27l30 92 30 27v62h-40a35 35 0 0 1-70 0H201a35 35 0 0 1-70 0H94v-62z" fill="#4ce6dc"/>
-<path d="M185 185h68v54h-85zm86 0h42q15 0 23 18l14 36h-79z" fill="#101018"/>
-</g>
-<path d="M133 281h246M145 306h222" stroke="#ff4f9a" stroke-width="12"/>
-<circle cx="166" cy="371" r="25" fill="#101018" stroke="#ffe66d" stroke-width="10"/>
-<circle cx="346" cy="371" r="25" fill="#101018" stroke="#ffe66d" stroke-width="10"/>
-<g transform="translate(342 62) rotate(12)"><rect width="26" height="26" fill="#fff"/><rect x="26" width="26" height="26" fill="#101018"/><rect x="52" width="26" height="26" fill="#fff"/><rect y="26" width="26" height="26" fill="#101018"/><rect x="26" y="26" width="26" height="26" fill="#fff"/><rect x="52" y="26" width="26" height="26" fill="#101018"/></g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><title>Retro Racing League favicon</title><rect x="1" y="1" width="62" height="62" fill="#fff" stroke="#000" stroke-width="2"/><rect x="5" y="5" width="54" height="54" fill="none" stroke="#000"/><g fill="#000"><path d="M8 9h6v6H8zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zM8 21h6v6H8zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6z"/></g><text x="32" y="39" font-family="Courier New,monospace" font-weight="900" font-size="12" text-anchor="middle" fill="#000">RRL</text><path d="M8 48h13l4-6h14l5 6h12v7H8z" fill="#fff" stroke="#000" stroke-width="2"/><circle cx="20" cy="55" r="4" fill="#000"/><circle cx="44" cy="55" r="4" fill="#000"/></svg>
