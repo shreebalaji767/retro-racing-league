@@ -175,21 +175,7 @@ function trackPoint(a,offset=0){
  y+=p4*Math.cos(f4*a+phase*.57);
  radial+=p1*Math.cos((3+(k%6))*a+phase)+p2*Math.sin((5+((k*2)%7))*a-phase*.61);
 
- // The 50 expansion circuits each receive their own non-repeating geometric signature.
- // Avoid the former k%10 profile loop which recycled the same ten track families.
- const f1=2+(k%7),f2=3+((k*3+1)%8),f3=4+((k*5+2)%9),f4=5+((k*7+3)%10);
- const p1=.035+.0017*k,p2=.022+.0011*(49-k),p3=.014+.0008*((k*11)%50),p4=.009+.0006*((k*17)%50);
- const skewX=.035+.0013*k,skewY=.028+.0012*(49-k);
- const exponentX=.34+.012*(k%25),exponentY=.39+.011*((k*9)%25);
- // Every profile has a different harmonic mix, phase, corner bias and lateral asymmetry.
- x=Math.sign(c)*Math.pow(Math.abs(c),exponentX)+skewX*Math.sin(f1*a+phase)+p3*Math.sin(f3*a-phase*.71);
- y=Math.sign(s)*Math.pow(Math.abs(s),exponentY)+skewY*Math.sin(f2*a-phase*.83)+p4*Math.cos(f4*a+phase*.57);
- radial+=p1*Math.cos((3+(k%6))*a+phase)+p2*Math.sin((5+((k*2)%7))*a-phase*.61);
- if(k%5===0){x+=.09*Math.sin(2*a+phase);y+=.035*Math.cos(7*a-phase)}
- else if(k%5===1){x+=.035*Math.cos(8*a+phase);y+=.095*Math.sin(2*a-phase)}
- else if(k%5===2){radial+=.045*Math.cos(9*a+phase);x+=.065*Math.sin(5*a-phase)}
- else if(k%5===3){radial+=.035*Math.sin(11*a-phase);y+=.06*Math.cos(6*a+phase)}
- else {x+=.055*Math.sin(6*a+phase);y+=.045*Math.cos(9*a-phase)}
+
 }
  return {x:W/2+rx*x*radial,y:H/2+ry*y*radial};
 }
