@@ -4,6 +4,7 @@
 - JavaScript syntax parsing and startup in a mocked browser environment.
 - All referenced HTML element IDs exist.
 - All 75 built-in circuit definitions and twelve car profiles are present; runtime smoke tests sample geometry, arc length, corner demand and surface grip at 64 points on every circuit.
+- The 55 expansion circuits use five distinct layout archetypes—stadium/rounded-rectangle, figure-eight, S-bend/chicane, hairpin/angular and multi-apex/cloverleaf—each with per-circuit variation.
 - Simulated Grand Prix completed 3 laps, awarded credits and advanced the round.
 - Simulated wet Time Attack completed and saved a local ghost recording.
 - Simulated Elimination removed rivals during a race and completed.
