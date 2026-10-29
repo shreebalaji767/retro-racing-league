@@ -1,8 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
-<title id="title">Retro Racing League</title><desc id="desc">Neon pixel racing badge with a stylized racing car and checkered flag.</desc>
-<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#24163e"/><stop offset="1" stop-color="#080b18"/></linearGradient><linearGradient id="car" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4ce6dc"/><stop offset="1" stop-color="#ff4f9a"/></linearGradient></defs>
-<rect x="12" y="12" width="488" height="488" rx="58" fill="url(#bg)" stroke="#4ce6dc" stroke-width="12"/>
-<path d="M48 90h82v20H48zm334 0h82v20h-82zM48 402h82v20H48zm334 0h82v20h-82z" fill="#ff4f9a"/>
-<g transform="translate(256 245)"><path d="M-152 36l22-76q7-23 31-23h86q24 0 34 24l31 75 25 19v56h-24a31 31 0 0 1-62 0h-84a31 31 0 0 1-62 0h-23V59z" fill="url(#car)" stroke="#f6f3ff" stroke-width="8" stroke-linejoin="round"/><path d="M-94-41h57v43h-72zm77 0h31q12 0 18 14l12 29h-61z" fill="#101018" stroke="#f6f3ff" stroke-width="5"/><path d="M-119 27h238M-104 50h208" stroke="#101018" stroke-width="8"/><circle cx="-103" cy="113" r="24" fill="#090b16" stroke="#ffe66d" stroke-width="8"/><circle cx="103" cy="113" r="24" fill="#090b16" stroke="#ffe66d" stroke-width="8"/></g>
-<g transform="translate(335 78) rotate(12)"><rect width="28" height="28" fill="#f6f3ff"/><rect x="28" width="28" height="28" fill="#101018"/><rect x="56" width="28" height="28" fill="#f6f3ff"/><rect y="28" width="28" height="28" fill="#101018"/><rect x="28" y="28" width="28" height="28" fill="#f6f3ff"/><rect x="56" y="28" width="28" height="28" fill="#101018"/></g>
-<text x="256" y="438" fill="#ffe66d" font-family="system-ui, sans-serif" font-size="37" font-weight="900" text-anchor="middle" letter-spacing="2">RETRO RACING</text><text x="256" y="472" fill="#4ce6dc" font-family="system-ui, sans-serif" font-size="25" font-weight="800" text-anchor="middle" letter-spacing="7">LEAGUE</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-labelledby="title desc">
+<title id="title">Retro Racing League</title><desc id="desc">Classic monochrome racing logo with pixel checkered flag, racing car, and RETRO RACING LEAGUE lettering.</desc>
+<rect x="5" y="5" width="710" height="290" fill="#fff" stroke="#000" stroke-width="10"/><rect x="17" y="17" width="686" height="266" fill="none" stroke="#000" stroke-width="3"/>
+<g fill="#000"><path d="M35 50h16v16H35zm32 0h16v16H67zm32 0h16v16H99zm32 0h16v16h-16zM35 82h16v16H35zm32 0h16v16H67zm32 0h16v16H99zm32 0h16v16h-16zM35 114h16v16H35zm32 0h16v16H67zm32 0h16v16H99zm32 0h16v16h-16z"/>
+<path d="M180 42h32v12h-20v26h-12zm46 0h20v12h-20zm28 0h20v12h-20zm28 0h20v12h-20zm28 0h20v12h-20zm28 0h20v12h-20zm28 0h20v12h-20zm28 0h20v12h-20z"/>
+</g>
+<text x="170" y="105" font-family="Courier New,monospace" font-weight="900" font-size="72" letter-spacing="2" fill="#000">RETRO</text>
+<text x="170" y="176" font-family="Courier New,monospace" font-weight="900" font-size="67" letter-spacing="-2" fill="#000">RACING</text><text x="170" y="235" font-family="Courier New,monospace" font-weight="900" font-size="46" letter-spacing="5" fill="#000">LEAGUE</text>
+<path d="M42 214h76l20-28h70l28 28h20v24H42z" fill="#fff" stroke="#000" stroke-width="7" stroke-linejoin="round"/>
+<path d="M142 186l-12 28h58l-18-28z" fill="#000"/><circle cx="91" cy="239" r="17" fill="#000"/><circle cx="91" cy="239" r="7" fill="#fff"/><circle cx="223" cy="239" r="17" fill="#000"/><circle cx="223" cy="239" r="7" fill="#fff"/>
+<path d="M30 260h260" stroke="#000" stroke-width="4"/><path d="M300 260h20" stroke="#000" stroke-width="4"/>
+<text x="335" y="270" font-family="Courier New,monospace" font-size="13" fill="#000">EST. 199X · PLAY FOR FREE</text>
+</svg>
