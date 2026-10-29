@@ -58,6 +58,12 @@ for(const id of ['skyline','volcano','wetlands','tokyo','ruins','dunes','glacier
 assert.match(expansion,/rrl-challenge-records/);assert.match(expansion,/rrl-accessibility/);
 assert.match(expansion,/saveCustomTrack/);assert.match(expansion,/renderStandings/);assert.match(game,/unlockedPaints/);assert.match(game,/currentPaint\(\)\.color/);
 assert.match(css,/prefers-reduced-motion/);assert.match(css,/@media\(max-width:760px\)/);
+assert.match(css,/min-height:100dvh/,'Responsive layout should use dynamic viewport height');
+assert.match(css,/env\(safe-area-inset-bottom\)/,'Layout should account for device safe areas');
+assert.match(css,/\(pointer:coarse\)/,'Touch-first devices should receive adapted control styles');
+assert.match(css,/max-width:360px/,'Very narrow phones should have a dedicated control layout');
+assert.match(game,/visibilitychange/,'Held controls should clear when the page is backgrounded');
+assert.match(game,/pagehide',\(\)=>\{keys\.clear\(\);touch\.clear\(\);save\(\)\}/,'Held controls should clear and progress save when leaving the page');
 assert.match(html,/aria-live="polite"/);
 assert.match(html,/id="installApp"/,'Install button must be present');
 assert.match(html,/assets\/rrl-logo\.svg/,'Logo should be linked locally');
