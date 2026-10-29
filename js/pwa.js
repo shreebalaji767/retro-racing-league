@@ -15,11 +15,13 @@ function updateInstallUi(){
  installButton.textContent=installPrompt?'⬇ INSTALL GAME':'＋ INSTALL APP';
  installButton.setAttribute('aria-label','Install Retro Racing League as an app');
 }
-window.addEventListener('beforeinstallprompt',event=>{
- event.preventDefault();
- installPrompt=event;
+window.addEventListener('beforeinstallprompt',()=>{
+ // Allow the browser's native install banner to appear. Deferring this event
+ // with preventDefault() requires calling prompt() later and suppresses the
+ // native banner until the user activates the custom button.
+ installPrompt=null;
  updateInstallUi();
- setStatus('Ready to install on this device');
+ setStatus('Install is available · use your browser install banner or menu');
 });
 window.addEventListener('appinstalled',()=>{
  installPrompt=null;
