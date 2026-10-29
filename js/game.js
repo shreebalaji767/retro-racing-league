@@ -314,7 +314,7 @@ setupTrackPicker();
 $('car').addEventListener('change',e=>selectCar(e.target.value));$('exportSave').addEventListener('click',exportSave);$('importSave').addEventListener('click',()=>$('saveFile').click());$('saveFile').addEventListener('change',e=>{importSave(e.target.files[0]);e.target.value=''});$('resetSave').addEventListener('click',resetSave);
 document.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].includes(e.key))e.preventDefault();keys.add(e.key);if(e.key.toLowerCase()==='p')togglePause();if(e.key==='Enter'&&state!=='racing')startRace()});document.addEventListener('keyup',e=>keys.delete(e.key));
 document.querySelectorAll('[data-control]').forEach(b=>{const k=b.dataset.control;const down=e=>{e.preventDefault();touch.add(k);try{b.setPointerCapture(e.pointerId)}catch{}};const up=e=>{e.preventDefault();touch.delete(k)};b.addEventListener('pointerdown',down);['pointerup','pointercancel','lostpointercapture'].forEach(ev=>b.addEventListener(ev,up))});
-window.addEventListener('blur',()=>{keys.clear();touch.clear()});window.addEventListener('pagehide',save);
+window.addEventListener('blur',()=>{keys.clear();touch.clear()});document.addEventListener('visibilitychange',()=>{if(document.hidden){keys.clear();touch.clear()}});window.addEventListener('pagehide',()=>{keys.clear();touch.clear();save()});
 renderCarOptions();unlockAchievements();draw();updateUI();
 window.__RRL_TEST__={geometry,arcRate,cornerDemand,surfaceGrip,clamp,defaults,cars,tracks,achievementDefs,loadReplays,setTrackForTest:id=>{if(Object.prototype.hasOwnProperty.call(tracks,id))track=id},getState:()=>({state,progress,lap,speed,nitro,lane,track,mode,weather,saveData,rivals,eliminated,replayCurrent})};
 })();
